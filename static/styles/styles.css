@@ -1,0 +1,49 @@
+body {
+    font-family: helvetica;
+    text-align: center;
+    vertical-align: top;
+}
+
+h1 {
+    margin: 2rem;
+}
+
+a {
+    vertical-align: middle;
+}
+
+.img-panel {
+    border-radius: 10px;
+    width: 100%;
+}
+
+section {
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    margin: 1%;
+}
+
+.small-section {
+    
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 1%;
+    width: 40%;
+    height: 250px;
+
+}
+
+.wide-section {
+
+    width: 84%;
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 1%;
+}
