@@ -14,26 +14,33 @@
     
     <h1>Glenlea Live Allsky Portal</h1>
 
-    
-    <!--div id="content">
 
-        <section class="col-2" id="outdoor-camera">
-            <img src="https://bbs.astronomy-imaging-camera.com/assets/files/2022-08-09/1660067314-867993-img-0435.jpeg" alt="Outdoor Camera">
-            <h3>Outdoor Camera View<h3>
-        </section>
-    
-        <section  class="col-2" id="indoor-camera">
-            <img src="https://bbs.astronomy-imaging-camera.com/assets/files/2022-08-09/1660067314-867993-img-0435.jpeg" alt="Indoor Camera">
-            <h3>Indoor Camera View<h3>
-        </section>
-    
-        <section  class="col-2" id="weather-data">
-            <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data">
-        </section>
-           
-    </div-->
+    <div id="messagesContainer"></div>
 
 
+
+    <script>
+
+        const getMessages = ()=>{
+            fetch("http://astro.physics.umanitoba.ca/sqm/server.out/gao_sqm_20141030.csv") // use your messages request url, this is a sample
+              .then((response) => response.json())
+              .then((messages) => {
+                let messagesHtml = "";
+                for (var message of messages) {
+                
+                  messagesHtml += `<div>${message.name}</div>`; // use your message html structure here
+                }
+            
+                let messagesContainer = document.getElementById("messagesContainer");
+                messagesContainer.innerHTML = messagesHtml;
+              })
+              .catch((err) => console.log(err));
+            }
+            
+              
+              setInterval(getMessages, 3000);
+
+    </script>
     
         
 
@@ -41,20 +48,23 @@
     <section id="outdoor-camera">
         <img class="img-panel" src="https://bbs.astronomy-imaging-camera.com/assets/files/2022-08-09/1660067314-867993-img-0435.jpeg" alt="Outdoor Camera">
         <h3>Outdoor Camera View<h3>
-
+        <p class="timestamp">Last updated 2024/06/13 @ 03:20:14pm</p>
     </section>
 
     <section id="indoor-camera">
         <img class="img-panel" src="https://bbs.astronomy-imaging-camera.com/assets/files/2022-08-09/1660067314-867993-img-0435.jpeg" alt="Indoor Camera">
         <h3>Indoor Camera View<h3>
+        <p class="timestamp">Time stamp: 01:30:12</p>
     </section>
 
-
     <section class="other-section" id="current-position">
-        Coordinates: ...
+        <h3>Current Position<h3>
+        <p>Coordinates?</p>
+        <p>Exposure time?</p>       
     </section>
 
     <section class="other-section" id="sqm-data">
+        <h3>Sky Quality<h3>
         <img class="img-panel" src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data">
         <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
         <br>
@@ -63,6 +73,7 @@
     </section>
 
     <section class="wide-section" id="weather-data">
+        <h3>Forecast<h3>
         <img class="img-panel" src="https://www.cleardarksky.com/c/Winnipegcsk.gif?c=1126848" alt="ICSC data">
     </section>
 

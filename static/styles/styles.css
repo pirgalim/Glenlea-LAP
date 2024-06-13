@@ -1,10 +1,20 @@
 body {
     font-family: helvetica;
     text-align: center;
+    background-color: whitesmoke;    
 }
 
 h1 {
     margin: 2rem;
+}
+
+.timestamp {
+    font-size: smaller;
+    font-style: italic;
+    color: slategray;
+}
+p {
+    font-size: smaller;
 }
 
 a {
@@ -22,7 +32,7 @@ section {
     border-radius: 10px;
     padding: 20px;
     width: 40%;
-    margin: 1%;
+    margin: 0.5%;
 }
 
 .other-section {
@@ -30,21 +40,27 @@ section {
     display: inline-block;
     background-color: lightgray;
     border-radius: 10px;
+
+
     padding: 20px;
+
+    /* padding: 10px 20px; */
+
+
     width: 40%;
-    margin: 1%;
+    margin: 0.5%;
     height: 300px;
 }
 
 .small-section {
-    
+    vertical-align: middle;
     display: inline-block;
     background-color: lightgray;
     border-radius: 10px;
     padding: 20px;
-    margin: 1%;
+    margin: 0.5%;
     width: 40%;
-    height: 250px;
+    height: 350px;
 
 }
 
@@ -55,5 +71,5 @@ section {
     background-color: lightgray;
     border-radius: 10px;
     padding: 20px;
-    margin: 1%;
+    margin: 0.5%;
 }
