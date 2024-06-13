@@ -1,7 +1,6 @@
 body {
     font-family: helvetica;
     text-align: center;
-    vertical-align: top;
 }
 
 h1 {
@@ -24,6 +23,17 @@ section {
     padding: 20px;
     width: 40%;
     margin: 1%;
+}
+
+.other-section {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    margin: 1%;
+    height: 300px;
 }
 
 .small-section {
