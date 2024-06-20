@@ -29,29 +29,45 @@
 
 
 
-    <div id = "update"> </div>
 
-    <img id="image1" src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="">
-    
-
-    <script>function() {
-        
-        document.getElementById("image1").src = "/static/indoor.png";
-    }
-    </script>
 
     <script type="text/javascript">
-
         
-
         var counter = 0;
         window.setInterval(function(){
             $("#update").load("/" + counter);
             counter++;
 
-            document.getElementById("image1").src = "/static/indoor.png";
+            if(counter % 2 == 0) {
+                document.getElementById("outdoor").src = "/static/indoor.png";
+            }
+            else {
+                document.getElementById("outdoor").src = "/static/indoor2.png";
 
+            }
+           
     }, 5000)
+    
+
+</script>
+
+<script type="text/javascript">
+        
+    var counter = 0;
+    window.setInterval(function(){
+        $("#update").load("/" + counter);
+        counter++;
+
+        if(counter % 2 == 0) {
+            document.getElementById("indoor").src = "/static/indoor.png";
+        }
+        else {
+            document.getElementById("indoor").src = "/static/indoor2.png";
+
+        }
+       
+}, 1000)
+
 
 </script>
 
@@ -62,13 +78,13 @@
     
 
     <section id="outdoor-camera">
-        <img class="img-panel" src="/static/indoor.png" alt="Outdoor Camera">
+        <img class="img-panel" id="outdoor" src="/static/no_source.png" alt="Outdoor Camera">
         <h3>Outdoor Camera View<h3>
         <p class="timestamp">Last updated 2024/06/13 @ 03:20:14pm (updates every 30s)</p>
     </section>
 
     <section id="indoor-camera">
-        <img class="img-panel" src="/static/indoor.png" alt="Indoor Camera">
+        <img class="img-panel" id="indoor" src="/static/no_source.png" alt="Indoor Camera">
         <h3>Indoor Camera View<h3>
         <p class="timestamp">Last updated 2024/06/13 @ 03:20:14pm (updates every 10s)</p>
     </section>
