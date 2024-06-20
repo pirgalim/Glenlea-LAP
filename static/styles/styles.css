@@ -1,24 +1,20 @@
 body {
     font-family: helvetica;
     text-align: center;
-    background-color: whitesmoke;    
+    background-color: white;    
 }
 
 h1 {
-    margin: 2rem;
+    /* margin: 2rem; */
 }
 
+p {
+    font-size: smaller;
+}
 .timestamp {
     font-size: smaller;
     font-style: italic;
     color: slategray;
-}
-p {
-    font-size: smaller;
-}
-
-a {
-    vertical-align: middle;
 }
 
 .img-panel {
@@ -28,48 +24,52 @@ a {
 
 section {
     display: inline-block;
-    background-color: lightgray;
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
     border-radius: 10px;
     padding: 20px;
     width: 40%;
     margin: 0.5%;
 }
-
-.other-section {
-    vertical-align: middle;
-    display: inline-block;
-    background-color: lightgray;
-    border-radius: 10px;
-
-
-    padding: 20px;
-
-    /* padding: 10px 20px; */
-
-
-    width: 40%;
-    margin: 0.5%;
-    height: 300px;
-}
-
 .small-section {
     vertical-align: middle;
     display: inline-block;
-    background-color: lightgray;
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
     border-radius: 10px;
     padding: 20px;
     margin: 0.5%;
     width: 40%;
-    height: 350px;
+    height: 300px;
 
 }
-
 .wide-section {
 
     width: 84%;
     display: inline-block;
-    background-color: lightgray;
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
     border-radius: 10px;
     padding: 20px;
     margin: 0.5%;
+}
+
+
+
+@media only screen and (max-device-width: 600px){
+
+    section, .wide-section, .small-section {
+    
+      margin-top: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
+    
+      padding: 10px 5px;
+      background-color: whitesmoke;
+      border: 2px solid lightgray;
+      /* border: 2px slategray; */
+      border-radius: 10px;  
+    }
+
 }
