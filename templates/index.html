@@ -15,41 +15,10 @@
 
 <body>
     
-    <img src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" style="width:5%; height:5%;" alt="logo">
+    <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" style="width:5%; height:5%;" alt="logo">
     <h1>Glenlea Live Allsky Portal</h1>
 
-    
 
-
-
-    <!-- testing -->
-
-    
-
-
-
-
-
-
-    <script type="text/javascript">
-        
-        var counter = 0;
-        window.setInterval(function(){
-            $("#update").load("/" + counter);
-            counter++;
-
-            if(counter % 2 == 0) {
-                document.getElementById("outdoor").src = "/static/indoor.png";
-            }
-            else {
-                document.getElementById("outdoor").src = "/static/indoor2.png";
-
-            }
-           
-    }, 5000)
-    
-
-</script>
 
 <script type="text/javascript">
         
@@ -60,19 +29,21 @@
 
         if(counter % 2 == 0) {
             document.getElementById("indoor").src = "/static/indoor.png";
+            document.getElementById("outdoor").src = "/static/indoor.png";
         }
         else {
             document.getElementById("indoor").src = "/static/indoor2.png";
+            document.getElementById("outdoor").src = "/static/indoor2.png";
 
         }
        
-}, 1000)
+    }, 1000)
 
 
 </script>
 
     
-    <!-- end testing -->
+
 
 
     
@@ -104,7 +75,20 @@
         <a href="http://astro.physics.umanitoba.ca/sqm/server2.out">Download data log: ECO</a>
     </section>
 
-    <section class="wide-section" id="weather-data">
+   
+    <section class="small-section" id="weather-data">
+        <h3>Weather Data<h3>
+    </section>
+
+    <section class="small-section" id="radar">
+        <h3>Weather Radar<h3>
+        <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
+    </section>
+
+   
+
+
+    <section class="wide-section" id="weather-forecast">
         <h3>Forecast<h3>
         <img class="img-panel" src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
     </section>

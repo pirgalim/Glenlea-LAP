@@ -21,6 +21,25 @@ p {
     border-radius: 10px;
     width: 100%;
 }
+.logo {
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+
+.img-radar {
+    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
+    background-size: contain;
+
+    width: 638px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: var(--component-border-radius, 0.3em);
+}
+
+
+
 
 section {
     display: inline-block;
@@ -72,4 +91,9 @@ section {
       border-radius: 10px;  
     }
 
+    .logo {
+        border-radius: 10px;
+        width: 1000%;
+        height: 1000%;
+    }
 }
