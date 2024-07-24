@@ -4,9 +4,6 @@
     --camera-width: 1304px;
     --camera-height: 976px;
 
-
-
-
     --block-width: calc( var(--camera-width) * 0.5 );
     --block-height: calc( var(--camera-height) * 0.5 );
 }
@@ -16,20 +13,14 @@ h1 {
 }
 
 body {
-    font-family: helvetica;
-    text-align: center;
-    
-    background-color: white;    
-
     display: flex;
-    /* flex-direction: row; */
     flex-wrap: wrap;
-
     justify-content: center;
 
-    
+    font-family: helvetica;
+    text-align: center;
+    background-color: white;  
 }
-
 
 
 section {
@@ -63,15 +54,20 @@ p {
     font-size: smaller;
     font-style: italic;
     color: slategray;
+    margin-top: -10px;
+    margin-bottom: 0;
 }
 
 .img-panel {
     border-radius: 10px;
-    
     width: 100%;
 }
 .logo {
     border-radius: 10px;
+    width: 100%;
+}
+
+img {
     width: 100%;
 }
 
@@ -81,8 +77,9 @@ p {
     background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
     background-size: contain;
 
-    width: 638px;
-    height: 200px;
+    width: 100%;
+    /* width: 638px;
+    height: 200px; */
     object-fit: contain;
     border-radius: var(--component-border-radius, 0.3em);
 }
