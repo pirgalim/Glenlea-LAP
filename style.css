@@ -4,41 +4,6 @@ body {
     background-color: white;    
 }
 
-h1 {
-    /* margin: 2rem; */
-}
-
-p {
-    font-size: smaller;
-}
-.timestamp {
-    font-size: smaller;
-    font-style: italic;
-    color: slategray;
-}
-
-.img-panel {
-    border-radius: 10px;
-    width: 100%;
-}
-.logo {
-    border-radius: 10px;
-    width: 100%;
-}
-
-
-
-.img-radar {
-    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
-    background-size: contain;
-
-    width: 638px;
-    height: 200px;
-    object-fit: contain;
-    border-radius: var(--component-border-radius, 0.3em);
-}
-
-
 
 
 section {
@@ -75,6 +40,56 @@ section {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+p {
+    font-size: smaller;
+}
+.timestamp {
+    font-size: smaller;
+    font-style: italic;
+    color: slategray;
+}
+
+.img-panel {
+    border-radius: 10px;
+    width: 100%;
+}
+.logo {
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+
+.img-radar {
+    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
+    background-size: contain;
+
+    width: 638px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: var(--component-border-radius, 0.3em);
+}
+
+
+
+
+
+
+
+
 @media only screen and (max-device-width: 600px){
 
     section, .wide-section, .small-section {
@@ -87,7 +102,6 @@ section {
       padding: 10px 5px;
       background-color: whitesmoke;
       border: 2px solid lightgray;
-      /* border: 2px slategray; */
       border-radius: 10px;  
     }
 

@@ -2,13 +2,8 @@
 
     <title>Glenlea LAP</title>
 
-    
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS config -->
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/styles.css')}}">
-
-
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 </head>
@@ -18,46 +13,27 @@
     <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" style="width:5%; height:5%;" alt="logo">
     <h1>Glenlea Live Allsky Portal</h1>
 
+    <script>
+        var counter = 0;
+        window.setInterval(function(){
+            $("#update").load("/");
 
-
-<script type="text/javascript">
-        
-    var counter = 0;
-    window.setInterval(function(){
-        $("#update").load("/" + counter);
-        counter++;
-
-        if(counter % 2 == 0) {
             document.getElementById("indoor").src = "/static/indoor.png";
             document.getElementById("outdoor").src = "/static/indoor.png";
-        }
-        else {
-            document.getElementById("indoor").src = "/static/indoor2.png";
-            document.getElementById("outdoor").src = "/static/indoor2.png";
-
-        }
-       
-    }, 1000)
-
-
-</script>
-
-    
-
-
-
-    
+            
+        }, 3000)
+    </script>
 
     <section id="outdoor-camera">
-        <img class="img-panel" id="outdoor" src="/static/no_source.png" alt="Outdoor Camera">
+        <img class="img-panel" id="outdoor" src="Error.src" alt="Outdoor Camera">
         <h3>Outdoor Camera View<h3>
-        <p class="timestamp">Last updated 2024/06/13 @ 03:20:14pm (updates every 30s)</p>
+        <p class="timestamp">Last updated ... </p>
     </section>
 
     <section id="indoor-camera">
-        <img class="img-panel" id="indoor" src="/static/no_source.png" alt="Indoor Camera">
+        <img class="img-panel" id="indoor" src="Error.src" alt="Indoor Camera">
         <h3>Indoor Camera View<h3>
-        <p class="timestamp">Last updated 2024/06/13 @ 03:20:14pm (updates every 10s)</p>
+        <p class="timestamp">Last updated ... </p>
     </section>
 
     <section class="small-section" id="current-position">
@@ -85,31 +61,9 @@
         <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
     </section>
 
-   
-
-
     <section class="wide-section" id="weather-forecast">
         <h3>Forecast<h3>
         <img class="img-panel" src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
     </section>
 
-
-    <!--section class="wide-section" id="current-position">
-        Coordinates: ...
-    </section>
-
-
-    <section class="small-section" id="weather-data">
-        <img class="img-panel" src="https://www.cleardarksky.com/c/Winnipegcsk.gif?c=1126848" alt="ICSC data">
-    </section>
-
-    <section class="small-section" id="sqm-data">
-        <img class="img-panel" src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data">
-        <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
-        <br>
-        <img class="img-panel" src="http://astro.physics.umanitoba.ca/sqm/dm2.png" alt="">
-        <a href="http://astro.physics.umanitoba.ca/sqm/server2.out">Download data log: ECO</a>
-    </section-->
-
-    
 </body>
