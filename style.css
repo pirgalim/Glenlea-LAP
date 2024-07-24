@@ -11,27 +11,28 @@
     --block-height: calc( var(--camera-height) * 0.5 );
 }
 
-
+h1 {
+    width: 100%;
+}
 
 body {
     font-family: helvetica;
     text-align: center;
     
     background-color: white;    
+
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    
 }
 
 
 
 section {
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    width: 40%;
-    margin: 0.5%;
-}
-.small-section {
     vertical-align: middle;
     display: inline-block;
     background-color: whitesmoke;
@@ -40,9 +41,10 @@ section {
     padding: 20px;
     margin: 0.5%;
     width: 40%;
-    height: 300px;
 
+    margin: 0.5%;
 }
+
 .wide-section {
 
     width: 84%;
