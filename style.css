@@ -13,9 +13,9 @@ h1 {
 }
 
 body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* justify-content: center; */
 
     font-family: helvetica;
     text-align: center;
@@ -23,8 +23,40 @@ body {
 }
 
 
+.container {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    background-color: gainsboro; 
+    width:90%; 
+    margin: 10px auto;
+
+    padding: 5px;
+
+    border-radius:10px;
+}
+
+
+
+
 section {
-    vertical-align: middle;
+
+    background-color: whitesmoke;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 5px;
+
+    flex: 1 1 calc(50% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
+
+    box-sizing: border-box;
+
+    min-width: 500px; 
+    /* Ensure the sections don't get too small */
+
+    /* vertical-align: middle;
     display: inline-block;
     background-color: whitesmoke;
     border: 2px solid lightgray;
@@ -33,7 +65,9 @@ section {
     margin: 0.5%;
     width: 40%;
 
-    margin: 0.5%;
+    margin: 0.5%; */
+
+
 }
 
 .wide-section {
