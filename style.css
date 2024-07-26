@@ -1,310 +1,59 @@
-/* :root { */
-
-    /* set dimensions to camera resolution */
-    /* --camera-width: 1304px;
-    --camera-height: 976px;
-
-    --block-width: calc( var(--camera-width) * 0.5 );
-    --block-height: calc( var(--camera-height) * 0.5 ); */
-/* } */
-
-
-
 body {
     font-family: helvetica;
     text-align: center;
     background-color: white;  
 }
 
-
 .container {
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    background-color: gainsboro; 
     width:90%; 
-    margin: 15px auto;
-
-    padding: 10px;
-
-    border-radius:10px;
-
-
     max-width: 2000px;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: gainsboro; 
+    border-radius:10px;
 }
-
-
-
 
 section {
-
-    background-color: whitesmoke;
-    
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 15px;
+    flex: 1 1 calc(50% - 40px);
+    min-width: 500px;
+    box-sizing: border-box; 
     margin: 10px 10px;
-
-    flex: 1 1 calc(50% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
-
-    box-sizing: border-box;
-
-    min-width: 500px; 
-
-    box-shadow: 0px 0px 20px gray;
-    /* box-shadow: -2px -2px 10px gray; */
-
-
-    /* max-width: 1000px; */
-    /* Ensure the sections don't get too small */
-
-    /* vertical-align: middle;
-    display: inline-block;
+    padding: 15px;
     background-color: whitesmoke;
     border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0.5%;
-    width: 40%;
-
-    margin: 0.5%; */
-
-
+    border-radius: 10px;    
+    box-shadow: 0px 0px 20px gray;
 }
-
-
-.timestamp {
-    font-size: smaller;
-    font-style: italic;
-    color: slategray;
-    margin-top: -10px;
-    margin-bottom: 0;
-}
-
-/* .img-panel {
-    border-radius: 10px;
-    width: 100%;
-}
-
-.logo {
-    border-radius: 10px;
-    width: 100%;
-} */
 
 img {
     width: 100%;
     border-radius: 10px;
 }
-
-
-
 .img-radar {
     background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
     background-size: contain;
-
     width: 100%;
-    /* width: 638px;
-    height: 200px; */
-    object-fit: contain;
-    border-radius: var(--component-border-radius, 0.3em);
 }
-
-
-
-h1 {
-    /* width: 100%; */
-}
-p {
-    font-size: smaller;
-}
-
-
-
+.logo {
+    border-radius: 10px;
+    height: 5%;
+    min-width: 80%;
+} 
 
 @media only screen and (max-device-width: 600px){
 
-    section, .wide-section, .small-section {
-    
-      margin-top: 1rem;
-      margin-left: auto;
-      margin-right: auto;
-      width: 90%;
-    
-      padding: 10px 5px;
-      background-color: whitesmoke;
-      border: 2px solid lightgray;
-      border-radius: 10px;  
-    }
-
-    .logo {
+    section {
+        flex: 1 1 calc(50% - 40px);
+        box-sizing: border-box;
+        min-width: 300px; 
+        margin: 10px 10px;
+        padding: 15px;
+        background-color: whitesmoke;
+        border: 2px solid lightgray;
         border-radius: 10px;
-        width: 1000%;
-        height: 1000%;
+        box-shadow: 0px 0px 20px gray;    
     }
 }
-
-
-
-
-
-
-
-/* :root {
-
-    set dimensions to camera resolution
-    --camera-width: 1304px;
-    --camera-height: 976px;
-
-
-
-
-    --block-width: calc( var(--camera-width) * 0.5 );
-    --block-height: calc( var(--camera-height) * 0.5 );
-}
-
-
-body {
-    font-family: helvetica;
-    text-align: center;
-    background-color: whitesmoke;    
-}
-
-
-section {
-
-
-
-    vertical-align: middle;
-    text-align: center;
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0.5%;
-    width: 40%;
-    height: 600px;
-    
-    
-}
-
-
-.img-panel {
-
-
-    border-radius: 10px;
-
-    width: var(--block-width);
-    height: var(--block-height);
-
-    
-}
-
-
-
-
-
-section {
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    width: 40%;
-    margin: 0.5%;
-}
-.small-section {
-    vertical-align: middle;
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0.5%;
-    width: 40%;
-    height: 300px;
-
-}
-.wide-section {
-
-    width: 84%;
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0.5%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-p {
-    font-size: smaller;
-}
-.timestamp {
-    font-size: smaller;
-    font-style: italic;
-    color: slategray;
-}
-
-
-.logo {
-    border-radius: 10px;
-    width: 100%;
-}
-
-
-
-.img-radar {
-    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
-    background-size: contain;
-
-    width: 638px;
-    height: 200px;
-    object-fit: contain;
-    border-radius: var(--component-border-radius, 0.3em);
-}
-
- */
-
-
-
-
-
-
-/* @media only screen and (max-device-width: 600px){
-
-    section, .wide-section, .small-section {
-    
-      margin-top: 1rem;
-      margin-left: auto;
-      margin-right: auto;
-      width: 90%;
-    
-      padding: 10px 5px;
-      background-color: whitesmoke;
-      border: 2px solid lightgray;
-      border-radius: 10px;  
-    }
-
-    .logo {
-        border-radius: 10px;
-        width: 1000%;
-        height: 1000%;
-    }
-} */
