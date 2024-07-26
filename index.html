@@ -13,15 +13,15 @@
 
 <body>
         
-    <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" style="width:5%; height:5%;" alt="logo">
+    <img src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" style="width:5%; height:5%;" alt="logo">
     <h1>Glenlea Live Allsky Portal</h1>
 
     <script>
         window.setInterval(function(){
             $("#update").load("/");
 
-            document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
             document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
+            document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
             
         }, 10000)
     </script>
@@ -29,9 +29,8 @@
 
 <div class="container">
 
-
     <section id="camera">
-        <img class="img-panel" id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Outdoor Camera">
+        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Outdoor Camera">
         <h3>Outdoor Camera View</h3>
         <p class="timestamp">Updates every 30s</p>
     </section>
@@ -39,7 +38,7 @@
 
     <section id="camera">
 
-            <img class="img-panel" id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Indoor Camera">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Indoor Camera">
             <h3>Indoor Camera View</h3>
             <p class="timestamp">Updates every 30s</p>
         
@@ -129,43 +128,38 @@
 
     <div class="container">
 
-    <section id="weather-data">
-        <h3>Weather Data</h3>
-        <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-    </section>
+        <section id="weather-data">
+            <h3>Weather Data</h3>
+            <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+        </section>
 
-    <section id="sqm-data">
-        <h3>Sky Quality</h3>
-        <img  src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data">
-        <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
-        <br>
-        <img  src="http://astro.physics.umanitoba.ca/sqm/dm2.png" alt="">
-        <a href="http://astro.physics.umanitoba.ca/sqm/server2.out">Download data log: ECO</a>
-    </section>
+        <section id="sqm-data">
+            <h3>Sky Quality</h3>
+            <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data">
+            <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
+            <br>
+            <img src="http://astro.physics.umanitoba.ca/sqm/dm2.png" alt="">
+            <a href="http://astro.physics.umanitoba.ca/sqm/server2.out">Download data log: ECO</a>
+        </section>
+
+        <section id="current-position">
+            <h3>Current Position</h3>
+            <p>Coordinates?</p>
+            <p>Exposure time?</p>       
+        </section>
+    
+        <section id="radar">
+            <h3>Weather Radar</h3>
+            <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
+        </section>
 
     </div>
 
-    <section id="current-position">
-        <h3>Current Position</h3>
-        <p>Coordinates?</p>
-        <p>Exposure time?</p>       
-    </section>
-
-    <section id="weather-radar">
-        <h3>Radar<h3>
-        <div id="map"></div>
-        <script src="./tutorial.js"></script>
-    </section>
-
-
-    <section id="radar">
-        <h3>Weather Radar</h3>
-        <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
-    </section>
-
-    <section class="wide-section" id="weather-forecast">
-        <h3>Forecast<h3>
-        <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
-    </section>
-
+   
+    <div class="container">
+        <section class="wide-section" id="weather-forecast">
+            <h3>Forecast<h3>
+            <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
+        </section>
+    </div>
 </body>

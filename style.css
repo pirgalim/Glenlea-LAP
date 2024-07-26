@@ -1,22 +1,16 @@
-:root {
+/* :root { */
 
     /* set dimensions to camera resolution */
-    --camera-width: 1304px;
+    /* --camera-width: 1304px;
     --camera-height: 976px;
 
     --block-width: calc( var(--camera-width) * 0.5 );
-    --block-height: calc( var(--camera-height) * 0.5 );
-}
+    --block-height: calc( var(--camera-height) * 0.5 ); */
+/* } */
 
-h1 {
-    width: 100%;
-}
+
 
 body {
-    /* display: flex;
-    flex-wrap: wrap; */
-    /* justify-content: center; */
-
     font-family: helvetica;
     text-align: center;
     background-color: white;  
@@ -31,11 +25,14 @@ body {
 
     background-color: gainsboro; 
     width:90%; 
-    margin: 10px auto;
+    margin: 15px auto;
 
-    padding: 5px;
+    padding: 10px;
 
     border-radius:10px;
+
+
+    max-width: 2000px;
 }
 
 
@@ -44,16 +41,23 @@ body {
 section {
 
     background-color: whitesmoke;
+    
     border: 2px solid lightgray;
     border-radius: 10px;
-    padding: 10px;
-    margin: 10px 5px;
+    padding: 15px;
+    margin: 10px 10px;
 
     flex: 1 1 calc(50% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
 
     box-sizing: border-box;
 
     min-width: 500px; 
+
+    box-shadow: 0px 0px 20px gray;
+    /* box-shadow: -2px -2px 10px gray; */
+
+
+    /* max-width: 1000px; */
     /* Ensure the sections don't get too small */
 
     /* vertical-align: middle;
@@ -70,20 +74,7 @@ section {
 
 }
 
-.wide-section {
 
-    width: 84%;
-    display: inline-block;
-    background-color: whitesmoke;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 0.5%;
-}
-
-p {
-    font-size: smaller;
-}
 .timestamp {
     font-size: smaller;
     font-style: italic;
@@ -92,17 +83,19 @@ p {
     margin-bottom: 0;
 }
 
-.img-panel {
-    border-radius: 10px;
-    width: 100%;
-}
-.logo {
+/* .img-panel {
     border-radius: 10px;
     width: 100%;
 }
 
+.logo {
+    border-radius: 10px;
+    width: 100%;
+} */
+
 img {
     width: 100%;
+    border-radius: 10px;
 }
 
 
@@ -120,7 +113,12 @@ img {
 
 
 
-
+h1 {
+    /* width: 100%; */
+}
+p {
+    font-size: smaller;
+}
 
 
 
