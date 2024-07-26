@@ -17,6 +17,8 @@
         window.setInterval(function(){
             $("#update").load("/");
 
+            // use jquery to change srcs?
+
             document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
             document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
             
@@ -27,7 +29,7 @@
 <div class="container">
 
     <section id="camera">
-        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Outdoor Camera">
+        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting...">
         <h3>Outdoor Camera View</h3>
         <p class="timestamp">Updates every 30s</p>
     </section>
@@ -35,7 +37,7 @@
 
     <section id="camera">
 
-            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Indoor Camera">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
             <h3>Indoor Camera View</h3>
             <p class="timestamp">Updates every 30s</p>
         
@@ -140,9 +142,7 @@
         </section>
 
         <section id="current-position">
-            <h3>Current Position</h3>
-            <p>Coordinates?</p>
-            <p>Exposure time?</p>       
+            <h3>Current Position</h3>    
         </section>
     
         <section id="radar">
