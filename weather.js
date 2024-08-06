@@ -34,24 +34,66 @@ async function display() {
     }
 
 
+    // var box = document.getElementById('sunset1')
+    // body = document.createElement('p');
+    // var dateArray = data['daily']['sunset'][0].split("T");
+    // body.textContent = dateArray[1]
+    // box.appendChild(body);
+
+    // var box = document.getElementById('sunset2')
+    // body = document.createElement('p');
+    // var dateArray = data['daily']['sunset'][1].split("T");
+    // body.textContent = dateArray[1]
+    // box.appendChild(body);
+
+    // var box = document.getElementById('sunset3')
+    // body = document.createElement('p');
+    // var dateArray = data['daily']['sunset'][2].split("T");
+    // body.textContent = dateArray[1]
+    // box.appendChild(body);
 
 
-    var body = document.createElement('p');
-    body.textContent = data['latitude'];
-    container.appendChild(body);
+    // const sunsets = document.getElementsByClassName('sunset');
 
+    // for(let i = 0; i < sunsets.length; i++) {
 
-    var box = document.getElementById('sunset1')
+    //     var body = document.createElement('p');
+    //     var dateArray = data['daily']['sunset'][i].split("T");
+    //     body.textContent = dateArray[1]
+    //     sunsets[i].appendChild(body);
+    // }
 
-    body = document.createElement('p');
-    var dateArray = data['daily']['sunset'][0].split("T");
-    body.textContent = dateArray[1]
-    box.appendChild(body);
     
+    populate(data, "sunset", "daily", "T");
+    populate(data, "sunrise", "daily", "T")
 
 
 }
 
+
+
+
+
+function populate(data, className, category, delim) {
+
+
+    var elements = document.getElementsByClassName(className);
+
+    if(delim) {
+
+        for(let i = 0; i < elements.length; i++) {
+
+            var body = document.createElement('p');
+            var dateArray = data[category][className][i].split(delim);
+            body.textContent = dateArray[1]
+            elements[i].appendChild(body);
+        }
+    }
+
+   
+
+
+}
 
 
 
