@@ -78,6 +78,24 @@ async function display() {
 
 
 
+// function newPopulate(data, className, category, delim) {
+
+//     var elements = document.getElementsByClassName(className);
+
+//     var currentArray = Object.values(data[className]);
+//     var currentUnitsArray = Object.values(data[className + "_units"]);
+
+
+
+//     for(let i = 0; i < elements.length; i++) {        
+//             var body = document.createElement('p');
+//             body.textContent = currentArray[i] + " " + currentUnitsArray[i]
+//             console.log(body.textContent);
+//             elements[i].appendChild(body);  
+//     }
+// }
+
+
 
 
 function populate(data, className, category, delim) {
@@ -106,6 +124,7 @@ function populate(data, className, category, delim) {
 
         // }
     }
+
 
 }
 
