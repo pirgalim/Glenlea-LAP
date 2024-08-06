@@ -47,79 +47,7 @@
 </div>
 
     
-
-
-    <!--script>
-
-        $.ajax({
-            url: 'https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&hourly=temperature_2m,dew_point_2m,precipitation_probability,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility&daily=sunrise,sunset&timezone=America%2FChicago',
-            
-            type: 'GET',
-            dataType: 'json',
-
-            
-            beforeSend: function(xhr) {
-                 xhr.setRequestHeader("Authorization", "Basic 6QXNMEMFHNY4FJ5ELNFMP5KRW52WFXN5")
-            }, success: function(data){
-
-                
-                alert(data);
-
-                console.log("test");
-                console.log(data);
-                console.log(data['daily']['sunrise'][0]);
-
-                var sunrise = data['daily']['sunrise'][0];
-
-                console.log(sunrise)
-                //console.log(data[0])
-                //process the JSON data etc
-
-
-                //var returnedData = JSON.parse(data);
-                //console.log(returnedData);
-            }
-    })
-
-    
-    let sendRequest = false;
-
-    if($(this).data('sendRequest')) {
-
-        console.log("sending...");
-        $(this).data('sendRequest', false);
-    }
-
-    setTimeout(function() {
-        $(this).data('sendRequest', true);
-    }, 10000);
-
-
-
-
-    </script-->
-
-
-
-    <!-- <h1 class="weather-temp"></h1> -->
-
-    <!-- <script>
-
-        $.ajax({
-
-            url: 'https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&hourly=temperature_2m,dew_point_2m,precipitation_probability,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility&daily=sunrise,sunset&timezone=America%2FChicago',
-
-            success: function(data) {
-                alert(data)
-                
-                //$( '#test' ).innerHTML("hello");
-                $( "#weather-temp" ).html( "<strong>" + "result" + "</strong> degrees" );
-            }
-        });
-
-
-    </script> -->
-   
+  
    
     
     <div class="container">
@@ -134,30 +62,36 @@
 
             <div class="container">
                 
-           
-                <div class="block">
-                    
+                <div class="block" id="sunrise-sunset">
                     <div class="inner-block">
-
                         <b>Sunrise Time (CST)</b><div class="break"></div>
                         <p class="sunrise">Yesterday -</p><div class="break"></div>
                         <b class="sunrise">Today -</b><div class="break"></div>
                         <p class="sunrise">Tomorrow -</p><div class="break"></div>
                     </div>
-
                     <div class="inner-block">
-
                         <b>Sunset Time (CST)</b><div class="break"></div>
                         <p class="sunset">Yesterday -</p><div class="break"></div>
                         <b class="sunset">Today -</b><div class="break"></div>
                         <p class="sunset">Tomorrow -</p><div class="break"></div>
                     </div>
+                </div>   
 
+                <div class="block" id="current-conditions">
 
+                    <div class="inner-block">
 
+                        <b>Current Conditions</b><div class="break"></div>
+                        <p class="current">Time -</p><div class="break"></div>
+                        <p class="current" style="display:none;">REFRESH PERIOD OMITTED</p>
+                        <p class="current">Temperature -</p><div class="break"></div>
+                        <p class="current">Precipitation -</p><div class="break"></div>
+                    </div>
 
                 </div>   
-                <div class="block" id=""></div>   
+
+
+                
                 <div class="block" id=""></div>   
                 <div class="block" id=""></div>  
                 <div class="break"></div>

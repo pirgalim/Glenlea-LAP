@@ -1,9 +1,10 @@
 async function call() {
     try {
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&hourly=temperature_2m,dew_point_2m,precipitation_probability,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility&daily=sunrise,sunset&timezone=America%2FChicago&past_days=1&forecast_days=3');
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&current=temperature_2m,precipitation&hourly=temperature_2m,dew_point_2m,precipitation_probability,cloud_cover,visibility&daily=sunrise,sunset&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
     } catch (error) {
+
         console.error('Error:', error);
     }
 }
@@ -11,61 +12,66 @@ async function call() {
 
 async function display() {
 
-
-    const container = document.getElementById('weather-data');
-
     const data = await call();
 
     if (!data) {
+
         return;
     }
+   
+    populate(data, "sunset", "daily", "T");
+    populate(data, "sunrise", "daily", "T");
 
-    alert(data);
 
 
+    var currentArray = Object.values(data["current"]);
+    var currentUnitsArray = Object.values(data["current_units"]);
+
+    var elements = document.getElementsByClassName("current");
 
 
-    console.log(Object.keys(data))
+    for(let i = 0; i < elements.length; i++) {
 
-    for( const key in data ) {
+            if(currentUnitsArray[i] != "seconds") {
+                var body = document.createElement('p');
 
-        console.log(data[key]);
+                if(currentUnitsArray[i] != "iso8601") {
+                    body.textContent = currentArray[i] + " " + currentUnitsArray[i]
+                }
+                else {
+                    body.textContent = currentArray[i].split("T")[1]
+                }
 
+                
+                console.log(body.textContent);
+                elements[i].appendChild(body);
+            }
+
+
+            
     }
 
 
-    // var box = document.getElementById('sunset1')
-    // body = document.createElement('p');
-    // var dateArray = data['daily']['sunset'][0].split("T");
-    // body.textContent = dateArray[1]
-    // box.appendChild(body);
-
-    // var box = document.getElementById('sunset2')
-    // body = document.createElement('p');
-    // var dateArray = data['daily']['sunset'][1].split("T");
-    // body.textContent = dateArray[1]
-    // box.appendChild(body);
-
-    // var box = document.getElementById('sunset3')
-    // body = document.createElement('p');
-    // var dateArray = data['daily']['sunset'][2].split("T");
-    // body.textContent = dateArray[1]
-    // box.appendChild(body);
 
 
-    // const sunsets = document.getElementsByClassName('sunset');
 
-    // for(let i = 0; i < sunsets.length; i++) {
+    // var elements = document.getElementsByClassName("current");
+    // var counter = 0; 
+    // for(const key in data["current"]) {
 
-    //     var body = document.createElement('p');
-    //     var dateArray = data['daily']['sunset'][i].split("T");
-    //     body.textContent = dateArray[1]
-    //     sunsets[i].appendChild(body);
+    //     if(key != "interval") {
+    //         console.log(data["current"][key]);
+
+    //         var body = document.createElement('p');
+    //         body.textContent = data["current"][key];
+    //         console.log(body.textContent);
+    //         elements[counter].appendChild(body);
+
+    //         counter++;
+    //     }
+        
     // }
 
-    
-    populate(data, "sunset", "daily", "T");
-    populate(data, "sunrise", "daily", "T")
 
 
 }
@@ -79,6 +85,8 @@ function populate(data, className, category, delim) {
 
     var elements = document.getElementsByClassName(className);
 
+    
+
     if(delim) {
 
         for(let i = 0; i < elements.length; i++) {
@@ -86,12 +94,18 @@ function populate(data, className, category, delim) {
             var body = document.createElement('p');
             var dateArray = data[category][className][i].split(delim);
             body.textContent = dateArray[1]
+
+            console.log(body.textContent);
+
             elements[i].appendChild(body);
         }
+
+        // for(const key in data[category]) {
+
+        //     console.log(data[category][key]);
+
+        // }
     }
-
-   
-
 
 }
 
