@@ -30,6 +30,8 @@ async function display() {
     var elements = document.getElementsByClassName("current");
 
 
+
+
     for(let i = 0; i < elements.length; i++) {
 
             if(currentUnitsArray[i] != "seconds") {
@@ -50,6 +52,13 @@ async function display() {
 
             
     }
+
+
+
+
+
+
+    
 
 
 
