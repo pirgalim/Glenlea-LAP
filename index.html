@@ -26,36 +26,33 @@
     </script>
 
 
-<div class="container">
-
-    <section id="camera">
-        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting...">
-        <h3>Outdoor Camera View</h3>
-        <p class="timestamp">Updates every 30s</p>
-    </section>
-
-
-    <section id="camera">
-
-            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
-            <h3>Indoor Camera View</h3>
-            <p class="timestamp">Updates every 30s</p>
-        
-    </section>
-
-
-</div>
-
-    
-  
-   
-    
     <div class="container">
 
-        <section id="weather-data">
-            <script src="weather.js"></script>
+        <section id="camera">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting...">
+            <h3>Outdoor Camera View</h3>
+            <p class="timestamp">Updates every 30s</p>
+        </section>
 
-            <div class="inner-container">
+        <section id="camera">
+
+                <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
+                <h3>Indoor Camera View</h3>
+                <p class="timestamp">Updates every 30s</p>
+            
+        </section>
+    </div>
+
+
+    <div class="container">
+
+
+        <script src="weather.js"></script>
+
+        <section>
+
+
+            <!-- <div class="inner-container"> -->
 
                 <div class="block-med" id="current-conditions">
 
@@ -78,106 +75,49 @@
                         </div>
 
                         <div class="break"></div>
-                        <i class="current" style="width:100%">Last updated on</i>
+                        <i class="current" style="width:100%;">Last updated on </i><br>
+                        <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
                     </div>
                 </div>   
+        </section>
 
-                <div class="block-med" id="current-conditions">
 
-                    <div class="inner-block">
+        <section>
 
-                        <h2 style="margin:0">Hourly Forecast</h2><br>
-                        <div class="inner-container">
+            <div class="block-med" id="hourly-conditions">
 
-                            <div style="min-width:20%" class="block">
-                                <b>Time</b><br><br>
-                                <b>Cloud Cover</b><br><br>
-                                <b>Precipitation</b>
-                            </div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
-                            <div class="block-small"></div>
+                <div class="inner-block">
 
+                    <h2 style="margin:0">Hourly Forecast</h2><br>
+                    
+                    <div class="inner-container-hourly">
+
+                        <div style="min-width:150px" class="block">
+                            <b>Time</b><br><br>
+                            <b>Temperature</b><br><br>
+                            <b>Precipitation</b><br><br>
+                            <b>Cloud Cover</b>
                         </div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
+                        <div class="block-small"></div>
 
-                        <div class="break"></div>
                     </div>
-                </div>   
-
-
-
-
-                
-                
-                <!-- <div class="block" id="sunrise-sunset">
-                    <div class="inner-block">
-                        <b>Sunrise Time (CST)</b><div class="break"></div>
-                        <p class="sunrise">Yesterday -</p><div class="break"></div>
-                        <b class="sunrise">Today -</b><div class="break"></div>
-                        <p class="sunrise">Tomorrow -</p><div class="break"></div>
-                    </div>
-                </div>   
-
-                <div class="block" id="">
-                    <div class="inner-block">
-                        <b>Sunset Time (CST)</b><div class="break"></div>
-                        <p class="sunset">Yesterday -</p><div class="break"></div>
-                        <b class="sunset">Today -</b><div class="break"></div>
-                        <p class="sunset">Tomorrow -</p><div class="break"></div>
-                    </div>
-                </div>   
-                <div class="break"></div> -->
-
-
-                <!-- <div class="block">
-                    <p>Time</p><br>
-                    <p>Cloud Cover</p><br>
-                    <p>Precipitation</p>
                 </div>
-                <div class="block-small"></div>
-                <div class="block-small"></div>
-                <div class="block-small"></div>
-                <div class="block-small"></div>
-                <div class="block-small"></div>
-                <div class="block-small"></div> -->
-                
-
-                <!-- <div class="block">Time</div>
-                <div class="block-small">b</div>
-                <div class="block-small">c</div>
-                <div class="block-small">d</div>
-                <div class="block-small">e</div>
-                <div class="block-small">f</div>
-                <div class="block-small">g</div>
-                
-
-                <div class="block">Time</div>
-                <div class="block-small">b</div>
-                <div class="block-small">c</div>
-                <div class="block-small">d</div>
-                <div class="block-small">e</div>
-                <div class="block-small">f</div>
-                <div class="block-small">g</div>
-                -->
-
-
-                <div class="block-full">
-                    <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-                </div>
-                
-            </div>
-
-
+            </div>   
         </section>
 
     </div>
+
+
+
 
 
     <div class="container">

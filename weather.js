@@ -38,23 +38,29 @@ async function display() {
 
 function hourlyConditions(data) {
 
-
+    // hourly data
     const hourly = data["hourly"];
+
+    // units for hourly data
     const hourlyUnits = data["hourly_units"];
+
+    // time of last update
     const currTime = data["current"]["time"];
 
-
+    // hourly time data
     const times = hourly["time"];
 
+    // hourly cloud cover data
     const clouds = hourly["cloud_cover"];
     const cloudUnits = hourlyUnits["cloud_cover"];
 
+    // hourly precipitation data
     const precipitation = hourly["precipitation_probability"];
     const precipitationUnits = hourlyUnits["precipitation_probability"];
 
-    // const 
-
-    
+    // hourly temperature data
+    const temp = hourly["temperature_2m"];
+    const tempUnits = hourlyUnits["temperature_2m"];
 
 
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current hour
@@ -62,13 +68,9 @@ function hourlyConditions(data) {
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current day
     var currDay = currTime.split("T")[0].split("-")[2];
 
-    console.log(currHour, currDay);
 
-
-
+    // find current time within the hourly array
     var startPosition = 0;
-
-
 
     for(let i = 0; i < times.length; i++) {
 
@@ -77,21 +79,10 @@ function hourlyConditions(data) {
     }
 
 
-    console.log(times);
-    console.log(currTime);
-
-    console.log(startPosition);
-
-    console.log(times[startPosition])
-
-
-
-
-
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-small");
     
-
+    // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
         body = document.createElement('p');
@@ -103,8 +94,9 @@ function hourlyConditions(data) {
         body = document.createElement('br');
         elements[i].appendChild(body);
 
+        var tempRound = Math.round( temp[startPosition + i] );
         body = document.createElement('p');
-        body.textContent = clouds[startPosition + i] + " " + cloudUnits;
+        body.textContent = tempRound + tempUnits;
         elements[i].appendChild(body);
 
         body = document.createElement('br');
@@ -113,26 +105,18 @@ function hourlyConditions(data) {
         elements[i].appendChild(body);
         
         body = document.createElement('p');
-        body.textContent = precipitation[startPosition + i] + " " + precipitationUnits;
+        body.textContent = precipitation[startPosition + i] + precipitationUnits;
         elements[i].appendChild(body);
 
-
+        body = document.createElement('br');
+        elements[i].appendChild(body);
+        body = document.createElement('br');
+        elements[i].appendChild(body);
+        
+        body = document.createElement('p');
+        body.textContent = clouds[startPosition + i] + cloudUnits;
+        elements[i].appendChild(body);
     }
-
-
-
-
-    // console.log(currHour % 6);
-
-    // slice = currHour % 6;
-
-    // var bottom =  slice * 4 -1;
-    // var top = slice*4 + 5;
-
-    // console.log(bottom, top);
-
-    // console.log( times.slice(bottom, top) )
-
 }
 
 
@@ -167,8 +151,7 @@ function windDirection(data) {
 
 function currentCondtions(data) {
 
-    // const currentArray = Object.values(data["current"]);
-    // const currentUnitsArray = Object.values(data["current_units"]);
+
 
 
     const current = data["current"];
