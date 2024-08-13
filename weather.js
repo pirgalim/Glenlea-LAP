@@ -85,7 +85,12 @@ function hourlyConditions(data) {
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
-        body = document.createElement('p');
+        if(times[startPosition + i] == "00:00") {
+            body = document.createElement('b');
+        }
+        else {
+            body = document.createElement('p');
+        }
         body.textContent = times[startPosition + i];
         elements[i].appendChild(body);
 
