@@ -173,12 +173,12 @@ function currentCondtions(data) {
 
     // temperature
     body = document.createElement('p');
-    body.textContent = current["temperature_2m"] + " " + currentUnits["temperature_2m"];
+    body.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
     elements[0].appendChild(body);
 
     // cloud cover
     body = document.createElement('p');
-    body.textContent = current["cloud_cover"] + " " + currentUnits["cloud_cover"];
+    body.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
     elements[1].appendChild(body);
 
     // precipitation
