@@ -3,9 +3,23 @@ async function call() {
         const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover&daily=sunrise,sunset&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
-    } catch (error) {
+    } 
+    catch (error) {
+        
+        // locate error div
+        div = document.getElementById("error");
 
-        alert("Error Retrieving Forecast");
+        // create and format error message
+        text = document.createElement('h3');
+        text.textContent = "Forecast is currently unavailable";
+        text.style.margin = "0";
+        div.appendChild(text);
+
+        // hide weather forecast elements
+        document.getElementById("current-conditions").style.display = "none";
+        document.getElementById("hourly-conditions").style.display = "none";
+
+        // log exact error to console for debugging purposes
         console.error('Error:', error);
     }
 }
@@ -15,18 +29,14 @@ async function display() {
 
     const data = await call();
 
-    if (!data) {
-
-        return;
-    }
+    // if (!data) {
+    //     return;
+    // }
+    
    
-    populate(data, "sunset", "daily", "T");
-    populate(data, "sunrise", "daily", "T");
-
-
-
+    // populate(data, "sunset", "daily", "T");
+    // populate(data, "sunrise", "daily", "T");
     currentCondtions(data);
-
     hourlyConditions(data);
 }
 
