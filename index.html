@@ -13,7 +13,7 @@
     <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
     <h1>Glenlea Live Allsky Portal</h1>
 
-    <script>
+    <!-- <script>
         window.setInterval(function(){
             $("#update").load("/");
 
@@ -23,24 +23,30 @@
             document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
             
         }, 10000)
-    </script>
+    </script> -->
 
 
     <div class="container">
 
         <section id="camera">
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting...">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
             <h3>Outdoor Camera View</h3>
             <p class="timestamp">Updates every 30s</p>
         </section>
 
         <section id="camera">
 
-                <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
+                <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting..." onerror="this.src='http://allsky.physics.umanitoba.ca/outdoor.png'">
+                <!-- onerror="this.style.display='none'" -->
                 <h3>Indoor Camera View</h3>
                 
                 
-                <button>0s</button><button>1s</button><button>5s</button><button>10s</button>
+                <button id="0s-indoor">0s</button><button id="1s-indoor">1s</button>
+                <button id="10s-indoor">10s</button><button id="30s-indoor">30s</button>
+
+
+
+                <script src="playback.js"></script>
             
         </section>
     </div>
@@ -56,26 +62,33 @@
             <div class="block-med">
 
                 <div class="inner-block">
-                    <h2 style="margin:0">Current Conditions</h2>
+
+                    <h2 class="curr-label">Current Conditions</h2>
                     <div class="inner-container">
 
                         <div class="current">
-                            <h3>Temperature</h3>        
-                        </div>
-                        <div class="current" >
-                            <h3>Cloud Cover</h3>
+                            <h3 class="curr-label">Temperature</h3>      
+                            
                         </div>
                         <div class="current">
-                            <h3>Precipitation</h3>
+                            <h3 class="curr-label">Cloud Cover</h3>
                         </div>
-                        <div class="current" >
-                            <h3>Wind Speed</h3>
+                        <div class="current">
+                            <h3 class="curr-label">Precipitation</h3>
                         </div>
+                        <div class="current">
+                            <h3 class="curr-label">Wind Speed</h3>
+                        </div>
+
+                        <!-- <div class="break"></div><br> -->
+                        <i class="current">Last updated on </i><br>
+                        <br><a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                        
                     </div>
 
-                    <div class="break"></div><br>
-                    <i class="current" style="width:100%;">Last updated on </i><br>
-                    <br><a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                    <!-- <div class="break"></div>
+                    <i class="current">Last updated on </i><br>
+                    <br><a class="current" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
                 </div>
             </div>   
         </section>
@@ -87,10 +100,10 @@
 
                 <div class="inner-block">
 
-                    <h2 style="margin:0">Hourly Forecast</h2>
-                    <div class="break"></div>
+                    <h2 class="curr-label">Hourly Forecast</h2>
+                    <!-- <div class="break"></div> -->
 
-                    <div class="inner-container">
+                    <div class="inner-container current" style="width: 100%">
 
                         <div style="width:15%;">
                             <b >Time</b><br><br>
@@ -129,7 +142,7 @@
     
                         </div>        
                     </div>
-                    <br><a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                    <!-- <br><a class="current" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
             </div>   
         </section>
     </div>
@@ -174,4 +187,10 @@
             <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
         </section>
     </div>
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

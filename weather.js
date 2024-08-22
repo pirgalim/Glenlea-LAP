@@ -95,41 +95,62 @@ function hourlyConditions(data) {
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
-        if(times[startPosition + i] == "00:00") {
-            body = document.createElement('b');
+        // element type
+        var type = 'p';
+    
+        // midnight indicator
+        if(times[startPosition + i] == "00:00") { 
+            body = document.createElement('b'); 
+            type = 'b'
         }
-        else {
-            body = document.createElement('p');
-        }
+
+        // time styling
+        body = document.createElement(type);
         body.textContent = times[startPosition + i];
         elements[i].appendChild(body);
 
+        // spacer
         body = document.createElement('br');
         elements[i].appendChild(body);
         body = document.createElement('br');
         elements[i].appendChild(body);
 
+        // temperature styling
         var tempRound = Math.round( temp[startPosition + i] );
-        body = document.createElement('p');
+        body = document.createElement(type);
         body.textContent = tempRound + tempUnits;
         elements[i].appendChild(body);
 
+         // spacer
         body = document.createElement('br');
         elements[i].appendChild(body);
         body = document.createElement('br');
         elements[i].appendChild(body);
         
-        body = document.createElement('p');
+        // precipitation styling
+        body = document.createElement(type);
         body.textContent = precipitation[startPosition + i] + precipitationUnits;
+
+        // precipitation warning
+        if(precipitation[startPosition + i] >= 75) { body.style.color = 'red'; }
+        else if(precipitation[startPosition + i] >= 25) { body.style.color = 'goldenrod'; }
+        
+
         elements[i].appendChild(body);
 
+         // spacer
         body = document.createElement('br');
         elements[i].appendChild(body);
         body = document.createElement('br');
         elements[i].appendChild(body);
         
-        body = document.createElement('p');
+        // cloud cover styling
+        body = document.createElement(type);
         body.textContent = clouds[startPosition + i] + cloudUnits;
+
+        // cloud cover warning
+        if(clouds[startPosition + i] >= 75) { body.style.color = 'red'; }
+        else if(clouds[startPosition + i] >= 25) { body.style.color = 'goldenrod'; }
         elements[i].appendChild(body);
     }
 }
