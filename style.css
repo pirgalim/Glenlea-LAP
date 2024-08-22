@@ -169,7 +169,7 @@ section {
     width: 50%;
     border: 5px solid var(--primary-colour);
     border-radius: 15px;
-    padding: 10px;
+    padding: 15px;
     box-sizing: border-box;
     background-color: var(--secondary-colour);
 }
@@ -204,7 +204,8 @@ p {
     font-size: large;
 }
 b {
-    font-size: large;
+    /* font-size: large; */
+    font-weight: 5000;
 }
 
 
@@ -221,8 +222,6 @@ button {
     padding: 5px 15px;
     margin: 2px;
     font-size: small;
-
- 
 }
 
 

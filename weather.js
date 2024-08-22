@@ -4,7 +4,7 @@
  */
 async function call() {
     try {
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover&daily=sunrise,sunset&timezone=America%2FChicago&past_days=1&forecast_days=3');
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6363&longitude=-97.1307&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
     } 
@@ -72,15 +72,16 @@ function currentCondtions(data) {
     body.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
     elements[2].appendChild(body);
 
-    // precipitation
+    // wind speed
+    const direction = Number( data["current"]["wind_direction_10m"] );
     body = document.createElement('p');
-    body.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(data);
+    body.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
     elements[3].appendChild(body);
 
     // timestamp from last request
     body = document.createElement('p');
     var time = current["time"].split("T");
-    body.textContent = time[0] + " at " + time[1] + " " + data["timezone_abbreviation"];
+    body.textContent = time[0] + " at " + time[1] + " "; // data["timezone_abbreviation"]
     elements[4].appendChild(body);
 }
 
@@ -115,9 +116,16 @@ function hourlyConditions(data) {
     const temp = hourly["temperature_2m"];
     const tempUnits = hourlyUnits["temperature_2m"];
 
-    // weather warning thresholds
-    const moderate = 30;
-    const poor = 70;
+    // hourly temperature data
+    const wind = hourly["wind_speed_10m"];
+    const windDir = hourly["wind_direction_10m"];
+
+    // weather percentage warning thresholds
+    const moderateP = 30;
+    const poorP = 70;
+
+    // wind warning
+    const highWind = 15;
 
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current hour
     var currHour = currTime.split("T")[1].split(":")[0];
@@ -140,51 +148,89 @@ function hourlyConditions(data) {
     for(let i = 0; i < elements.length; i++) {
 
         // element type
-        var type = 'p';
+        const type = 'div';
     
-        // midnight indicator
-        if(times[startPosition + i] == "00:00") { 
-            body = document.createElement('b'); 
-            type = 'b'
-        }
-
         // time styling
-        body = document.createElement(type);
+        body = document.createElement(type); 
         body.textContent = times[startPosition + i];
         elements[i].appendChild(body);
-
+        // midnight indicator
+        if(times[startPosition + i] == "00:00") {  body.style.background = "red"; }
+        body.style.padding = "10px";
+        
         // spacer
-        addSpace(elements, i);
+        // addSpace(elements, i);
 
         // temperature styling
         var tempRound = Math.round( temp[startPosition + i] );
         body = document.createElement(type);
         body.textContent = tempRound + tempUnits;
         elements[i].appendChild(body);
+        body.style.padding = "10px";
 
         // spacer
-        addSpace(elements, i);
+        // addSpace(elements, i);
         
         // precipitation styling
         body = document.createElement(type);
         body.textContent = precipitation[startPosition + i] + precipitationUnits;
-
         // precipitation warning
-        if(precipitation[startPosition + i] >= poor) { body.style.color = 'red'; }
-        else if(precipitation[startPosition + i] >= moderate) { body.style.color = 'goldenrod'; }
+        if(precipitation[startPosition + i] >= poorP) { body.style.background = 'dodgerblue'; }
+        else if(precipitation[startPosition + i] >= moderateP) { body.style.background = 'lightsteelblue'; }
+        else { body.style.background = 'white'; }
         elements[i].appendChild(body);
+        body.style.padding = "10px";
+        
 
         // spacer
-        addSpace(elements, i);
+        // addSpace(elements, i);
         
         // cloud cover styling
         body = document.createElement(type);
         body.textContent = clouds[startPosition + i] + cloudUnits;
-
         // cloud cover warning
-        if(clouds[startPosition + i] >= poor) { body.style.color = 'red'; }
-        else if(clouds[startPosition + i] >= moderate) { body.style.color = 'goldenrod'; }
+        if(clouds[startPosition + i] >= poorP) { body.style.background = 'gray'; }
+        else if(clouds[startPosition + i] >= moderateP) { body.style.background = 'silver'; }
+        else { body.style.background = 'white'; }
         elements[i].appendChild(body);
+        body.style.padding = "10px";
+        
+
+
+        // div = document.createElement('div');
+        // body = document.createElement('p');
+        // body.textContent = clouds[startPosition + i] + cloudUnits;
+        // if(clouds[startPosition + i] >= poorP) { div.style.background = 'gray'; }
+        // else if(clouds[startPosition + i] >= moderateP) { div.style.background = 'silver'; }
+        // else { div.style.background = 'white'; }
+        // div.style.padding = 10;
+
+        // div.appendChild(body);
+        // elements[i].appendChild(div);
+
+        // spacer
+        // addSpace(elements, i);
+
+
+        // cloud cover styling
+        body = document.createElement(type);
+        body.textContent = Math.round( wind[startPosition + i] ) + " " + windDirection(windDir[i]);
+        // cloud cover warning
+        if(wind[startPosition + i] >= highWind) { body.style.background = 'yellow'; }
+        else { body.style.background = 'white'; }
+        elements[i].appendChild(body);
+        body.style.padding = "10px";
+        
+        
+        // wind speed styling
+        // body = document.createElement('type');
+        // var windRound = Math.round( wind[startPosition + i] );
+        // body.textContent = windRound + " " + windDirection(windDir[i]);
+        // // wind warning
+        // if(wind[startPosition + i] >= highWind) { body.style.background = 'yellow'; }
+        // else { body.style.background = 'white'; }
+        // elements[i].appendChild(body);
+        // body.style.padding = 10;
     }
 }
 
@@ -207,9 +253,9 @@ function addSpace(elements, i) {
  * @param {*} data      api data object
  * @returns {String}    compass direction
  */
-function windDirection(data) {
+function windDirection(direction) {
 
-    const direction = Number( data["current"]["wind_direction_10m"] );
+    // const direction = Number( data["current"]["wind_direction_10m"] );
 
     if(direction >= 337.5 && direction < 22.5) { return "N"; }
     if(direction >= 22.5 && direction < 67.5) { return "NE"; }
