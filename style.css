@@ -90,6 +90,7 @@ section {
     /* overflow: hidden; */
     /* flex-wrap: nowrap; */
     overflow-x: scroll;
+    background-color: white;
 }
 
 
