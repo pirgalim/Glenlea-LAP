@@ -1,3 +1,22 @@
+
+var TEMP_COLOUR_HOT = '255, 150, 0';
+var TEMP_COLOUR_COLD = '180, 180, 255';
+var PRECIP_COLOUR = '180, 120, 256';
+var CLOUD_COLOUR = '80, 135, 256';
+var WIND_COLOUR = '80, 255, 80';
+
+var TEMP_THRESH_HOT = 40;       // 40°C
+var TEMP_THRESH_COLD = -40;     // -40°C
+var PRECIP_THRESH = 100;        // 100%
+var CLOUD_THRESH = 100;         // 100%
+var WIND_THRESH = 50;           // 50km/h
+
+
+
+
+
+
+
 /**
  * Calls weather api
  * @returns weather data
@@ -61,6 +80,9 @@ function currentCondtions(data) {
     body = document.createElement('p');
     body.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
     elements[0].appendChild(body);
+
+    // elements[0].style.background = 'rgba(255, 100, 0, ' + current["temperature_2m"]/40 + ')';
+    elements[0].style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/40 + ')';
 
     // cloud cover
     body = document.createElement('p');
@@ -146,65 +168,27 @@ function hourlyConditions(data) {
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
-        const type = 'div';
-    
-        // time styling
-        body = document.createElement(type); 
-        body.textContent = times[startPosition + i];
-        elements[i].appendChild(body);
-
+   
         // midnight indicator
-        if(times[startPosition + i] == "00:00") {  body.style.background = "red"; }
-        else { body.style.background = "lightgray"; }
-        body.style.padding = "10px";
+        if(times[startPosition + i] == "00:00") {  
+            elements[i].style.borderRight = "2px solid red";
+        }
+        
+        addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', 1, "");
+        
         
 
-        // temperature styling
-        var tempRound = Math.round( temp[startPosition + i] );
-        body = document.createElement(type);
-        body.textContent = tempRound + tempUnits;
-        elements[i].appendChild(body);
-        body.style.padding = "10px";
-        // colour indicator 
-        if(temp[startPosition + i] > 0) { body.style.background = 'rgba(255, 180, 0, ' + temp[startPosition + i]/30 + ')'; }
-        else { body.style.background = 'rgba(180, 180, 255, ' + temp[startPosition + i]/(-30) + ')'; }
+        // // temperature colour flips after 0
+        if(temp[startPosition + i] >= 0) { 
+            addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, tempUnits);
+        }
+        else { 
+            addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, tempUnits);
+        }
                 
-        // precipitation styling
-        body = document.createElement(type);
-        body.textContent = precipitation[startPosition + i] + precipitationUnits;
-        elements[i].appendChild(body);
-        body.style.padding = "10px";
-        // colour indicator 
-        body.style.background = 'rgba(180, 120, 256, ' + precipitation[startPosition + i]/100 + ')';
-
-        
-        // cloud cover styling
-        body = document.createElement(type);
-        body.textContent = clouds[startPosition + i] + cloudUnits;
-        elements[i].appendChild(body);
-        body.style.padding = "10px";
-        // colour indicator 
-        body.style.background = 'rgba(80, 135, 256, ' + clouds[startPosition + i]/100 + ')';
-
-       
-        
-        
-
-
-        // wind speed styling
-        // body = document.createElement(type);
-        // body.textContent = Math.round( wind[startPosition + i] ) + " " + windDirection(windDir[i]);
-        // elements[i].appendChild(body);
-        // body.style.padding = "10px";
-
-        // // colour indicator 
-        // rgba = 'rgba(80, 255, 80, ' + wind[startPosition + i]/30 + ')';
-        // body.style.background = rgba;
-
-        
-
-        // colour1 = 'rgba(80, 255, 80, ';
-        addElement(elements, wind, startPosition, i, null, 30, windDirection(windDir[i]));
+        addElement(elements, precipitation, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, precipitationUnits);
+        addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, cloudUnits);
+        addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, windDirection(windDir[i]));
 
     }
 }
@@ -212,23 +196,34 @@ function hourlyConditions(data) {
 
 function addElement(elements, condition, current, pos, colour, threshold, units) {
 
-        var rounded = Math.round( condition[current + pos] );
+
+        var value = Math.round( condition[current + pos] ) || condition[current + pos];
+
+        
 
 
         div = document.createElement('div');
 
-        div.textContent = Math.round( condition[current + pos] ) + " " + units;
+        div.textContent = value + " " + units;
 
         elements[pos].appendChild(div);
 
-        div.style.padding = "10px";
+        div.style.padding = '10px';
 
 
-        rgba = 'rgba(80, 255, 80, ' + condition[current + pos]/threshold + ')';
+
+        if(Number.isInteger(value)) {
+            var rgba = 'rgba(' + colour + ',' + value/threshold + ')';
+        }
+        else {
+            rgba = 'lightgray';
+        }
+ 
+
         div.style.background = rgba;
+        
 
 }
-
 
 
 /**
