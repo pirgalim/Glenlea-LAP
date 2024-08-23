@@ -1,4 +1,3 @@
-
 var TEMP_COLOUR_HOT = '255, 150, 0';
 var TEMP_COLOUR_COLD = '180, 180, 255';
 var PRECIP_COLOUR = '180, 120, 256';
@@ -12,11 +11,6 @@ var CLOUD_THRESH = 100;         // 100%
 var WIND_THRESH = 50;           // 50km/h
 
 
-
-
-
-
-
 /**
  * Calls weather api
  * @returns weather data
@@ -28,8 +22,6 @@ async function call() {
         return data;
     } 
     catch (error) {
-
-        // locate error div
         div = document.getElementById("error");
 
         // create and format error message
@@ -114,45 +106,30 @@ function currentCondtions(data) {
  */
 function hourlyConditions(data) {
 
-    
+    // parameters from data
     const hourly = data["hourly"];  
     const hourlyUnits = data["hourly_units"]; 
-
-
-
-    // time of last update
     const currTime = data["current"]["time"];
 
-    // hourly time data
+    // parameters from hourly
     const times = hourly["time"];
 
-    // hourly cloud cover data
     const clouds = hourly["cloud_cover"];
     const cloudUnits = hourlyUnits["cloud_cover"];
 
-    // hourly precipitation data
-    const precipitation = hourly["precipitation_probability"];
-    const precipitationUnits = hourlyUnits["precipitation_probability"];
+    const precip = hourly["precipitation_probability"];
+    const precipUnits = hourlyUnits["precipitation_probability"];
 
-    // hourly temperature data
     const temp = hourly["temperature_2m"];
     const tempUnits = hourlyUnits["temperature_2m"];
 
-    // hourly temperature data
     const wind = hourly["wind_speed_10m"];
     const windDir = hourly["wind_direction_10m"];
-
-    
-
-
-
-
 
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current hour
     var currHour = currTime.split("T")[1].split(":")[0];
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current day
     var currDay = currTime.split("T")[0].split("-")[2];
-
 
     // find current time within the hourly array
     var startPosition = 0;
@@ -168,16 +145,13 @@ function hourlyConditions(data) {
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
-   
         // midnight indicator
         if(times[startPosition + i] == "00:00") {  
             elements[i].style.borderRight = "2px solid red";
         }
         
-        addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', 1, "");
-        
-        
-
+        addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', "", "");
+    
         // // temperature colour flips after 0
         if(temp[startPosition + i] >= 0) { 
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, tempUnits);
@@ -186,7 +160,7 @@ function hourlyConditions(data) {
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, tempUnits);
         }
                 
-        addElement(elements, precipitation, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, precipitationUnits);
+        addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, precipUnits);
         addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, cloudUnits);
         addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, windDirection(windDir[i]));
 
@@ -194,49 +168,46 @@ function hourlyConditions(data) {
 }
 
 
+/**
+ * 
+ * @param {Array} elements 
+ * @param {Array} condition 
+ * @param {int} current 
+ * @param {int} pos 
+ * @param {String} colour 
+ * @param {int} threshold 
+ * @param {*} units 
+ */
 function addElement(elements, condition, current, pos, colour, threshold, units) {
-
 
         var value = Math.round( condition[current + pos] ) || condition[current + pos];
 
-        
-
-
         div = document.createElement('div');
-
         div.textContent = value + " " + units;
-
         elements[pos].appendChild(div);
-
         div.style.padding = '10px';
 
-
-
-        if(Number.isInteger(value)) {
+        if(Number.isInteger(threshold)) {
             var rgba = 'rgba(' + colour + ',' + value/threshold + ')';
         }
         else {
             rgba = 'lightgray';
         }
- 
-
         div.style.background = rgba;
-        
-
 }
 
 
-/**
- * Adds space between elements
- * @param {*} elements  array of elements in the DOM
- * @param {*} i         index of the desired element
- */
-function addSpace(elements, i) {
-    body = document.createElement('br');
-    elements[i].appendChild(body);
-    body = document.createElement('br');
-    elements[i].appendChild(body);
-}
+// /**
+//  * Adds space between elements
+//  * @param {*} elements  array of elements in the DOM
+//  * @param {*} i         index of the desired element
+//  */
+// function addSpace(elements, i) {
+//     body = document.createElement('br');
+//     elements[i].appendChild(body);
+//     body = document.createElement('br');
+//     elements[i].appendChild(body);
+// }
 
 
 /**

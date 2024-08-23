@@ -92,7 +92,21 @@ section {
 
     /* value based on the blocks created inside hourly-small; found using browser inspection tool */
     line-height: 38px;  
+    background-color: white;
 }
+#hourly-labels {
+    width:15%;
+}
+
+::-webkit-scrollbar {
+    background-color: white;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 10px;
+}
+
 
 
 .block {
@@ -157,19 +171,15 @@ h3.curr-label {
 
 p {
     display: inline;
-    /* margin: 5px; */
-    /* padding: 0; */
     font-size: large;
 }
 
 
-.timestamp {
+/* .timestamp {
     opacity: 70%;
-}
+} */
 h3 {
-    /* margin-bottom: 5px; */
     margin: 0;
-    padding: 0;
 }
 
 
@@ -197,6 +207,8 @@ img {
     height: 5%;
     min-width: 80%;
 } 
+
+
 
 @media only screen and (max-device-width: 500px){
 
