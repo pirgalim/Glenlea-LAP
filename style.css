@@ -128,19 +128,21 @@ h3.curr-label {
     min-width: 80px;
     text-align: center;
 }
-.hourly-label {
-    padding-left: 10px; 
-
-    /* value based on the blocks created inside hourly-small; found using browser inspection tool */
-    line-height: 38px;  
-    background-color: white;
-}
 #hourly-labels {
     width:15%;
 }
+.hourly-label {
+    padding-left: 10px;
+    border-top: 1px solid gray;
+    box-sizing: border-box;
+
+    /* value based on the blocks created inside hourly-small; found using browser inspection tool */
+    line-height: 38px;      
+}
+
 
 ::-webkit-scrollbar {
-    background-color: white;
+    background-color: lightgray;
     height: 10px;
 }
 ::-webkit-scrollbar-thumb {

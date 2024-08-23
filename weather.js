@@ -65,32 +65,40 @@ function currentCondtions(data) {
     // expected output??
     console.log(elements);
 
+
+    const temp = document.getElementById('temp-label');
+    const precip = document.getElementById('precip-label');
+    const cloud = document.getElementById('cloud-label');
+    const wind = document.getElementById('wind-label');
+
     // HTML body element
-    var body;
+    let body;
 
     // temperature
     body = document.createElement('p');
     body.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
-    elements[0].appendChild(body);
-
-    // elements[0].style.background = 'rgba(255, 100, 0, ' + current["temperature_2m"]/40 + ')';
-    elements[0].style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/40 + ')';
+    temp.appendChild(body);
+    // temp.style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/TEMP_THRESH_HOT + ')';
 
     // cloud cover
     body = document.createElement('p');
     body.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
-    elements[1].appendChild(body);
+    cloud.appendChild(body);
+    // cloud.style.background = 'rgba(' + CLOUD_COLOUR + ',' + current["cloud_cover"]/CLOUD_THRESH + ')';
 
     // precipitation
     body = document.createElement('p');
     body.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
-    elements[2].appendChild(body);
+    precip.appendChild(body);
+    // precip.style.background = 'rgba(' + PRECIP_COLOUR + ',' + current["precipitation"]/PRECIP_THRESH + ')';
 
     // wind speed
     const direction = Number( data["current"]["wind_direction_10m"] );
     body = document.createElement('p');
     body.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
-    elements[3].appendChild(body);
+    wind.appendChild(body);
+    // wind.style.background = 'rgba(' + WIND_COLOUR + ',' + current["wind_speed_10m"]/WIND_THRESH + ')';
+
 
     // timestamp from last request
     body = document.createElement('p');
@@ -176,14 +184,14 @@ function hourlyConditions(data) {
  * @param {int} pos 
  * @param {String} colour 
  * @param {int} threshold 
- * @param {*} units 
+ * @param {String} units 
  */
 function addElement(elements, condition, current, pos, colour, threshold, units) {
 
         var value = Math.round( condition[current + pos] ) || condition[current + pos];
 
         div = document.createElement('div');
-        div.textContent = value + " " + units;
+        div.textContent = value + units;
         elements[pos].appendChild(div);
         div.style.padding = '10px';
 
@@ -194,6 +202,8 @@ function addElement(elements, condition, current, pos, colour, threshold, units)
             rgba = 'lightgray';
         }
         div.style.background = rgba;
+
+        div.style.borderTop = "1px solid gray";
 }
 
 
@@ -219,14 +229,14 @@ function windDirection(direction) {
 
     // const direction = Number( data["current"]["wind_direction_10m"] );
 
-    if(direction >= 337.5 && direction < 22.5) { return "N"; }
-    if(direction >= 22.5 && direction < 67.5) { return "NE"; }
-    if(direction >= 67.5 && direction < 112.5) { return "E"; }
-    if(direction >= 112.5 && direction < 157.5) { return "SE"; }
-    if(direction >= 157.5 && direction < 202.5) { return "S"; }
-    if(direction >= 202.5 && direction < 247.5) { return "SW"; }
-    if(direction >= 247.5 && direction < 292.5) { return "W"; }
-    if(direction >= 292.5 && direction < 337.5) { return "NW"; }
+    if(direction >= 337.5 && direction < 22.5) { return " N"; }
+    if(direction >= 22.5 && direction < 67.5) { return " NE"; }
+    if(direction >= 67.5 && direction < 112.5) { return " E"; }
+    if(direction >= 112.5 && direction < 157.5) { return " SE"; }
+    if(direction >= 157.5 && direction < 202.5) { return " S"; }
+    if(direction >= 202.5 && direction < 247.5) { return " SW"; }
+    if(direction >= 247.5 && direction < 292.5) { return " W"; }
+    if(direction >= 292.5 && direction < 337.5) { return " NW"; }
    
     return "?";
 }

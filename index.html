@@ -66,23 +66,23 @@
                     <h2 class="curr-label">Current Conditions</h2>
                     <div class="inner-container">
 
-                        <div style="padding:10" class="current">
+                        <div id="temp-label" style="padding:10" class="current">
                             <h3 class="curr-label">Temperature</h3>      
                             
                         </div>
-                        <div style="padding:10" class="current">
+                        <div id="cloud-label" style="padding:10" class="current">
                             <h3 class="curr-label">Cloud Cover</h3>
                         </div>
-                        <div style="padding:10"class="current">
+                        <div id="precip-label" style="padding:10"class="current">
                             <h3 class="curr-label">Precipitation</h3>
                         </div>
-                        <div style="padding:10" class="current">
+                        <div id="wind-label" style="padding:10" class="current">
                             <h3 class="curr-label">Wind Speed</h3>
                         </div>
 
-                        <!-- <div class="break"></div><br> -->
-                        <i class="current">Last updated on </i><br>
-                        <br><a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                        <i class="current">Last updated on </i>
+
+                        <!-- <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
                         
                     </div>
 
@@ -109,51 +109,35 @@
                     <div class="inner-container current" style="width: 100%">
 
                         <div id="hourly-labels">
-
                             <div class="hourly-label"><h3>Hour</h3></div>
                             <div class="hourly-label"><h3>Temperature</h3></div>
                             <div class="hourly-label"><h3>Precipitation</h3></div>
                             <div class="hourly-label"><h3>Cloud Cover</h3></div>
                             <div class="hourly-label"><h3>Wind (km/h)</h3></div>
-                            <div id="scrollbar-gap" class="hourly-label" style="height: 10px"></div>
-                            
-                            
-                            
-                            
+                            <div id="scrollbar-gap" class="hourly-label" style="height: 10px"></div>                            
                         </div>
 
                         <div class="inner-container-hourly">
-
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-    
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-                            <div class="block-hourly"></div>
-    
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
+                            <div class="block-hourly"></div><div class="block-hourly"></div>
                         </div>        
                     </div>
-                    <!-- <br><a class="current" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
-            </div>   
+
+                    <div style="width:100%; text-align:center">
+                        <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                    </div>
+                </div>
+            </div>              
         </section>
     </div>
 
