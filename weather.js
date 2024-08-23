@@ -92,11 +92,11 @@ function currentCondtions(data) {
  */
 function hourlyConditions(data) {
 
-    // hourly data
-    const hourly = data["hourly"];
+    
+    const hourly = data["hourly"];  
+    const hourlyUnits = data["hourly_units"]; 
 
-    // units for hourly data
-    const hourlyUnits = data["hourly_units"];
+
 
     // time of last update
     const currTime = data["current"]["time"];
@@ -120,12 +120,11 @@ function hourlyConditions(data) {
     const wind = hourly["wind_speed_10m"];
     const windDir = hourly["wind_direction_10m"];
 
-    // weather percentage warning thresholds
-    const moderateP = 30;
-    const poorP = 70;
+    
 
-    // wind warning
-    const highWind = 15;
+
+
+
 
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current hour
     var currHour = currTime.split("T")[1].split(":")[0];
@@ -147,20 +146,18 @@ function hourlyConditions(data) {
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {
 
-        // element type
         const type = 'div';
     
         // time styling
         body = document.createElement(type); 
         body.textContent = times[startPosition + i];
         elements[i].appendChild(body);
+
         // midnight indicator
         if(times[startPosition + i] == "00:00") {  body.style.background = "red"; }
         else { body.style.background = "lightgray"; }
         body.style.padding = "10px";
         
-        // spacer
-        // addSpace(elements, i);
 
         // temperature styling
         var tempRound = Math.round( temp[startPosition + i] );
@@ -168,97 +165,70 @@ function hourlyConditions(data) {
         body.textContent = tempRound + tempUnits;
         elements[i].appendChild(body);
         body.style.padding = "10px";
-
-        // body.style.background = 'lightgray';
-
-        if(temp[startPosition + i] > 0) {
-            body.style.background = 'rgba(255, 180, 0, ' + temp[startPosition + i]/30 + ')';
-        }
-        else {
-            body.style.background = 'rgba(180, 180, 255, ' + temp[startPosition + i]/(-30) + ')';
-        }
-        
-
-        // spacer
-        // addSpace(elements, i);
-        
+        // colour indicator 
+        if(temp[startPosition + i] > 0) { body.style.background = 'rgba(255, 180, 0, ' + temp[startPosition + i]/30 + ')'; }
+        else { body.style.background = 'rgba(180, 180, 255, ' + temp[startPosition + i]/(-30) + ')'; }
+                
         // precipitation styling
         body = document.createElement(type);
         body.textContent = precipitation[startPosition + i] + precipitationUnits;
-        // precipitation warning
-        // if(precipitation[startPosition + i] >= poorP) { body.style.background = 'dodgerblue'; }
-        // else if(precipitation[startPosition + i] >= moderateP) { body.style.background = 'lightsteelblue'; }
-        // else { body.style.background = 'lightskyblue'; }
-
-        body.style.background = 'rgba(120, 180, 256, ' + precipitation[startPosition + i]/100 + ')';
         elements[i].appendChild(body);
         body.style.padding = "10px";
-        
+        // colour indicator 
+        body.style.background = 'rgba(180, 120, 256, ' + precipitation[startPosition + i]/100 + ')';
 
-        // spacer
-        // addSpace(elements, i);
         
         // cloud cover styling
         body = document.createElement(type);
         body.textContent = clouds[startPosition + i] + cloudUnits;
-        // cloud cover warning
-        // if(clouds[startPosition + i] >= poorP) { body.style.background = 'white'; }
-        // else if(clouds[startPosition + i] >= moderateP) { body.style.background = 'lightsteelblue'; }
-        // else { body.style.background = 'lightskyblue'; }
         elements[i].appendChild(body);
         body.style.padding = "10px";
-
-        body.style.background = 'rgba(135, 206, 256, ' + clouds[startPosition + i]/100 + ')';
+        // colour indicator 
+        body.style.background = 'rgba(80, 135, 256, ' + clouds[startPosition + i]/100 + ')';
 
        
         
         
 
 
-        // div = document.createElement('div');
-        // body = document.createElement('p');
-        // body.textContent = clouds[startPosition + i] + cloudUnits;
-        // if(clouds[startPosition + i] >= poorP) { div.style.background = 'gray'; }
-        // else if(clouds[startPosition + i] >= moderateP) { div.style.background = 'silver'; }
-        // else { div.style.background = 'white'; }
-        // div.style.padding = 10;
-
-        // div.appendChild(body);
-        // elements[i].appendChild(div);
-
-        // spacer
-        // addSpace(elements, i);
-
-
-        // rgba = 'rgba(255, 255, 0, ' + 1 + ')';
-        // console.log(rgba);
-
-        // cloud cover styling
-        body = document.createElement(type);
-        body.textContent = Math.round( wind[startPosition + i] ) + " " + windDirection(windDir[i]);
-
-        // cloud cover warning
-        rgba = 'rgba(255, 255, 0, ' + wind[startPosition + i]/50 + ')';
-        body.style.background = rgba;
-        // if(wind[startPosition + i] >= highWind) { body.style.background = 'yellow'; }
-        // else { body.style.background = 'white'; }
-        elements[i].appendChild(body);
-        body.style.padding = "10px";
-
-        
-        
-        
         // wind speed styling
-        // body = document.createElement('type');
-        // var windRound = Math.round( wind[startPosition + i] );
-        // body.textContent = windRound + " " + windDirection(windDir[i]);
-        // // wind warning
-        // if(wind[startPosition + i] >= highWind) { body.style.background = 'yellow'; }
-        // else { body.style.background = 'white'; }
+        // body = document.createElement(type);
+        // body.textContent = Math.round( wind[startPosition + i] ) + " " + windDirection(windDir[i]);
         // elements[i].appendChild(body);
-        // body.style.padding = 10;
+        // body.style.padding = "10px";
+
+        // // colour indicator 
+        // rgba = 'rgba(80, 255, 80, ' + wind[startPosition + i]/30 + ')';
+        // body.style.background = rgba;
+
+        
+
+        // colour1 = 'rgba(80, 255, 80, ';
+        addElement(elements, wind, startPosition, i, null, 30, windDirection(windDir[i]));
+
     }
 }
+
+
+function addElement(elements, condition, current, pos, colour, threshold, units) {
+
+        var rounded = Math.round( condition[current + pos] );
+
+
+        div = document.createElement('div');
+
+        div.textContent = Math.round( condition[current + pos] ) + " " + units;
+
+        elements[pos].appendChild(div);
+
+        div.style.padding = "10px";
+
+
+        rgba = 'rgba(80, 255, 80, ' + condition[current + pos]/threshold + ')';
+        div.style.background = rgba;
+
+}
+
 
 
 /**

@@ -80,41 +80,11 @@ section {
 
     
     display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: center; */
     width: 80%;
-    /* max-width: 2000px; */
-    /* margin: 15px auto; */
-    /* padding: 10px; */
-
-    /* overflow: hidden; */
-    /* flex-wrap: nowrap; */
     overflow-x: scroll;
     background-color: white;
 }
 
-
-::-webkit-scrollbar {
-    height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
-    /* -webkit-border-radius: 10px; */
-    border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    /* -webkit-border-radius: 10px; */
-    border-radius: 10px;
-    background: gray; 
-    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  */
-}
-::-webkit-scrollbar-thumb:window-inactive {
-    background: gray; 
-}
 
 
 .block {
