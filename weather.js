@@ -46,40 +46,40 @@ async function call() {
 async function display() {
     const data = await call();
     currentCondtions(data);
-    currentPosition();  // use file sent via sftp?
+    // currentPosition();  // use file sent via sftp?
     hourlyConditions(data);
 }
 
 
 
-function currentPosition() {
+// function currentPosition() {
 
-    const ra = document.getElementById('ra-label');
-    const dec = document.getElementById('dec-label');
-    const alt = document.getElementById('alt-label');
-    const az = document.getElementById('az-label');
-    const timePos = document.getElementById('timePos-label');
+//     const ra = document.getElementById('ra-label');
+//     const dec = document.getElementById('dec-label');
+//     const alt = document.getElementById('alt-label');
+//     const az = document.getElementById('az-label');
+//     const timePos = document.getElementById('timePos-label');
 
-    text = document.createElement('p');
-    text.textContent = "2h 31m 48.7s";
-    ra.appendChild(text);
+//     text = document.createElement('p');
+//     text.textContent = "2h 31m 48.7s";
+//     ra.appendChild(text);
 
-    text = document.createElement('p');
-    text.textContent = "+89° 15′ 51″";
-    dec.appendChild(text);
+//     text = document.createElement('p');
+//     text.textContent = "+89° 15′ 51″";
+//     dec.appendChild(text);
 
-    text = document.createElement('p');
-    text.textContent = "0° 51′ 30";
-    alt.appendChild(text);
+//     text = document.createElement('p');
+//     text.textContent = "0° 51′ 30";
+//     alt.appendChild(text);
 
-    text = document.createElement('p');
-    text.textContent = "49° 30′ 54";
-    az.appendChild(text);
+//     text = document.createElement('p');
+//     text.textContent = "49° 30′ 54";
+//     az.appendChild(text);
 
-    text = document.createElement('p');
-    text.textContent = "... this is a demo";
-    timePos.appendChild(text);
-}
+//     text = document.createElement('p');
+//     text.textContent = "... this is a demo";
+//     timePos.appendChild(text);
+// }
 
 
 /**
@@ -95,7 +95,7 @@ function currentCondtions(data) {
     // obtain list of headings that are part of the 'current' class
     const elements = document.getElementsByClassName("current");
     // expected output??
-    console.log(elements);
+    // console.log(elements);
 
     const temp = document.getElementById('temp-label');
     const precip = document.getElementById('precip-label');
@@ -181,7 +181,7 @@ function hourlyConditions(data) {
 
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-hourly");
-    console.log(elements.length);
+    // console.log(elements.length);
     
     // append data to each element from 'elements'
     for(let i = 0; i < elements.length; i++) {

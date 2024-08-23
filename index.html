@@ -26,19 +26,19 @@
     </script> -->
 
 
-    <div class="container">
+    <div name="camera-view" class="container">
 
         <section id="camera">
             <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
-            <h3>Outdoor Camera View</h3>
-            <p class="timestamp">Updates every 30s</p>
+            <h3 class="cam-label">Outdoor Camera View</h3>
+            <i class="timestamp">Updates every 30s</i>
         </section>
 
         <section id="camera">
 
                 <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting..." onerror="this.src='http://allsky.physics.umanitoba.ca/outdoor.png'">
                 <!-- onerror="this.style.display='none'" -->
-                <h3>Indoor Camera View</h3>
+                <h3 class="cam-label">Indoor Camera View</h3>
                 
                 
                 <button id="0s-indoor">0s</button><button id="1s-indoor">1s</button>
@@ -51,15 +51,17 @@
         </section>
     </div>
 
+    
+    <div name="current-data" class="container">
 
-    <div class="container">
-
+        <!-- load scripts -->
         <script src="weather.js"></script>
-
+        <script src="position.js"></script>
+        
         <div class="block-full" id="error"></div>
 
+
         <section id="current-conditions">
-            
 
             <div class="inner-block">
 
@@ -68,7 +70,6 @@
 
                     <div id="temp-label" style="padding:10" class="current">
                         <h3 class="curr-label">Temperature</h3>      
-                        
                     </div>
                     <div id="cloud-label" style="padding:10" class="current">
                         <h3 class="curr-label">Cloud Cover</h3>
@@ -80,9 +81,8 @@
                         <h3 class="curr-label">Wind Speed</h3>
                     </div>
 
-                    <i id="timeCond-label" class="current" style="background-color:whitesmoke; margin:0">Last updated on </i>
-
-                    <!-- <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
+                    <i id="timeCond-label" class="current">Last updated on </i>
+                    <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
                     
                 </div>
 
@@ -95,11 +95,11 @@
 
         <section>
             
+            
 
             <div class="inner-block">
 
                 <h2 class="curr-label">Current Position</h2>
-
                 <div class="inner-container">
 
                     <div id="ra-label" style="padding:10" class="current">
@@ -115,13 +115,16 @@
                         <h3 class="curr-label">Azimuth</h3>
                     </div>
 
-                    <i id="timePos-label" class="current" style="background-color:whitesmoke;">Last updated on </i>
+                    <i id="timePos-label" class="current">Last updated on </i>
 
-                    <!-- <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
-                    
+                    <div id="status" class="current">
+                        <!-- <h3 class="curr-label"></h3> -->
+                    </div>
                 </div>                
             </div>
-  
+
+            
+
         </section>
 
         <section id="hourly-conditions">
