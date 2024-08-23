@@ -162,7 +162,7 @@ function hourlyConditions(data) {
     }
 
     // obtain list of headings that are part of the 'block-small' class
-    const elements = document.getElementsByClassName("block-small");
+    const elements = document.getElementsByClassName("block-hourly");
     console.log(elements.length);
     
     // append data to each element from 'elements'
