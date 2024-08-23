@@ -62,9 +62,7 @@ section {
 
 .inner-container { 
     display: flex;
-    flex-wrap: wrap;    
-
-    
+    flex-wrap: wrap;
 }
 
 .block {
@@ -81,11 +79,14 @@ section {
     padding: 10px;
     /* will take up at least 25% of parent container element */ 
     min-width: 25%; 
-
-
     display:flex; 
     flex-wrap: wrap
 }
+.legend-text {
+    width: 100px; 
+    padding: 5px;
+}
+
 
 /* .block-med {
     box-sizing: border-box;  */

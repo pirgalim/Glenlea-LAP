@@ -8,7 +8,7 @@ var TEMP_THRESH_HOT = 40;       // °C
 var TEMP_THRESH_COLD = -40;     // °C
 var PRECIP_THRESH = 100;        // %
 var CLOUD_THRESH = 80;          // %
-var WIND_THRESH = 50;           // km/h
+var WIND_THRESH = 30;           // km/h
 
 
 /**
@@ -46,7 +46,39 @@ async function call() {
 async function display() {
     const data = await call();
     currentCondtions(data);
+    currentPosition();  // use file sent via sftp?
     hourlyConditions(data);
+}
+
+
+
+function currentPosition() {
+
+    const ra = document.getElementById('ra-label');
+    const dec = document.getElementById('dec-label');
+    const alt = document.getElementById('alt-label');
+    const az = document.getElementById('az-label');
+    const timePos = document.getElementById('timePos-label');
+
+    text = document.createElement('p');
+    text.textContent = "2h 31m 48.7s";
+    ra.appendChild(text);
+
+    text = document.createElement('p');
+    text.textContent = "+89° 15′ 51″";
+    dec.appendChild(text);
+
+    text = document.createElement('p');
+    text.textContent = "0° 51′ 30";
+    alt.appendChild(text);
+
+    text = document.createElement('p');
+    text.textContent = "49° 30′ 54";
+    az.appendChild(text);
+
+    text = document.createElement('p');
+    text.textContent = "... this is a demo";
+    timePos.appendChild(text);
 }
 
 
@@ -65,46 +97,47 @@ function currentCondtions(data) {
     // expected output??
     console.log(elements);
 
-
     const temp = document.getElementById('temp-label');
     const precip = document.getElementById('precip-label');
     const cloud = document.getElementById('cloud-label');
     const wind = document.getElementById('wind-label');
+    const timeCond = document.getElementById('timeCond-label');
 
-    // HTML body element
-    let body;
+    // HTML text element
+    let text;
 
     // temperature
-    body = document.createElement('p');
-    body.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
-    temp.appendChild(body);
+    text = document.createElement('p');
+    text.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
+    temp.appendChild(text);
     // temp.style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/TEMP_THRESH_HOT + ')';
 
     // cloud cover
-    body = document.createElement('p');
-    body.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
-    cloud.appendChild(body);
+    text = document.createElement('p');
+    text.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
+    cloud.appendChild(text);
     // cloud.style.background = 'rgba(' + CLOUD_COLOUR + ',' + current["cloud_cover"]/CLOUD_THRESH + ')';
 
     // precipitation
-    body = document.createElement('p');
-    body.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
-    precip.appendChild(body);
+    text = document.createElement('p');
+    text.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
+    precip.appendChild(text);
     // precip.style.background = 'rgba(' + PRECIP_COLOUR + ',' + current["precipitation"]/PRECIP_THRESH + ')';
 
     // wind speed
     const direction = Number( data["current"]["wind_direction_10m"] );
-    body = document.createElement('p');
-    body.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
-    wind.appendChild(body);
+    text = document.createElement('p');
+    text.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
+    wind.appendChild(text);
     // wind.style.background = 'rgba(' + WIND_COLOUR + ',' + current["wind_speed_10m"]/WIND_THRESH + ')';
 
 
     // timestamp from last request
-    body = document.createElement('p');
+    text = document.createElement('p');
     var time = current["time"].split("T");
-    body.textContent = time[0] + " at " + time[1] + " "; // data["timezone_abbreviation"]
-    elements[4].appendChild(body);
+    text.textContent = time[0] + " at " + time[1] + " "; // data["timezone_abbreviation"]
+    timeCond.appendChild(text);
+    // elements[4].appendChild(text);
 }
 
 
@@ -218,10 +251,10 @@ function addElement(elements, condition, current, pos, colour, threshold, flip, 
 //  * @param {*} i         index of the desired element
 //  */
 // function addSpace(elements, i) {
-//     body = document.createElement('br');
-//     elements[i].appendChild(body);
-//     body = document.createElement('br');
-//     elements[i].appendChild(body);
+//     text = document.createElement('br');
+//     elements[i].appendChild(text);
+//     text = document.createElement('br');
+//     elements[i].appendChild(text);
 // }
 
 

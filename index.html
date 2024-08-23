@@ -80,7 +80,7 @@
                         <h3 class="curr-label">Wind Speed</h3>
                     </div>
 
-                    <i class="current">Last updated on </i>
+                    <i id="timeCond-label" class="current" style="background-color:whitesmoke; margin:0">Last updated on </i>
 
                     <!-- <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
                     
@@ -99,7 +99,27 @@
             <div class="inner-block">
 
                 <h2 class="curr-label">Current Position</h2>
-                
+
+                <div class="inner-container">
+
+                    <div id="ra-label" style="padding:10" class="current">
+                        <h3 class="curr-label">Right Ascension</h3>      
+                    </div>
+                    <div id="dec-label" style="padding:10" class="current">
+                        <h3 class="curr-label">Declination</h3>
+                    </div>
+                    <div id="alt-label" style="padding:10"class="current">
+                        <h3 class="curr-label">Altitude</h3>
+                    </div>
+                    <div id="az-label" style="padding:10" class="current">
+                        <h3 class="curr-label">Azimuth</h3>
+                    </div>
+
+                    <i id="timePos-label" class="current" style="background-color:whitesmoke;">Last updated on </i>
+
+                    <!-- <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
+                    
+                </div>                
             </div>
   
         </section>
@@ -140,68 +160,31 @@
                     </div>     
                     
                     <div class="break"></div>
+                    
 
                     <div class="block-legend">
                         <h3 style="width:100%">Temperature</h3>
-                        <div style="background-color:lightblue; width: 100px; padding: 5px">Cold</div>
-                        <div style="background-color:orange; width: 100px; padding: 5px">Hot</div>
+                        <div class="legend-text" style="background-color:lightblue">Cool</div>
+                        <div class="legend-text" style="background-color:orange">Hot</div>
                         
                     </div>
                     <div class="block-legend">
                         <h3 style="width:100%">Precipitation</h3>
-                        <div style="background-color:rgb(255, 245, 255); width: 100px; padding: 5px">Low Chance</div>
-                        <div style="background-color:rgb(180, 120, 256); width: 100px; padding: 5px">High Chance</div>
+                        <div class="legend-text" style="background-color:rgb(255, 245, 255)">Low Chance</div>
+                        <div class="legend-text" style="background-color:rgb(180, 120, 256)">High Chance</div>
                     </div>
                     <div class="block-legend">
                         <h3 style="width:100%">Cloud Cover</h3>
-                        <div style="background-color:rgb(80, 135, 256); width: 100px; padding: 5px">Clear</div>
-                        <div style="background-color:white; width: 100px; padding: 5px">Cloudy</div>
+                        <div class="legend-text" style="background-color:rgb(80, 135, 256)">Clear</div>
+                        <div class="legend-text" style="background-color:white">Cloudy</div>
                     </div>
                     <div class="block-legend">
                         <h3 style="width:100%">Wind Speed</h3>
-                        <div style="background-color:rgb(240, 255, 240); width: 100px; padding: 5px">Calm</div>
-                        <div style="background-color:rgb(80, 255, 80); width: 100px; padding: 5px">Windy</div>
+                        <div class="legend-text" style="background-color:rgb(240, 255, 240)">Calm</div>
+                        <div class="legend-text" style="background-color:rgb(80, 255, 80)">Windy</div>
                     </div>
                 </div>
- 
-
-                
-
-
-
-                
-                <!-- <div class="inner-container current" style="width: 100%; justify-content:center">
-
-                    <h2 style="width:100%" class="block">Legend</h2>
-
-                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Temperature</h3>
-                        <div style="background-color:orange; width: 75px">Hot</div>
-                        <div style="background-color:lightblue; width: 75px">Cold</div>
-                    </div>
-                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Precipitation</h3>
-                        <div style="background-color:orange; width: 75px">Hot</div>
-                        <div style="background-color:lightblue; width: 75px">Cold</div>
-                    </div>
-                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Cloud Cover</h3>
-                        <div style="background-color:orange; width: 75px">Hot</div>
-                        <div style="background-color:lightblue; width: 75px">Cold</div>
-                    </div>
-                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Wind Speed</h3>
-                        <div style="background-color:orange; width: 75px">Hot</div>
-                        <div style="background-color:lightblue; width: 75px">Cold</div>
-                    </div>
-                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Wind Speed</h3>
-                        <div style="background-color:orange; width: 75px">Hot</div>
-                        <div style="background-color:lightblue; width: 75px">Cold</div>
-                    </div>
-                </div> -->
-
-                
+                 
             </div>
 
             <div style="width:100%; text-align:center">
@@ -228,7 +211,7 @@
         </section> --> 
 
         <section id="current-position">
-            <h3>Current Position</h3>    
+            <h3>Live View</h3>    
         </section>
     
         <!-- <section id="radar">
