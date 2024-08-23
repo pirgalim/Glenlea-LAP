@@ -63,13 +63,28 @@ section {
 .inner-container { 
     display: flex;
     flex-wrap: wrap;    
+
+    
 }
 
 .block {
     box-sizing: border-box; 
-
     /* will take up at least 25% of parent container element */ 
     min-width: 25%; 
+}
+
+.block-legend {
+    box-sizing: border-box; 
+    border: 1px solid gray;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    /* will take up at least 25% of parent container element */ 
+    min-width: 25%; 
+
+
+    display:flex; 
+    flex-wrap: wrap
 }
 
 /* .block-med {

@@ -113,7 +113,7 @@
                 <h2 class="curr-label">Hourly Forecast</h2>
                 <!-- <div class="break"></div> -->
 
-                <div class="inner-container current" style="width: 100%">
+                <div class="inner-container current" style="width: 100%; justify-content:center">
 
                     <div id="hourly-labels">
                         <div id="hourly-hour-label" class="hourly-label"><h3>Hour</h3></div>
@@ -137,39 +137,69 @@
                         <div class="block-hourly"></div><div class="block-hourly"></div>
                         <div class="block-hourly"></div><div class="block-hourly"></div>
                         <div class="block-hourly"></div><div class="block-hourly"></div>
-                    </div>        
+                    </div>     
+                    
+                    <div class="break"></div>
+
+                    <div class="block-legend">
+                        <h3 style="width:100%">Temperature</h3>
+                        <div style="background-color:lightblue; width: 100px; padding: 5px">Cold</div>
+                        <div style="background-color:orange; width: 100px; padding: 5px">Hot</div>
+                        
+                    </div>
+                    <div class="block-legend">
+                        <h3 style="width:100%">Precipitation</h3>
+                        <div style="background-color:rgb(255, 245, 255); width: 100px; padding: 5px">Low Chance</div>
+                        <div style="background-color:rgb(180, 120, 256); width: 100px; padding: 5px">High Chance</div>
+                    </div>
+                    <div class="block-legend">
+                        <h3 style="width:100%">Cloud Cover</h3>
+                        <div style="background-color:rgb(80, 135, 256); width: 100px; padding: 5px">Clear</div>
+                        <div style="background-color:white; width: 100px; padding: 5px">Cloudy</div>
+                    </div>
+                    <div class="block-legend">
+                        <h3 style="width:100%">Wind Speed</h3>
+                        <div style="background-color:rgb(240, 255, 240); width: 100px; padding: 5px">Calm</div>
+                        <div style="background-color:rgb(80, 255, 80); width: 100px; padding: 5px">Windy</div>
+                    </div>
                 </div>
+ 
 
                 
 
 
 
                 
-                <div class="inner-container current" style="width: 100%">
+                <!-- <div class="inner-container current" style="width: 100%; justify-content:center">
 
                     <h2 style="width:100%" class="block">Legend</h2>
 
-                    <div class="block" style="display:flex; flex-wrap: wrap">
+                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
                         <h3 style="width:100%">Temperature</h3>
                         <div style="background-color:orange; width: 75px">Hot</div>
                         <div style="background-color:lightblue; width: 75px">Cold</div>
                     </div>
-                    <div class="block" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Temperature</h3>
+                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
+                        <h3 style="width:100%">Precipitation</h3>
                         <div style="background-color:orange; width: 75px">Hot</div>
                         <div style="background-color:lightblue; width: 75px">Cold</div>
                     </div>
-                    <div class="block" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Temperature</h3>
+                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
+                        <h3 style="width:100%">Cloud Cover</h3>
                         <div style="background-color:orange; width: 75px">Hot</div>
                         <div style="background-color:lightblue; width: 75px">Cold</div>
                     </div>
-                    <div class="block" style="display:flex; flex-wrap: wrap">
-                        <h3 style="width:100%">Temperature</h3>
+                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
+                        <h3 style="width:100%">Wind Speed</h3>
                         <div style="background-color:orange; width: 75px">Hot</div>
                         <div style="background-color:lightblue; width: 75px">Cold</div>
                     </div>
-                </div>
+                    <div class="block-legend" style="display:flex; flex-wrap: wrap">
+                        <h3 style="width:100%">Wind Speed</h3>
+                        <div style="background-color:orange; width: 75px">Hot</div>
+                        <div style="background-color:lightblue; width: 75px">Cold</div>
+                    </div>
+                </div> -->
 
                 
             </div>
@@ -181,7 +211,7 @@
         </section>
     </div>
 
-    
+
     <div class="container">
 
         <section id="sqm-data">
