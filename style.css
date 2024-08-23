@@ -72,13 +72,13 @@ section {
     min-width: 25%; 
 }
 
-.block-med {
-    box-sizing: border-box; 
+/* .block-med {
+    box-sizing: border-box;  */
 
     /* will take up at least 50% of parent container element */ 
-    min-width: 50%; 
-    text-align: left;
-}
+    /* min-width: 50%;  */
+    /* text-align: left;
+} */
 .block-full {
     box-sizing: border-box; 
 
@@ -88,6 +88,7 @@ section {
 .inner-block {
     box-sizing: border-box; 
     margin: 20px;
+    text-align: left;
 }
 
 .break {
@@ -152,15 +153,6 @@ h3.curr-label {
 
 
 
-
-
-
-
-
-
-
-
-
 p {
     display: inline;
     font-size: large;
@@ -214,5 +206,9 @@ img {
         border: 2px solid lightgray;
         border-radius: 10px;
         box-shadow: 0px 0px 20px gray;    
+    }
+
+    #hourly-labels {
+        display: none;
     }
 }

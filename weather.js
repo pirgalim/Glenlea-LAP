@@ -4,11 +4,11 @@ var PRECIP_COLOUR = '180, 120, 256';
 var CLOUD_COLOUR = '80, 135, 256';
 var WIND_COLOUR = '80, 255, 80';
 
-var TEMP_THRESH_HOT = 40;       // 40°C
-var TEMP_THRESH_COLD = -40;     // -40°C
-var PRECIP_THRESH = 100;        // 100%
-var CLOUD_THRESH = 100;         // 100%
-var WIND_THRESH = 50;           // 50km/h
+var TEMP_THRESH_HOT = 40;       // °C
+var TEMP_THRESH_COLD = -40;     // °C
+var PRECIP_THRESH = 100;        // %
+var CLOUD_THRESH = 80;          // %
+var WIND_THRESH = 50;           // km/h
 
 
 /**
