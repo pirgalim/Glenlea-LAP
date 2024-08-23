@@ -153,6 +153,19 @@ h3.curr-label {
 
 
 
+
+#hourly-hour-label:hover {
+    background-color: blue;
+}
+
+
+
+
+
+
+
+
+
 p {
     display: inline;
     font-size: large;
