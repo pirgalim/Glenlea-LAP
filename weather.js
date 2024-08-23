@@ -158,19 +158,19 @@ function hourlyConditions(data) {
             elements[i].style.borderRight = "2px solid red";
         }
         
-        addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', "", "");
+        addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', false, "", "");
     
         // // temperature colour flips after 0
         if(temp[startPosition + i] >= 0) { 
-            addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, tempUnits);
+            addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, false, tempUnits);
         }
         else { 
-            addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, tempUnits);
+            addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, false, tempUnits);
         }
                 
-        addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, precipUnits);
-        addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, cloudUnits);
-        addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, windDirection(windDir[i]));
+        addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, false, precipUnits);
+        addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, true, cloudUnits);
+        addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, false, windDirection(windDir[i]));
 
     }
 }
@@ -186,24 +186,29 @@ function hourlyConditions(data) {
  * @param {int} threshold 
  * @param {String} units 
  */
-function addElement(elements, condition, current, pos, colour, threshold, units) {
+function addElement(elements, condition, current, pos, colour, threshold, flip, units) {
 
-        var value = Math.round( condition[current + pos] ) || condition[current + pos];
+    var value = Math.round( condition[current + pos] ) || condition[current + pos];
 
-        div = document.createElement('div');
-        div.textContent = value + units;
-        elements[pos].appendChild(div);
-        div.style.padding = '10px';
+    div = document.createElement('div');
+    div.textContent = value + units;
+    elements[pos].appendChild(div);
+    div.style.padding = '10px';
 
-        if(Number.isInteger(threshold)) {
-            var rgba = 'rgba(' + colour + ',' + value/threshold + ')';
+    if(Number.isInteger(threshold)) {
+
+        if(flip) {
+            var rgba = 'rgba(' + colour + ',' + (1 - value/threshold) + ')';
         }
         else {
-            rgba = 'lightgray';
+            var rgba = 'rgba(' + colour + ',' + (value/threshold + 0.1) + ')';
         }
-        div.style.background = rgba;
-
-        div.style.borderTop = "1px solid gray";
+    }
+    else {
+        rgba = 'lightgray';
+    }
+    div.style.background = rgba;
+    div.style.borderTop = "1px solid gray";
 }
 
 
