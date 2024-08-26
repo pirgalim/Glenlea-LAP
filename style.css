@@ -33,7 +33,7 @@ body {
 
     /* used to center the container */
     margin: 15px auto;  
-    width: 95%; 
+    width: 98%; 
 
     /* cosmetics */
     padding: 10px;
@@ -43,7 +43,6 @@ body {
 
 /* main content area */
 section {
-
     /* determines starting width of section element */
     flex: 1 1 calc(50% - 40px);
 
@@ -52,17 +51,26 @@ section {
 
     box-sizing: border-box; 
     margin: 10px 10px;
-    padding: 15px;
+    padding: 25px;
     background-color: var(--primary-colour);
     border: 2px solid darkgray;
     border-radius: 10px;    
     box-shadow: 0px 0px 10px gray;
+
+    text-align: left;
+}
+
+#sqm-data {
+    text-align:center;
 }
 
 
 .inner-container { 
     display: flex;
     flex-wrap: wrap;
+
+    width: 100%; 
+    justify-content:center;
 }
 
 .block {
@@ -77,14 +85,15 @@ section {
     text-align: center;
     justify-content: center;
     padding: 10px;
-    /* will take up at least 25% of parent container element */ 
-    min-width: 25%; 
-    display:flex; 
-    flex-wrap: wrap
+
+    width: 25%; 
+    display: flex; 
+    flex-wrap: wrap;
 }
 .legend-text {
     width: 100px; 
     padding: 5px;
+    
 }
 
 
@@ -103,7 +112,7 @@ section {
 }
 .inner-block {
     box-sizing: border-box; 
-    margin: 20px;
+    /* margin: 20px; */
     text-align: left;
 }
 
@@ -114,14 +123,28 @@ section {
 }
 
 
-.current {
-    width: 50%;
+.camera-tile {
+    padding: 10px; 
+    text-align: center;
+}
+
+
+.current, .current-full {
     border: 5px solid var(--primary-colour);
     border-radius: 15px;
     padding: 15px;
     box-sizing: border-box;
     background-color: var(--secondary-colour);
 }
+.current {
+    width: 50%;
+}
+.current-full {
+    width: 100%;
+    /* justify-content:center; */
+}
+
+
 h2.curr-label {
     margin: 0;
     margin-bottom: 10px;
@@ -136,7 +159,7 @@ h3.curr-label {
 
 .inner-container-hourly {
     display: flex;
-    width: 85%;
+    width: calc(100% - 175px);
     overflow-x: scroll;
     background-color: white;
 }
@@ -146,7 +169,10 @@ h3.curr-label {
     text-align: center;
 }
 #hourly-labels {
-    width:15%;
+    width: 175px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .hourly-label {
     padding-left: 10px;
@@ -197,6 +223,8 @@ p {
 } */
 h3 {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 

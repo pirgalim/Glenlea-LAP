@@ -13,41 +13,21 @@
     <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
     <h1>Glenlea Live Allsky Portal</h1>
 
-    <!-- <script>
-        window.setInterval(function(){
-            $("#update").load("/");
-
-            // use jquery to change srcs?
-
-            document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
-            document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
-            
-        }, 10000)
-    </script> -->
-
-
     <div name="camera-view" class="container">
 
-        <section id="camera">
+        <section id="camera" class="camera-tile">
             <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
             <h3 class="cam-label">Outdoor Camera View</h3>
-            <i class="timestamp">Updates every 30s</i>
+            <i class="timestamp">Updates every 30s</i> 
         </section>
 
-        <section id="camera">
+        <section id="camera" class="camera-tile">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
+            <h3 class="cam-label">Indoor Camera View</h3>
+            <button id="0s-indoor">0s</button><button id="1s-indoor">1s</button>
+            <button id="10s-indoor">10s</button><button id="30s-indoor">30s</button>
 
-                <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting..." onerror="this.src='http://allsky.physics.umanitoba.ca/outdoor.png'">
-                <!-- onerror="this.style.display='none'" -->
-                <h3 class="cam-label">Indoor Camera View</h3>
-                
-                
-                <button id="0s-indoor">0s</button><button id="1s-indoor">1s</button>
-                <button id="10s-indoor">10s</button><button id="30s-indoor">30s</button>
-
-
-
-                <script src="playback.js"></script>
-            
+            <script src="playback.js"></script>
         </section>
     </div>
 
@@ -58,85 +38,61 @@
         <script src="weather.js"></script>
         <script src="position.js"></script>
         
-        <div class="block-full" id="error"></div>
-
+        <div id="error" class="block-full"></div>
 
         <section id="current-conditions">
 
-            <div class="inner-block">
+            <h2 class="curr-label">Current Conditions</h2>
+            <div class="inner-container">
 
-                <h2 class="curr-label">Current Conditions</h2>
-                <div class="inner-container">
-
-                    <div id="temp-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Temperature</h3>      
-                    </div>
-                    <div id="cloud-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Cloud Cover</h3>
-                    </div>
-                    <div id="precip-label" style="padding:10"class="current">
-                        <h3 class="curr-label">Precipitation</h3>
-                    </div>
-                    <div id="wind-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Wind Speed</h3>
-                    </div>
-
-                    <i id="timeCond-label" class="current">Last updated on </i>
-                    <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-                    
+                <div id="temp-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Temperature</h3>      
+                </div>
+                <div id="cloud-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Cloud Cover</h3>
+                </div>
+                <div id="precip-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Precipitation</h3>
+                </div>
+                <div id="wind-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Wind Speed</h3>
                 </div>
 
-                <!-- <div class="break"></div>
-                <i class="current">Last updated on </i><br>
-                <br><a class="current" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a> -->
+                <i id="timeCond-label" class="current">Last updated on </i>
+                <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
             </div>
-              
         </section>
 
-        <section>
-            
-            
 
-            <div class="inner-block">
+        <section id="current-position" class="inner-block">
+            <h2 class="curr-label">Current Position</h2>
+            <div class="inner-container">
+                <div id="ra-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Right Ascension</h3>      
+                </div>
+                <div id="dec-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Declination</h3>
+                </div>
+                <div id="alt-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Altitude</h3>
+                </div>
+                <div id="az-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Azimuth</h3>
+                </div>
 
-                <h2 class="curr-label">Current Position</h2>
-                <div class="inner-container">
+                <i id="timePos-label" class="current">Last updated on </i>
 
-                    <div id="ra-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Right Ascension</h3>      
-                    </div>
-                    <div id="dec-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Declination</h3>
-                    </div>
-                    <div id="alt-label" style="padding:10"class="current">
-                        <h3 class="curr-label">Altitude</h3>
-                    </div>
-                    <div id="az-label" style="padding:10" class="current">
-                        <h3 class="curr-label">Azimuth</h3>
-                    </div>
-
-                    <i id="timePos-label" class="current">Last updated on </i>
-
-                    <div id="status" class="current">
-                        <!-- <h3 class="curr-label"></h3> -->
-                    </div>
-                </div>                
-            </div>
-
-            
-
+                <div id="status" class="current"></div>
+            </div>                
         </section>
 
         <section id="hourly-conditions">
 
-           
-
             <div class="inner-block">
 
                 <h2 class="curr-label">Hourly Forecast</h2>
-                <!-- <div class="break"></div> -->
 
-                <div class="inner-container current" style="width: 100%; justify-content:center">
+                <div class="inner-container current-full">
 
                     <div id="hourly-labels">
                         <div id="hourly-hour-label" class="hourly-label"><h3>Hour</h3></div>
@@ -164,36 +120,33 @@
                     
                     <div class="break"></div>
                     
-
                     <div class="block-legend">
-                        <h3 style="width:100%">Temperature</h3>
+                        <h3 style="width:100%; margin-bottom:5px;">Temperature</h3>
                         <div class="legend-text" style="background-color:lightblue">Cool</div>
                         <div class="legend-text" style="background-color:orange">Hot</div>
                         
                     </div>
                     <div class="block-legend">
-                        <h3 style="width:100%">Precipitation</h3>
-                        <div class="legend-text" style="background-color:rgb(255, 245, 255)">Low Chance</div>
-                        <div class="legend-text" style="background-color:rgb(180, 120, 256)">High Chance</div>
+                        <h3 style="width:100%; margin-bottom:5px;">Precipitation</h3>
+                        <div class="legend-text" style="background-color:rgb(255, 245, 255)">Unlikely</div>
+                        <div class="legend-text" style="background-color:rgb(180, 120, 256)">Likely</div>
                     </div>
                     <div class="block-legend">
-                        <h3 style="width:100%">Cloud Cover</h3>
+                        <h3 style="width:100%; margin-bottom:5px;">Cloud Cover</h3>
                         <div class="legend-text" style="background-color:rgb(80, 135, 256)">Clear</div>
                         <div class="legend-text" style="background-color:white">Cloudy</div>
                     </div>
                     <div class="block-legend">
-                        <h3 style="width:100%">Wind Speed</h3>
+                        <h3 style="width:100%; margin-bottom:5px;">Wind Speed</h3>
                         <div class="legend-text" style="background-color:rgb(240, 255, 240)">Calm</div>
                         <div class="legend-text" style="background-color:rgb(80, 255, 80)">Windy</div>
                     </div>
                 </div>
-                 
             </div>
 
             <div style="width:100%; text-align:center">
                 <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-            </div>
-                         
+            </div>  
         </section>
     </div>
 
@@ -208,21 +161,41 @@
             <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
         </section>
 
-        <!-- <section id="coming soon">
-            <h3>Coming Soon</h3>
-            
-        </section> --> 
 
-        <section id="current-position">
-            <h3>Live View</h3>    
+        <section id="finderscope-view" class="camera-tile">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
+            <h3 class="cam-label">Live View</h3>
+            <i class="timestamp">Updates every 30s</i>
+        </section>
+
+        <section id="links">
+            <h3>Quick Links</h3>    
+
+            <div class="inner-container" style="text-align:left">
+
+                <a style="width: 100%;" href="">Exposure Time Calculator</a>
+                <a style="width: 100%;" href="">Exposure Time Calculator</a>
+            </div>            
         </section>
     
+       
+       
         <!-- <section id="radar">
             <h3>Weather Radar</h3>
             <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
         </section> -->
 
+
+
+        <!-- <section id="finderscope-view">
+        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
+        <h3 class="cam-label">Live View</h3>
+        <i class="timestamp">Updates every 30s</i>
+        </section> -->
     </div>
+
+
+    
 
 
    
