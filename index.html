@@ -15,17 +15,29 @@
 
     <div name="camera-view" class="container">
 
-        <section id="camera" class="camera-tile">
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
+        <section id="camera1" class="camera-tile">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+
+            <!-- <i id="outdoor-connection">Reconnecting...</i> -->
+
             <h3 class="cam-label">Outdoor Camera View</h3>
-            <i class="timestamp">Updates every 30s</i> 
+            <!-- <i class="timestamp">Updates every 30s</i>  -->
+            <button id="pause-outdoor">Pause</button>
+            <button id="live-outdoor">Live</button>
         </section>
 
-        <section id="camera" class="camera-tile">
-            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting...">
+        <section id="camera2" class="camera-tile">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting... may take up to 10 seconds">
+
+            <!-- <i id="indoor-connection">Reconnecting...</i> -->
+
             <h3 class="cam-label">Indoor Camera View</h3>
-            <button id="0s-indoor">0s</button><button id="1s-indoor">1s</button>
-            <button id="10s-indoor">10s</button><button id="30s-indoor">30s</button>
+            <button id="pause-indoor">Pause</button>
+            <button id="live-indoor">Live</button>
+            <button id="instant-indoor">Instant</button><br><br>
+
+            <!-- <i>* ~5 second delay</i> -->
+            <!-- <button id="30s-indoor">30s</button> -->
 
             <script src="playback.js"></script>
         </section>
@@ -163,7 +175,7 @@
 
 
         <section id="finderscope-view" class="camera-tile">
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
             <h3 class="cam-label">Live View</h3>
             <i class="timestamp">Updates every 30s</i>
         </section>
@@ -188,7 +200,7 @@
 
 
         <!-- <section id="finderscope-view">
-        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting..." >
+        <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
         <h3 class="cam-label">Live View</h3>
         <i class="timestamp">Updates every 30s</i>
         </section> -->

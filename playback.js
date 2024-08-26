@@ -1,44 +1,153 @@
+const outdoorImage = document.getElementById('outdoor');
+const indoorImage = document.getElementById('indoor');
+
+const buttonStop = document.getElementById("pause-indoor");
+const buttonInstant = document.getElementById("instant-indoor");
+const buttonLive = document.getElementById("live-indoor");
+
+const buttonStopOutdoor = document.getElementById("pause-outdoor");
+const buttonLiveOutdoor = document.getElementById("live-outdoor");
+
+let rateID;
+let rateOutdoorID;
 
 
-var rate = 1000;
+// const indoorConnection = document.getElementById("indoor-connection");
+// indoorConnection.style.display = 'none';
+
+// const outdoorConnection = document.getElementById("outdoor-connection");
+// outdoorConnection.style.display = 'none';
 
 
-document.getElementById("0s-indoor").addEventListener("click", ()=> { varChange(0) } );
-document.getElementById("1s-indoor").addEventListener("click", ()=> { varChange(1000) });
-document.getElementById("10s-indoor").addEventListener("click", ()=> { varChange(10000) });
-document.getElementById("30s-indoor").addEventListener("click", ()=> { varChange(30000) });
+// on load
+$(document).ready(() => { buttonLive.click() });
+$(document).ready(() => { buttonLiveOutdoor.click() });
+$(document).ready(() => { outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime(); });
+$(document).ready(() => { indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime(); });
 
 
-function varChange(newVal) {
+indoorImage.onerror = imageNotFoundIndoor;
+outdoorImage.onerror = imageNotFoundOutdoor;
 
-    rate = newVal;
+
+function imageNotFoundIndoor() {
+
+    updateImageIndoor();
+    indoorImage.src = "/nosignal.png"; 
+}
+function imageNotFoundOutdoor() {
+    
+    updateImageIndoor();
+    indoorImage.src = "/nosignal.png";
 }
 
 
-function play(time) {
 
-    console.log(time);
+async function updateImageIndoor() {
+    // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
+    console.log("tried")
+    indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();    
+    // indoorConnection.style.display = 'none';
+}
+
+function updateImageOutdoor() {
+    // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
+    outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
+    // outdoorConnection.style.display = 'none';
+}
+
+/**
+ * Indoor image buttons
+ */
+buttonStop.addEventListener('click', () => {
+    clearInterval(rateID);
+    rateID = null;
+    resetColourIndoor();
+    buttonStop.style.background = "lightgray";
+});
+buttonInstant.addEventListener('click', () => {
+    clearInterval(rateID);
+    rateID = setInterval(updateImageIndoor, 1000);
+    resetColourIndoor();
+    buttonInstant.style.background = "lightgray";
+});
+buttonLive.addEventListener('click', () => {
+    clearInterval(rateID);
+    rateID = setInterval(updateImageIndoor, 10000);
+    resetColourIndoor();
+    buttonLive.style.background = "lightgray";
+});
+
+
+
+/**
+ * Outdoor image buttons
+ */
+buttonStopOutdoor.addEventListener('click', () => {
+    clearInterval(rateOutdoorID);
+    rateOutdoorID = null;
+    resetColourOutdoor();
+    buttonStopOutdoor.style.background = "lightgray";
+});
+buttonLiveOutdoor.addEventListener('click', () => {
+    clearInterval(rateOutdoorID);
+    rateOutdoorID = setInterval(updateImageOutdoor, 10000);
+    resetColourOutdoor();
+    buttonLiveOutdoor.style.background = "lightgray";
+});
+
+
+
+
+// buttonThirty.addEventListener('click', () => {
+//     clearInterval(rateID);
+//     rateID = setInterval(updateImage, 30000);
+//     resetColour();
+//     buttonThirty.style.background = "lightgray";
+// });
+
+
+
+
+function resetColourIndoor() {
+
+    buttonStop.style.background = "none";
+    buttonInstant.style.background = "none";
+    buttonLive.style.background = "none";
+    // buttonThirty.style.background = "none";
+
+
+    // buttonStop.style.boxShadow = "-1px -1px 2px";
+    // buttonInstant.style.boxShadow = "-1px -1px 2px";
+    // buttonLive.style.boxShadow = "-1px -1px 2px";
+    // buttonThirty.style.boxShadow = "-1px -1px 2px";
 
     
-    window.setInterval(function(){
-        $("#update").load("/");
+}
 
-        // use jquery to change srcs?
+function resetColourOutdoor() {
 
-        document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
-        document.getElementById("indoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
-        
-    }, time)
+    buttonStopOutdoor.style.background = "none";
+    buttonLiveOutdoor.style.background = "none";
+    
 }
 
 
-// play(1000)
+
+
+/**
+ * Update the outdoor camera every 10s, independent from indoor camera buttons
+ */
+// window.setInterval(function(){
+//     $("#update").load("/");
+
+//     // use jquery to change srcs?
+
+//     document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
+
+//     // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/outdoor.png?' + new Date().getTime());
+    
+// }, 10000)
 
 
 
-
-function updateImage() {
-    $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
-}
-
-setInterval(updateImage, rate); // Update every second
