@@ -30,6 +30,7 @@ indoorImage.onerror = imageNotFoundIndoor;
 outdoorImage.onerror = imageNotFoundOutdoor;
 
 
+
 function imageNotFoundIndoor() {
 
     updateImageIndoor();
@@ -43,17 +44,15 @@ function imageNotFoundOutdoor() {
 
 
 
-async function updateImageIndoor() {
+
+function updateImageIndoor() {
     // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
-    console.log("tried")
-    indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();    
-    // indoorConnection.style.display = 'none';
+    indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();        
 }
 
 function updateImageOutdoor() {
     // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
     outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
-    // outdoorConnection.style.display = 'none';
 }
 
 /**
@@ -67,7 +66,7 @@ buttonStop.addEventListener('click', () => {
 });
 buttonInstant.addEventListener('click', () => {
     clearInterval(rateID);
-    rateID = setInterval(updateImageIndoor, 1000);
+    rateID = setInterval(updateImageIndoor, 2000);
     resetColourIndoor();
     buttonInstant.style.background = "lightgray";
 });
