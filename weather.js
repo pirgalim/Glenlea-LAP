@@ -206,6 +206,8 @@ function hourlyConditions(data) {
         addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, true, cloudUnits);
         addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, false, windDirection(windDir[i]));
 
+        console.log(wind[i+startPosition], windDir[i]);
+
     }
 }
 
@@ -268,7 +270,7 @@ function windDirection(direction) {
 
     // const direction = Number( data["current"]["wind_direction_10m"] );
 
-    if(direction >= 337.5 && direction < 22.5) { return " N"; }
+    if(direction >= 0 && direction < 22.5) { return " N"; }
     if(direction >= 22.5 && direction < 67.5) { return " NE"; }
     if(direction >= 67.5 && direction < 112.5) { return " E"; }
     if(direction >= 112.5 && direction < 157.5) { return " SE"; }
@@ -276,7 +278,8 @@ function windDirection(direction) {
     if(direction >= 202.5 && direction < 247.5) { return " SW"; }
     if(direction >= 247.5 && direction < 292.5) { return " W"; }
     if(direction >= 292.5 && direction < 337.5) { return " NW"; }
-   
+    if(direction >= 337.5 && direction < 360) { return " N"; }
+       
     return "?";
 }
 
