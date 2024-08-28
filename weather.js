@@ -278,7 +278,7 @@ function windDirection(direction) {
     if(direction >= 202.5 && direction < 247.5) { return " SW"; }
     if(direction >= 247.5 && direction < 292.5) { return " W"; }
     if(direction >= 292.5 && direction < 337.5) { return " NW"; }
-    if(direction >= 337.5 && direction < 360) { return " N"; }
+    if(direction >= 337.5 && direction <= 360) { return " N"; }
        
     return "?";
 }
