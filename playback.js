@@ -33,13 +33,14 @@ outdoorImage.onerror = imageNotFoundOutdoor;
 
 function imageNotFoundIndoor() {
 
-    updateImageIndoor();
     indoorImage.src = "/nosignal.png"; 
+    updateImageIndoor();
 }
 function imageNotFoundOutdoor() {
     
-    updateImageIndoor();
+    
     indoorImage.src = "/nosignal.png";
+    updateImageIndoor();
 }
 
 
@@ -54,6 +55,7 @@ function updateImageOutdoor() {
     // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
     outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
 }
+
 
 /**
  * Indoor image buttons
@@ -98,55 +100,16 @@ buttonLiveOutdoor.addEventListener('click', () => {
 
 
 
-// buttonThirty.addEventListener('click', () => {
-//     clearInterval(rateID);
-//     rateID = setInterval(updateImage, 30000);
-//     resetColour();
-//     buttonThirty.style.background = "lightgray";
-// });
-
-
-
 
 function resetColourIndoor() {
 
     buttonStop.style.background = "none";
     buttonInstant.style.background = "none";
     buttonLive.style.background = "none";
-    // buttonThirty.style.background = "none";
-
-
-    // buttonStop.style.boxShadow = "-1px -1px 2px";
-    // buttonInstant.style.boxShadow = "-1px -1px 2px";
-    // buttonLive.style.boxShadow = "-1px -1px 2px";
-    // buttonThirty.style.boxShadow = "-1px -1px 2px";
-
-    
 }
 
 function resetColourOutdoor() {
 
     buttonStopOutdoor.style.background = "none";
     buttonLiveOutdoor.style.background = "none";
-    
 }
-
-
-
-
-/**
- * Update the outdoor camera every 10s, independent from indoor camera buttons
- */
-// window.setInterval(function(){
-//     $("#update").load("/");
-
-//     // use jquery to change srcs?
-
-//     document.getElementById("outdoor").src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();
-
-//     // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/outdoor.png?' + new Date().getTime());
-    
-// }, 10000)
-
-
-

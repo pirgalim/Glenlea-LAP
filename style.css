@@ -15,7 +15,7 @@ body {
     /* cosmetics */
     font-family: helvetica;
     text-align: center;
-    background-color: white;  
+    background-color: var(--background-colour);  
 }
 
 /* allows section elements to flex dynamically */
@@ -33,7 +33,7 @@ body {
 
     /* used to center the container */
     margin: 15px auto;  
-    width: 98%; 
+    /* width: 100%;  */
 
     /* cosmetics */
     padding: 10px;
@@ -55,9 +55,16 @@ section {
     background-color: var(--primary-colour);
     border: 2px solid darkgray;
     border-radius: 10px;    
-    box-shadow: 0px 0px 10px gray;
+    box-shadow: 0px 0px 5px gray;
 
     text-align: left;
+}
+
+.title {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: large;
+    margin-top: 0;
 }
 
 #sqm-data {
@@ -130,14 +137,23 @@ section {
 
 
 .current, .current-full {
-    border: 5px solid var(--primary-colour);
+    /* border: 5px solid var(--primary-colour); */
+    /* border: 2px inset var(--secondary-colour); */
+    border: 1px solid lightgray;
     border-radius: 15px;
-    padding: 15px;
+    padding: 10px;
     box-sizing: border-box;
     background-color: var(--secondary-colour);
+
+    
+    /* width: 48%; */
+
 }
 .current {
-    width: 50%;
+    width: calc(50% - 10px);
+    margin: 5px;
+    
+
 }
 .current-full {
     width: 100%;
@@ -250,8 +266,9 @@ img {
 }
 .logo {
     border-radius: 10px;
-    height: 5%;
-    min-width: 80%;
+    height: 50px;
+    /* min-width: 80%; */
+
 } 
 
 

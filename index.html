@@ -9,11 +9,66 @@
 </head>
 
 <body>
-        
-    <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
-    <h1>Glenlea Live Allsky Portal</h1>
+    
+    <!-- <div>
+        <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
+        <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
+    </div> -->
+    
 
-    <div name="camera-view" class="container">
+ 
+    
+    
+
+    <!-- <div name="camera-view" class="container">
+
+        <section id="camera1" class="camera-tile">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+
+
+            <h3 class="cam-label">Outdoor Camera View</h3>
+            <button id="pause-outdoor">Pause</button>
+            <button id="live-outdoor">Live</button>
+        </section>
+
+        <section id="camera2" class="camera-tile">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting... may take up to 10 seconds">
+            <h3 class="cam-label">Indoor Camera View</h3>
+            <button id="pause-indoor">Pause</button>
+            <button id="live-indoor">Live</button>
+            <button id="instant-indoor">Instant</button><br><br>
+        </section>
+
+        <script src="playback.js"></script>
+    </div> -->
+
+    
+    <div name="current-data" class="container">
+
+
+        
+
+
+        <section class="title">
+            <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
+            <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
+
+            <!-- <div style="display:flex; justify-content:center;">
+
+                <img style="width: 150px; align-content: center; margin-right: 50px" class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
+                <h1 style="width: 500px; text-align:left; margin:0; align-content: center;">Glenlea Live Allsky Portal</h1>
+                
+
+
+            </div> -->
+
+
+            
+        </section>
+
+        <div class="break" style="height:0"></div>
+
+
 
         <section id="camera1" class="camera-tile">
             <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
@@ -35,10 +90,6 @@
         </section>
 
         <script src="playback.js"></script>
-    </div>
-
-    
-    <div name="current-data" class="container">
 
         <!-- load scripts -->
         <script src="weather.js"></script>
@@ -154,10 +205,11 @@
                 <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
             </div>  
         </section>
-    </div>
 
 
-    <div class="container">
+
+        <div class="break" style="height:0"></div>
+
 
         <section id="sqm-data">
             <h3>Sky Quality</h3>
@@ -183,6 +235,49 @@
                 <a style="width: 100%;" href="">Exposure Time Calculator</a>
             </div>            
         </section>
+
+
+
+
+
+
+        <section class="wide-section" id="weather-forecast">
+            <h3>Forecast<h3>
+            <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
+        </section>
+    </div>
+
+
+
+    
+
+
+    <!-- <div class="container"> -->
+
+        <!-- <section id="sqm-data">
+            <h3>Sky Quality</h3>
+
+            <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:50%"> 
+            <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot">
+            <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
+        </section>
+
+
+        <section id="finderscope-view" class="camera-tile">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+            <h3 class="cam-label">Live View</h3>
+            <i class="timestamp">Updates every 30s</i>
+        </section>
+
+        <section id="links">
+            <h3>Quick Links</h3>    
+
+            <div class="inner-container" style="text-align:left">
+
+                <a style="width: 100%;" href="">Exposure Time Calculator</a>
+                <a style="width: 100%;" href="">Exposure Time Calculator</a>
+            </div>            
+        </section> -->
     
        
        
@@ -198,7 +293,7 @@
         <h3 class="cam-label">Live View</h3>
         <i class="timestamp">Updates every 30s</i>
         </section> -->
-    </div>
+    <!-- </div> -->
 
 
     
@@ -207,16 +302,16 @@
    
 
    
-    <div class="container">
+    <!-- <div class="container">
         <section class="wide-section" id="weather-forecast">
             <h3>Forecast<h3>
             <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
         </section>
-    </div>
+    </div> -->
 
 
 
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
 </body>

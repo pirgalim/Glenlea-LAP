@@ -35,7 +35,9 @@ async function currentPosition() {
 
 
     text = document.createElement('h3');
-    statusTest = Math.random() * 2;
+    // statusTest = Math.random() * 2;
+
+    statusTest = -1;
 
     console.log(statusTest);
 
