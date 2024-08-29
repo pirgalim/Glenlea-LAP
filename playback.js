@@ -34,13 +34,12 @@ outdoorImage.onerror = imageNotFoundOutdoor;
 function imageNotFoundIndoor() {
 
     indoorImage.src = "/nosignal.png"; 
-    updateImageIndoor();
+    // updateImageIndoor();
 }
 function imageNotFoundOutdoor() {
     
-    
-    indoorImage.src = "/nosignal.png";
-    updateImageIndoor();
+    outdoorImage.src = "/nosignal.png";
+    // updateImageOutdoor();
 }
 
 
