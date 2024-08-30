@@ -53,12 +53,12 @@ section {
     min-width: var(--min-section-width);
 
     box-sizing: border-box; 
-    margin: 8px 8px;
+    margin: 5px 5px;
     padding: 25px;
     background-color: whitesmoke;
-    border: 2px solid darkgray;
+    border: 2px solid gray;
     border-radius: 10px;    
-    box-shadow: 0px 0px 5px gray;
+    box-shadow: 0px 0px 5px black;
 
     text-align: left;
 }
@@ -251,9 +251,30 @@ button {
     border: 1px solid gray;
     border-radius: 10px;
 }
+button:hover {
+    opacity: 80%;
+}
 button:active {
     transform: translateY(2px);
 }
+
+a.button {
+    margin: 10px;
+    padding: 6px 6px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: black;
+    background-color: lightblue;
+    text-align: center;
+    box-shadow: 0 0 5px black;
+}
+a.button:hover {
+    opacity: 80%;
+}
+a.button:active {
+    transform: translateY(2px);
+}
+
 
 
 img {
@@ -294,5 +315,13 @@ img {
 
     #hourly-labels {
         display: none;
+    }
+
+
+    .inner-container-hourly {
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        background-color: white;
     }
 }
