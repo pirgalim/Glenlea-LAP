@@ -14,7 +14,7 @@ async function currentPosition() {
     console.log(ra);
 
     text = document.createElement('p');
-    text.textContent = "2h 31m 48.7s";
+    text.textContent = "2h 31m 48s";
     ra.appendChild(text);
 
     text = document.createElement('p');
@@ -22,7 +22,7 @@ async function currentPosition() {
     dec.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "0° 51′ 30";
+    text.textContent = "50° 51′ 30";
     alt.appendChild(text);
 
     text = document.createElement('p');
