@@ -12,19 +12,19 @@ async function currentPosition() {
     console.log(ra);
 
     text = document.createElement('p');
-    text.textContent = "_";
+    text.textContent = "-";
     ra.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "_";
+    text.textContent = "-";
     dec.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "_";
+    text.textContent = "-";
     alt.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "_";
+    text.textContent = "-";
     az.appendChild(text);
 
     text = document.createElement('p');

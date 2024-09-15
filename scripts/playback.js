@@ -29,10 +29,10 @@ $(document).ready(() => { indoorImage.src = "http://allsky.physics.umanitoba.ca/
  * Handle image source error
  */
 function imageNotFoundIndoor() {
-    indoorImage.src = "/nosignal.png"; 
+    indoorImage.src = "visuals/nosignal.png"; 
 }
 function imageNotFoundOutdoor() {
-    outdoorImage.src = "/nosignal.png";
+    outdoorImage.src = "visuals/nosignal.png";
 }
 
 

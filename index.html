@@ -1,10 +1,11 @@
 <head>
     <title>Glenlea LAP</title>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="visuals/style.css"/>
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 </head>
+
 
 <body>
     
@@ -13,7 +14,6 @@
         <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
         <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
     </div>
-
 
     <div name="current-data" class="container">
 
@@ -32,12 +32,7 @@
             <button id="instant-indoor">Instant</button><br><br>
         </section>
 
-
-        <!-- load scripts -->
-        <script src="playback.js"></script>
-        <script src="weather.js"></script>
-        <script src="position.js"></script>
-        
+        <!-- weather fetch error -->
         <div id="error" class="block-full"></div>
 
         <section id="current-conditions">
@@ -85,7 +80,6 @@
             </div>                
         </section>
 
-    
         <section id="hourly-conditions">
 
             <div class="inner-block">
@@ -149,6 +143,7 @@
             </div>  
         </section>
 
+        <!-- line break between sections -->
         <div class="break" style="height:0"></div>
 
         <section id="sqm-data" style="text-align:left">
@@ -166,7 +161,6 @@
             </div>
             
         </section>
-
 
         <section id="finderscope-view" style="text-align:left">
             
@@ -210,4 +204,9 @@
             
         </section>
     </div>
+
+    <!-- load scripts -->
+    <script src="scripts/playback.js"></script>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/position.js"></script>
 </body>
