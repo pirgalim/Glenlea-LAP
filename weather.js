@@ -95,8 +95,6 @@ function currentCondtions(data) {
 
     // obtain list of headings that are part of the 'current' class
     const elements = document.getElementsByClassName("current");
-    // expected output??
-    // console.log(elements);
 
     const temp = document.getElementById('temp-label');
     const precip = document.getElementById('precip-label');
@@ -170,6 +168,7 @@ function hourlyConditions(data) {
 
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current hour
     var currHour = currTime.split("T")[1].split(":")[0];
+
     // convert current time from YYYY-MM-DDTHH:MM to a number representing the current day
     var currDay = currTime.split("T")[0].split("-")[2];
 
@@ -200,14 +199,10 @@ function hourlyConditions(data) {
         }
         else { 
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, false, tempUnits);
-        }
-                
+        }    
         addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, false, precipUnits);
         addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, true, cloudUnits);
         addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, false, windDirection(windDir[i]));
-
-        console.log(wind[i+startPosition], windDir[i]);
-
     }
 }
 

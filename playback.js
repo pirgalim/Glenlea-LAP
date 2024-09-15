@@ -8,50 +8,41 @@ const buttonLive = document.getElementById("live-indoor");
 const buttonStopOutdoor = document.getElementById("pause-outdoor");
 const buttonLiveOutdoor = document.getElementById("live-outdoor");
 
-let rateID;
+// refresh setInterval() identifier
+let rateIndoorID;
 let rateOutdoorID;
 
-
-// const indoorConnection = document.getElementById("indoor-connection");
-// indoorConnection.style.display = 'none';
-
-// const outdoorConnection = document.getElementById("outdoor-connection");
-// outdoorConnection.style.display = 'none';
+// function to call on error
+indoorImage.onerror = imageNotFoundIndoor;
+outdoorImage.onerror = imageNotFoundOutdoor;
 
 
-// on load
+/**
+ * On page load
+ */
 $(document).ready(() => { buttonLive.click() });
 $(document).ready(() => { buttonLiveOutdoor.click() });
 $(document).ready(() => { outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime(); });
 $(document).ready(() => { indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime(); });
 
-
-indoorImage.onerror = imageNotFoundIndoor;
-outdoorImage.onerror = imageNotFoundOutdoor;
-
-
-
+/**
+ * Handle image source error
+ */
 function imageNotFoundIndoor() {
-
     indoorImage.src = "/nosignal.png"; 
-    // updateImageIndoor();
 }
 function imageNotFoundOutdoor() {
-    
     outdoorImage.src = "/nosignal.png";
-    // updateImageOutdoor();
 }
 
 
-
-
+/**
+ * Update image source
+ */
 function updateImageIndoor() {
-    // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
     indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?"+ new Date().getTime();        
 }
-
 function updateImageOutdoor() {
-    // $('#indoor').attr('src', 'http://allsky.physics.umanitoba.ca/indoor.png?' + new Date().getTime());
     outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
 }
 
@@ -60,24 +51,23 @@ function updateImageOutdoor() {
  * Indoor image buttons
  */
 buttonStop.addEventListener('click', () => {
-    clearInterval(rateID);
-    rateID = null;
+    clearInterval(rateIndoorID);
+    rateIndoorID = null;
     resetColourIndoor();
     buttonStop.style.background = "lightgray";
 });
 buttonInstant.addEventListener('click', () => {
-    clearInterval(rateID);
-    rateID = setInterval(updateImageIndoor, 2000);
+    clearInterval(rateIndoorID);
+    rateIndoorID = setInterval(updateImageIndoor, 2000);
     resetColourIndoor();
     buttonInstant.style.background = "lightgray";
 });
 buttonLive.addEventListener('click', () => {
-    clearInterval(rateID);
-    rateID = setInterval(updateImageIndoor, 10000);
+    clearInterval(rateIndoorID);
+    rateIndoorID = setInterval(updateImageIndoor, 10000);
     resetColourIndoor();
     buttonLive.style.background = "lightgray";
 });
-
 
 
 /**
@@ -97,18 +87,16 @@ buttonLiveOutdoor.addEventListener('click', () => {
 });
 
 
-
-
-
+/**
+ * Button selection visuals
+ */
 function resetColourIndoor() {
 
     buttonStop.style.background = "none";
     buttonInstant.style.background = "none";
     buttonLive.style.background = "none";
 }
-
 function resetColourOutdoor() {
-
     buttonStopOutdoor.style.background = "none";
     buttonLiveOutdoor.style.background = "none";
 }

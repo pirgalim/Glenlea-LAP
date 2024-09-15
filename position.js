@@ -1,6 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', () => currentPosition());
-
 
 async function currentPosition() {
 
@@ -14,23 +12,23 @@ async function currentPosition() {
     console.log(ra);
 
     text = document.createElement('p');
-    text.textContent = "2h 31m 48s";
+    text.textContent = "_";
     ra.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "+89° 15′ 51″";
+    text.textContent = "_";
     dec.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "50° 51′ 30";
+    text.textContent = "_";
     alt.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "49° 30′ 54";
+    text.textContent = "_";
     az.appendChild(text);
 
     text = document.createElement('p');
-    text.textContent = "... this is a demo";
+    text.textContent = "...";
     timePos.appendChild(text);
 
 
