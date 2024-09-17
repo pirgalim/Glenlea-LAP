@@ -279,7 +279,7 @@ img {
         min-width: 300px; 
         margin: 10px 10px;
         padding: 15px;
-        background-color: var(--primary-colour);
+        background-color: var(--section-colour);
         border: 2px solid lightgray;
         border-radius: 10px;
         box-shadow: 0px 0px 20px gray;    
