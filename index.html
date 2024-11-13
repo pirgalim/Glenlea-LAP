@@ -4,6 +4,9 @@
     <link rel="stylesheet" type="text/css" href="visuals/style.css"/>
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=air,rainy" /> -->
 </head>
 
 
@@ -13,6 +16,18 @@
 
         <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
         <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
+
+        <!-- <button id="theme-toggle">Toggle Theme</button>
+        <script>
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+            });
+        </script> -->
+
+
     </div>
 
     <div name="current-data" class="container">
@@ -32,6 +47,10 @@
             <button id="instant-indoor">Instant</button><br><br>
         </section>
 
+
+        
+       
+
         <!-- weather fetch error -->
         <div id="error" class="block-full"></div>
 
@@ -40,17 +59,32 @@
             <h2 class="curr-label">Current Conditions</h2>
             <div class="inner-container">
 
+                
+
                 <div id="temp-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Temperature</h3>      
+                    <div style="display: flex">
+                        <h3 class="curr-label" style="width:80%">Temperature</h3> 
+                        <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">ac_unit</i> -->
+                    </div>
                 </div>
+                
                 <div id="cloud-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Cloud Cover</h3>
+                    <div style="display: flex">
+                        <h3 class="curr-label" style="width:80%">Cloud Cover</h3> 
+                        <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">cloud</i> -->
+                    </div>
                 </div>
                 <div id="precip-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Precipitation</h3>
+                    <div style="display: flex">
+                        <h3 class="curr-label" style="width:80%">Precipitation</h3> 
+                        <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">rainy</span> -->
+                    </div>
                 </div>
                 <div id="wind-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Wind Speed</h3>
+                    <div style="display: flex">
+                        <h3 class="curr-label" style="width:80%">Wind Speed</h3> 
+                        <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">air</span> -->
+                    </div>
                 </div>
 
                 <i id="timeCond-label" class="current">Last updated on </i>
@@ -78,6 +112,34 @@
 
                 <div id="status" class="current"></div>
             </div>                
+        </section>
+
+        <section id="sqm-data" style="text-align:left">
+
+            <h2 class="curr-label">Sky Quality</h2>
+
+            <div class="inner-container" style="background-color:white; justify-content:right">
+                <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
+            </div>
+
+            <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot" style="border-radius:0">
+
+            <div style="text-align:center">
+                <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>   
+            </div>
+            
+        </section>
+
+        <section id="finderscope-view" style="text-align:left">
+            
+            <h2 class="curr-label">Live View</h2>
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+              
+            <div style="text-align: center">
+                <div class="break"></div>
+                <h2>*** Coming Soon ***</h2>
+            </div>
+            
         </section>
 
         <section id="hourly-conditions">
@@ -146,7 +208,7 @@
         <!-- line break between sections -->
         <div class="break" style="height:0"></div>
 
-        <section id="sqm-data" style="text-align:left">
+        <!-- <section id="sqm-data" style="text-align:left">
 
             <h2 class="curr-label">Sky Quality</h2>
 
@@ -154,7 +216,7 @@
                 <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
             </div>
 
-            <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot">
+            <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot" style="border-radius:0">
 
             <div style="text-align:center">
                 <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>   
@@ -172,7 +234,20 @@
                 <h2>*** Coming Soon ***</h2>
             </div>
             
+        </section> -->
+
+        <section id="weather-forecast">
+            <h2 class="curr-label">Clear Dark Sky Forecast</h2> 
+            <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
+            <div style="text-align:center">
+                <a href="https://www.cleardarksky.com/c/GlenleaObMBkey.html?1">Clear Dark Sky for Glenlea Observatory</a>   
+            </div>
+            
         </section>
+
+        <!-- line break between sections; allows for section to take up full width -->
+        <div class="break" style="height:0"></div>
+
 
         <section id="links">
             <h2 class="curr-label">Quick Links</h2> 
@@ -195,14 +270,7 @@
             <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
         </section>
 
-        <section id="weather-forecast">
-            <h2 class="curr-label">Clear Dark Sky Forecast</h2> 
-            <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
-            <div style="text-align:center">
-                <a href="https://www.cleardarksky.com/c/GlenleaObMBkey.html?1">Clear Dark Sky for Glenlea Observatory</a>   
-            </div>
-            
-        </section>
+        
     </div>
 
     <!-- load scripts -->
