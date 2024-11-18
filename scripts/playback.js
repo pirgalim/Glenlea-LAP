@@ -37,7 +37,8 @@ function imageNotFoundOutdoor() {
 }
 
 
-
+// var count = 0;
+// var drop = 0;
 /**
  * Update image source
  */
@@ -55,10 +56,15 @@ function updateImageIndoor() {
     };
     tempImage.onerror = function () {
         console.log(`Failed to load ${newSrc}. Retaining previous image.`);
+        // drop++;
     };
 
     // try updating the temp image src, will result in above function(s) being called
     tempImage.src = newSrc;
+
+    // count++;
+    // console.log("Total: ", count)
+    // console.log("Dropped: ", drop)
 }
 function updateImageOutdoor() {
 
