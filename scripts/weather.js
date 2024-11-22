@@ -30,7 +30,7 @@ async function call() {
         text.textContent = "Forecast is currently unavailable";
         text.style.margin = "0";
         div.appendChild(text);
-
+        
         // hide weather forecast elements
         document.getElementById("current-conditions").style.display = "none";
         document.getElementById("hourly-conditions").style.display = "none";
@@ -52,7 +52,7 @@ async function display() {
 }
 
 
-
+  
 // function currentPosition() {
 
 //     const ra = document.getElementById('ra-label');
