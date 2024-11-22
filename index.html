@@ -32,13 +32,7 @@
 
     <div name="current-data" class="container">
 
-        <section id="camera1" class="camera-tile">
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
-            <h3 class="cam-label">Outdoor Camera View</h3>
-            <button id="pause-outdoor">Pause</button>
-            <button id="live-outdoor">Live</button>
-        </section>
-
+        <!-- camera section -->
         <section id="camera2" class="camera-tile">
             <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting... may take up to 10 seconds">
             <h3 class="cam-label">Indoor Camera View</h3>
@@ -46,9 +40,87 @@
             <button id="live-indoor">Live</button>
             <button id="instant-indoor">Instant</button><br><br>
         </section>
+        <section id="camera1" class="camera-tile">
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+            <h3 class="cam-label">Outdoor Camera View</h3>
+            <button id="pause-outdoor">Pause</button>
+            <button id="live-outdoor">Live</button>
+        </section>
 
-
+        <!-- status section -->
         
+        <section id="status-info" class="inner-block">
+            <h2 class="curr-label">Status</h2>
+
+            <div class="inner-container">
+
+                <div id="mount-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Mount</h3>
+                    <p id="mount-text">-</p>
+                </div>
+                
+                <div id="tracking-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Tracking</h3>
+                    <p id="tracking-text">-</p>
+                </div>
+                <div id="slewing-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Slewing</h3>
+                    <p id="slewing-text">-</p>
+                </div>
+
+
+
+                <!-- <div id="slewing-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Focuser</h3>
+                </div>
+                <div id="slewing-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Rotator</h3>
+                </div> -->
+                
+                <!-- <i id="time-status-label" class="current">Last updated on </i> -->
+
+                <div id="slewing-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Last Updated</h3>
+                    <p id="time-status-text" style="font-style: italic;">-</p>
+                </div>
+
+                <div class="break"></div>
+                <div>
+                    <i id="status-error">Currently must be connected to UM network or Ivanti VPN for live data</i>
+                </div>
+
+
+                <!-- <div id="status" class="current"></div> -->
+            </div>                
+        </section>
+
+        <!-- position section -->
+        <section id="current-position" class="inner-block">
+            <h2 class="curr-label">Current Position</h2>
+            <div class="inner-container">
+                <div id="ra-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Right Ascension</h3>  
+                    <p id="ra-text">-</p>    
+                </div>
+                <div id="dec-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Declination</h3>
+                    <p id="dec-text">-</p>
+                </div>
+                <div id="alt-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Altitude</h3>
+                    <p id="alt-text">-</p>
+                </div>
+                <div id="az-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Azimuth</h3>
+                    <p id="az-text">-</p>
+                </div>
+
+                <div class="break"></div>
+                <div>
+                    <i id="status-error">Currently must be connected to UM network or Ivanti VPN for live data</i>
+                </div>
+            </div>                
+        </section>
        
 
         <!-- weather fetch error -->
@@ -107,12 +179,23 @@
                 <div id="az-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Azimuth</h3>
                 </div>
+                <div id="tracking-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Tracking</h3>
+                </div>
+                <div id="slewing-label" style="padding:10px" class="current">
+                    <h3 class="curr-label">Slewing</h3>
+                </div>
 
                 <i id="timePos-label" class="current">Last updated on </i>
 
                 <div id="status" class="current"></div>
+
             </div>                
         </section>
+
+
+
+        
 
         <section id="sqm-data" style="text-align:left">
 
@@ -277,4 +360,5 @@
     <script src="scripts/playback.js"></script>
     <script src="scripts/weather.js"></script>
     <script src="scripts/position.js"></script>
+    <script src="scripts/status.js"></script>
 </body>

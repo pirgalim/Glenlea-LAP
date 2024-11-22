@@ -32,35 +32,37 @@ function update(data) {
     const time = document.getElementById('time-status-text');
 
 
+    // ◉ 
+
     // mount status
     if(mount == "true") {
-        mount_text.textContent = "◉ Connected";
+        mount_text.textContent = "Connected";
         mount_text.style.color = "green";
     }
     else {
-        mount_text.textContent = "◉ Inactive";
-        mount_text.style.color = "gray";
+        mount_text.textContent = "Disconnected";
+        mount_text.style.color = "red";
     }
 
 
     // tracking status
     if(tracking == "true") {
-        track_text.textContent = "◉ Active";
+        track_text.textContent = "Active";
         track_text.style.color = "green";
     }
     else {
-        track_text.textContent = "◉ Inactive";
+        track_text.textContent = "Inactive";
         track_text.style.color = "gray";
     }
     
 
     // slew status
     if(slewing == "true") {
-        slew_text.textContent = "◉ Active";
+        slew_text.textContent = "Active";
         slew_text.style.color = "green";
     }
     else {
-        slew_text.textContent = "◉ Inactive";
+        slew_text.textContent = "Inactive";
         slew_text.style.color = "gray";
     }
  
@@ -73,8 +75,21 @@ function update(data) {
 
 
 
+
+
+    const ra = document.getElementById('ra-text');
+    const dec = document.getElementById('dec-text');
+    const alt = document.getElementById('alt-text');
+    const az = document.getElementById('az-text');
+
+
+
+    ra.textContent = Math.round(data["mount.ra_j2000_hours"] * 1000)/1000 + " hours"
+    dec.textContent = Math.round(data["mount.dec_j2000_degs"] * 1000)/1000 + " degrees"
     
 
+    alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + " degrees"
+    az.textContent = Math.round(data["mount.azimuth_degs"] * 1000)/1000 + " degrees"
 
 }
 
