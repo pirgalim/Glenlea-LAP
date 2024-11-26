@@ -84,8 +84,29 @@ function update(data) {
 
 
 
-    ra.textContent = Math.round(data["mount.ra_j2000_hours"] * 1000)/1000 + " hours"
-    dec.textContent = Math.round(data["mount.dec_j2000_degs"] * 1000)/1000 + " degrees"
+
+    const hr_ra = data["mount.ra_j2000_hours"] * (1/15)  // convert to hours from degrees
+    const min_ra = (hr_ra-Math.floor(hr_ra))*60
+    const sec_ra = (min_ra-Math.floor(min_ra))*60
+
+   
+
+    
+    ra.textContent = Math.round(hr_ra) + "h " + Math.round(min_ra) + "' " + Math.round(sec_ra*10)/10 + "''" 
+
+    // ra.textContent = Math.round(hr * 1000)/1000 + " hours"
+
+    const hr_dec = data["mount.dec_j2000_degs"]  // convert to hours from degrees
+
+    // console.log(hr_dec)
+
+    const min_dec = (hr_dec-Math.floor(hr_dec))*60
+    const sec_dec = (min_dec-Math.floor(min_dec))*60
+
+
+
+    // dec.textContent = Math.round(data["mount.dec_j2000_degs"] * 1000)/1000 + " degrees"
+    dec.textContent = Math.round(hr_dec) + "° " + Math.round(min_dec) + "' " + Math.round(sec_dec*10)/10 + "''" 
     
 
     alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + " degrees"
