@@ -1,6 +1,8 @@
 async function call() {
     try {
         const response = await fetch('http://10.84.3.29:5005/status');
+        // const response = await fetch('http://140.193.201.237:16001');
+        
         const data = await response.json();
         return data;
     } 
@@ -24,36 +26,69 @@ function update(data) {
     const mount = data["mount.is_connected"];
     const tracking = data["mount.is_tracking"];
     const slewing = data["mount.is_slewing"];
+    const focuser = data["focuser.is_connected"];
+    const rotator = data["rotator.is_connected"];
     const timeUTC = data["response.timestamp_utc"];
 
     const mount_text = document.getElementById('mount-text');
     const track_text = document.getElementById('tracking-text');
     const slew_text = document.getElementById('slewing-text');
+    const focuser_text = document.getElementById('focuser-text');
+    const rotator_text = document.getElementById('rotator-text');
+
     const time = document.getElementById('time-status-text');
+
+
+
+
+    /**
+   * SET STATUS PURPOSE TODO:
+   * @param {String} status         API status result
+   * @param {HTMLElement} element   Text element to be modified
+   * @param {String} messageT       Text to display if true
+   * @param {String} messageF       Text to display if false
+   */
+    function setStatus(status, element, messageT, messageF) {
+
+        if(status == "true") {
+            element.textContent = messageT;
+            element.style.color = "green";
+        }
+        else {
+            element.textContent = messageF;
+            element.style.color = "gray";
+        }
+    }
+
+
+    setStatus(mount, mount_text, "Connected", "Disconnected")
+
+    setStatus(tracking, track_text, "Active", "Inactive")
+
 
 
     // ◉ 
 
     // mount status
-    if(mount == "true") {
-        mount_text.textContent = "Connected";
-        mount_text.style.color = "green";
-    }
-    else {
-        mount_text.textContent = "Disconnected";
-        mount_text.style.color = "red";
-    }
+    // if(mount == "true") {
+    //     mount_text.textContent = "Connected";
+    //     mount_text.style.color = "green";
+    // }
+    // else {
+    //     mount_text.textContent = "Disconnected";
+    //     mount_text.style.color = "red";
+    // }
 
 
     // tracking status
-    if(tracking == "true") {
-        track_text.textContent = "Active";
-        track_text.style.color = "green";
-    }
-    else {
-        track_text.textContent = "Inactive";
-        track_text.style.color = "gray";
-    }
+    // if(tracking == "true") {
+    //     track_text.textContent = "Active";
+    //     track_text.style.color = "green";
+    // }
+    // else {
+    //     track_text.textContent = "Inactive";
+    //     track_text.style.color = "gray";
+    // }
     
 
     // slew status
@@ -64,6 +99,28 @@ function update(data) {
     else {
         slew_text.textContent = "Inactive";
         slew_text.style.color = "gray";
+    }
+
+
+    // focuser status
+    if(focuser == "true") {
+        focuser_text.textContent = "Active";
+        focuser_text.style.color = "green";
+    }
+    else {
+        focuser_text.textContent = "Disconnected";
+        focuser_text.style.color = "gray";
+    }
+
+
+    // rotator status
+    if(rotator == "true") {
+        rotator_text.textContent = "Active";
+        rotator_text.style.color = "green";
+    }
+    else {
+        rotator_text.textContent = "Disconnected";
+        rotator_text.style.color = "gray";
     }
  
 
@@ -109,8 +166,8 @@ function update(data) {
     dec.textContent = Math.round(hr_dec) + "° " + Math.round(min_dec) + "' " + Math.round(sec_dec*10)/10 + "''" 
     
 
-    alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + " degrees"
-    az.textContent = Math.round(data["mount.azimuth_degs"] * 1000)/1000 + " degrees"
+    alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + "°"
+    az.textContent = Math.round(data["mount.azimuth_degs"] * 1000)/1000 + "°"
 
 }
 
