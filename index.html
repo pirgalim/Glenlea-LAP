@@ -48,7 +48,6 @@
         </section>
 
         <!-- status section -->
-        
         <section id="status-info" class="inner-block">
             <h2 class="curr-label">Status</h2>
 
@@ -68,33 +67,18 @@
                     <progress id="slew-progress" style="display:none"></progress>
                     <p id="slewing-text"></p>
                 </div>
-
-
-                <div id="slewing-label" style="padding:10px" class="current">
+                <div id="focuser-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Focuser</h3>
                     <p id="focuser-text"></p>
                 </div>
-                <div id="slewing-label" style="padding:10px" class="current">
+                <div id="rotator-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Rotator</h3>
                     <p id="rotator-text"></p>
                 </div>
-
-                <!-- <div id="slewing-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Focuser</h3>
-                </div>
-                <div id="slewing-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Rotator</h3>
-                </div> -->
-                
-                <!-- <i id="time-status-label" class="current">Last updated on </i> -->
-
-                <div id="slewing-label" style="padding:10px" class="current">
+                <div id="time-status-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Last Updated</h3>
                     <p id="time-status-text" style="font-style: italic;"></p>
                 </div>
-
-
-                <!-- <div id="status" class="current"></div> -->
             </div>                
         </section>
 
@@ -137,16 +121,12 @@
 
             <h2 class="curr-label">Current Conditions</h2>
             <div class="inner-container">
-
-                
-
                 <div id="temp-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="curr-label" style="width:80%">Temperature</h3> 
                         <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">ac_unit</i> -->
                     </div>
                 </div>
-                
                 <div id="cloud-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="curr-label" style="width:80%">Cloud Cover</h3> 
@@ -165,71 +145,32 @@
                         <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">air</span> -->
                     </div>
                 </div>
-
                 <i id="timeCond-label" class="current">Last updated on </i>
                 <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
             </div>
         </section>
 
-        <!-- <section id="current-position" class="inner-block">
-            <h2 class="curr-label">Current Position</h2>
-            <div class="inner-container">
-                <div id="ra-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Right Ascension</h3>      
-                </div>
-                <div id="dec-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Declination</h3>
-                </div>
-                <div id="alt-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Altitude</h3>
-                </div>
-                <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Azimuth</h3>
-                </div>
-                <div id="tracking-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Tracking</h3>
-                </div>
-                <div id="slewing-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Slewing</h3>
-                </div>
 
-                <i id="timePos-label" class="current">Last updated on </i>
-
-                <div id="status" class="current"></div>
-
-            </div>                
-        </section> -->
-
-
-        <section id="current-conditions"></section>
+        <section></section>
         
-
         <section id="sqm-data" style="text-align:left">
-
             <h2 class="curr-label">Sky Quality</h2>
-
             <div class="inner-container" style="background-color:white; justify-content:right">
                 <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
             </div>
-
             <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot" style="border-radius:0">
-
             <div style="text-align:center">
                 <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>   
             </div>
-            
         </section>
 
         <section id="finderscope-view" style="text-align:left">
-            
             <h2 class="curr-label">Live View</h2>
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
-              
+            <img id="finderscope" src="http://allsky.physics.umanitoba.ca/finderscope.png" alt="Reconnecting... may take up to 10 seconds" >
             <div style="text-align: center">
                 <div class="break"></div>
                 <h2>*** Coming Soon ***</h2>
             </div>
-            
         </section>
 
         <section id="hourly-conditions">
