@@ -1,8 +1,6 @@
 async function call() {
     try {
-        const response = await fetch('http://10.84.3.29:5005/status');
-        // const response = await fetch('http://140.193.201.237:16001');
-        
+        const response = await fetch('http://ac19bugf.physics.umanitoba.ca');
         const data = await response.json();
         return data;
     } 
@@ -11,10 +9,11 @@ async function call() {
     }
 }
 
+
+
+
 async function display() {
     const data = await call();
-    // console.log(data);
-    
     if(data) {
         update(data);
     }
@@ -33,8 +32,12 @@ function update(data) {
     const mount_text = document.getElementById('mount-text');
     const track_text = document.getElementById('tracking-text');
     const slew_text = document.getElementById('slewing-text');
+    const slew_prog = document.getElementById('slew-progress');
     const focuser_text = document.getElementById('focuser-text');
     const rotator_text = document.getElementById('rotator-text');
+
+    
+
 
     const time = document.getElementById('time-status-text');
 
@@ -61,9 +64,9 @@ function update(data) {
     }
 
 
-    setStatus(mount, mount_text, "Connected", "Disconnected")
+    setStatus(mount, mount_text, "Connected", "Disconnected");
+    setStatus(tracking, track_text, "Active", "Inactive");
 
-    setStatus(tracking, track_text, "Active", "Inactive")
 
 
 
@@ -92,11 +95,13 @@ function update(data) {
     
 
     // slew status
-    if(slewing == "true") {
-        slew_text.textContent = "Active";
-        slew_text.style.color = "green";
+    if(slewing == "false") {
+        // slew_text.textContent = "Active";
+        // slew_text.style.color = "green";
+        slew_prog.style.display = "block";
     }
     else {
+        slew_prog.style.display = "none";
         slew_text.textContent = "Inactive";
         slew_text.style.color = "gray";
     }
@@ -138,6 +143,9 @@ function update(data) {
     const dec = document.getElementById('dec-text');
     const alt = document.getElementById('alt-text');
     const az = document.getElementById('az-text');
+    const ax_dist = document.getElementById('ax-dist-text');
+    
+
 
 
 
@@ -169,6 +177,12 @@ function update(data) {
     alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + "°"
     az.textContent = Math.round(data["mount.azimuth_degs"] * 1000)/1000 + "°"
 
+
+
+    ax_dist.textContent = 1;
+
+    // ax_dist.textContent = "RA: " + data["mount.axis0.dist_to_target_arcsec"] + "''" + " - " + "DEC: " + data["mount.axis1.dist_to_target_arcsec"] + "''";
+    
 }
 
 

@@ -56,26 +56,27 @@
 
                 <div id="mount-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Mount</h3>
-                    <p id="mount-text">-</p>
+                    <p id="mount-text"></p>
                 </div>
                 
                 <div id="tracking-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Tracking</h3>
-                    <p id="tracking-text">-</p>
+                    <p id="tracking-text"></p>
                 </div>
                 <div id="slewing-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Slewing</h3>
-                    <p id="slewing-text">-</p>
+                    <progress id="slew-progress" style="display:none"></progress>
+                    <p id="slewing-text"></p>
                 </div>
 
 
                 <div id="slewing-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Focuser</h3>
-                    <p id="focuser-text">-</p>
+                    <p id="focuser-text"></p>
                 </div>
                 <div id="slewing-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Rotator</h3>
-                    <p id="rotator-text">-</p>
+                    <p id="rotator-text"></p>
                 </div>
 
                 <!-- <div id="slewing-label" style="padding:10px" class="current">
@@ -89,12 +90,7 @@
 
                 <div id="slewing-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Last Updated</h3>
-                    <p id="time-status-text" style="font-style: italic;">-</p>
-                </div>
-
-                <div class="break"></div>
-                <div>
-                    <i id="status-error">Currently must be connected to UM network or Ivanti VPN for live data</i>
+                    <p id="time-status-text" style="font-style: italic;"></p>
                 </div>
 
 
@@ -108,34 +104,27 @@
             <div class="inner-container">
                 <div id="ra-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Right Ascension</h3>  
-                    <p id="ra-text">-</p>    
+                    <p id="ra-text"></p>    
                 </div>
                 <div id="dec-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Declination</h3>
-                    <p id="dec-text">-</p>
+                    <p id="dec-text"></p>
                 </div>
                 <div id="alt-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Altitude</h3>
-                    <p id="alt-text">-</p>
+                    <p id="alt-text"></p>
                 </div>
                 <div id="az-label" style="padding:10px" class="current">
                     <h3 class="curr-label">Azimuth</h3>
-                    <p id="az-text">-</p>
+                    <p id="az-text"></p>
                 </div>
-
                 <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="target-label">Closest Object</h3>
-                    <p id="az-text">-</p>
+                    <h3 class="curr-label">Distance To Target</h3>
+                    <p id="ax-dist-text"></p>
                 </div>
-
                 <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="?-label"></h3>
-                    <p id="az-text">-</p>
-                </div>
-
-                <div class="break"></div>
-                <div>
-                    <i id="status-error">Currently must be connected to UM network or Ivanti VPN for live data</i>
+                    <h3 class="curr-label">Closest Object</h3>
+                    <p id="?-text"></p>
                 </div>
             </div>                
         </section>

@@ -69,6 +69,8 @@ function updateImageIndoor() {
 function updateImageOutdoor() {
 
     outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?"+ new Date().getTime();
+
+    //FIXME: fix frame dropping
 }
 
 
