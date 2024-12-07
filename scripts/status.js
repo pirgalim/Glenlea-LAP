@@ -95,7 +95,7 @@ function update(data) {
     
 
     // slew status
-    if(slewing == "false") {
+    if(slewing == "true FIXME:") {
         // slew_text.textContent = "Active";
         // slew_text.style.color = "green";
         slew_prog.style.display = "block";
@@ -111,6 +111,9 @@ function update(data) {
     if(focuser == "true") {
         focuser_text.textContent = "Active";
         focuser_text.style.color = "green";
+
+        // if()
+
     }
     else {
         focuser_text.textContent = "Disconnected";
@@ -179,10 +182,14 @@ function update(data) {
 
 
 
-    ax_dist.textContent = 1;
+    // ax_dist.textContent = "N/A";
 
     // ax_dist.textContent = "RA: " + data["mount.axis0.dist_to_target_arcsec"] + "''" + " - " + "DEC: " + data["mount.axis1.dist_to_target_arcsec"] + "''";
     
+    const ra_dist = data["mount.axis0.dist_to_target_arcsec"] 
+    const dec_dist = data["mount.axis1.dist_to_target_arcsec"]
+    const total_dist =  Math.sqrt( ra_dist**2 + dec_dist**2)
+    ax_dist.textContent = total_dist + "''";
 }
 
 

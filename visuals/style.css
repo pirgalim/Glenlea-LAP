@@ -85,7 +85,7 @@ section {
     text-align:center;
 }
 
-
+/* allows flex capability inside blocks */
 .inner-container { 
     display: flex;
     flex-wrap: wrap;
@@ -136,6 +136,7 @@ section {
     /* margin: 20px; */
     text-align: left;
 }
+/* TODO: remove? */
 
 .break {
     box-sizing: border-box; 
@@ -150,7 +151,7 @@ section {
 }
 
 
-.current, .current-full {
+.current, .current-full, .current-small {
     /* border: 5px solid var(--primary-colour); */
     /* border: 2px inset var(--secondary-colour); */
     border: 1px solid lightgray;
@@ -166,20 +167,22 @@ section {
 .current {
     width: calc(50% - 10px);
     margin: 5px;
-    
-
 }
 .current-full {
     width: 100%;
     /* justify-content:center; */
 }
+.current-small {
+    width: calc(25% - 10px);
+    margin: 5px;
+}
 
 
-h2.curr-label {
+h2.block-label {
     margin: 5px 5px 15px 5px;
     padding-left: 10px;
 }
-h3.curr-label {
+h3.block-label {
     margin: 0;
     margin-bottom: 5px;    
 }

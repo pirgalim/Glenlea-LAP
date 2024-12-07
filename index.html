@@ -11,7 +11,7 @@
 
 
 <body>
-    
+    <!-- site header -->
     <div class="container">
 
         <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
@@ -26,57 +26,120 @@
                 body.classList.toggle('dark-theme');
             });
         </script> -->
-
-
     </div>
 
+
+
+    
+    <!-- main section -->
     <div name="current-data" class="container">
 
+         <!-- FIXME: make this more consistent instead of using line breaks -->
+         <!-- <div class="break" style="height:0"></div>
+         <section style="padding:0%;">
+ 
+             <div class="inner-container">
+ 
+ 
+                 <div id="mount-label" style="padding:10px" class="current-small">
+                     <h3 class="block-label">Mount</h3>
+                     <p id="mount-text"></p>
+                 </div>
+                 <div id="tracking-label" style="padding:10px" class="current-small">
+                     <h3 class="block-label">Tracking</h3>
+                     <p id="tracking-text"></p>
+                 </div>
+                 <div id="slewing-label" style="padding:10px" class="current-small">
+                     <h3 class="block-label">Slewing</h3>
+                     <progress id="slew-progress" style="display:none"></progress>
+                     <p id="slewing-text"></p>
+                 </div>
+                 <div id="focuser-label" style="padding:10px" class="current-small">
+                     <h3 class="block-label">Focuser</h3>
+                     <p id="focuser-text"></p>
+                 </div>
+             </div>
+         </section>
+         <div class="break" style="height:0"></div> -->
+
+
+
         <!-- camera section -->
-        <section id="camera2" class="camera-tile">
+        <section id="indoor-cam" class="camera-tile">
             <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting... may take up to 10 seconds">
             <h3 class="cam-label">Indoor Camera View</h3>
             <button id="pause-indoor">Pause</button>
             <button id="live-indoor">Live</button>
             <button id="instant-indoor">Instant</button><br><br>
         </section>
-        <section id="camera1" class="camera-tile">
+        <section id="outdoor-cam" class="camera-tile">
             <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
             <h3 class="cam-label">Outdoor Camera View</h3>
             <button id="pause-outdoor">Pause</button>
             <button id="live-outdoor">Live</button>
         </section>
 
-        <!-- status section -->
-        <section id="status-info" class="inner-block">
-            <h2 class="curr-label">Status</h2>
+
+        <!-- FIXME: make this more consistent instead of using line breaks -->
+        <!-- <div class="break" style="height:0"></div>
+        <section style="padding:0%;">
 
             <div class="inner-container">
 
-                <div id="mount-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Mount</h3>
+
+                <div id="mount-label" style="padding:10px" class="current-small">
+                    <h3 class="block-label">Mount</h3>
                     <p id="mount-text"></p>
                 </div>
-                
+                <div id="tracking-label" style="padding:10px" class="current-small">
+                    <h3 class="block-label">Tracking</h3>
+                    <p id="tracking-text"></p>
+                </div>
+                <div id="slewing-label" style="padding:10px" class="current-small">
+                    <h3 class="block-label">Slewing</h3>
+                    <progress id="slew-progress" style="display:none"></progress>
+                    <p id="slewing-text"></p>
+                </div>
+                <div id="focuser-label" style="padding:10px" class="current-small">
+                    <h3 class="block-label">Focuser</h3>
+                    <p id="focuser-text"></p>
+                </div>
+
+
+
+            </div>
+
+        </section>
+        <div class="break" style="height:0"></div> -->
+
+
+        <!-- status section -->
+        <section id="status-info" class="inner-block">
+            <h2 class="block-label">Status</h2>
+            <div class="inner-container">
+                <div id="mount-label" style="padding:10px" class="current">
+                    <h3 class="block-label">Mount</h3>
+                    <p id="mount-text"></p>
+                </div>
                 <div id="tracking-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Tracking</h3>
+                    <h3 class="block-label">Tracking</h3>
                     <p id="tracking-text"></p>
                 </div>
                 <div id="slewing-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Slewing</h3>
+                    <h3 class="block-label">Slewing</h3>
                     <progress id="slew-progress" style="display:none"></progress>
                     <p id="slewing-text"></p>
                 </div>
                 <div id="focuser-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Focuser</h3>
+                    <h3 class="block-label">Focuser</h3>
                     <p id="focuser-text"></p>
                 </div>
                 <div id="rotator-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Rotator</h3>
+                    <h3 class="block-label">Rotator</h3>
                     <p id="rotator-text"></p>
                 </div>
                 <div id="time-status-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Last Updated</h3>
+                    <h3 class="block-label">Last Updated</h3>
                     <p id="time-status-text" style="font-style: italic;"></p>
                 </div>
             </div>                
@@ -84,31 +147,31 @@
 
         <!-- position section -->
         <section id="current-position" class="inner-block">
-            <h2 class="curr-label">Current Position</h2>
+            <h2 class="block-label">Current Position</h2>
             <div class="inner-container">
                 <div id="ra-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Right Ascension</h3>  
+                    <h3 class="block-label">Right Ascension</h3>  
                     <p id="ra-text"></p>    
                 </div>
                 <div id="dec-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Declination</h3>
+                    <h3 class="block-label">Declination</h3>
                     <p id="dec-text"></p>
                 </div>
                 <div id="alt-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Altitude</h3>
+                    <h3 class="block-label">Altitude</h3>
                     <p id="alt-text"></p>
                 </div>
                 <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Azimuth</h3>
+                    <h3 class="block-label">Azimuth</h3>
                     <p id="az-text"></p>
                 </div>
                 <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Distance To Target</h3>
+                    <h3 class="block-label">Distance To Target</h3>
                     <p id="ax-dist-text"></p>
                 </div>
                 <div id="az-label" style="padding:10px" class="current">
-                    <h3 class="curr-label">Closest Object</h3>
-                    <p id="?-text"></p>
+                    <h3 class="block-label">Closest Object</h3>
+                    <p id="?-text">Parked</p>
                 </div>
             </div>                
         </section>
@@ -117,31 +180,31 @@
         <!-- weather fetch error -->
         <div id="error" class="block-full"></div>
 
-        <section id="current-conditions">
+        <section id="current-conditions" >
 
-            <h2 class="curr-label">Current Conditions</h2>
+            <h2 class="block-label">Current Conditions</h2>
             <div class="inner-container">
                 <div id="temp-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="curr-label" style="width:80%">Temperature</h3> 
+                        <h3 class="block-label" style="width:80%">Temperature</h3> 
                         <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">ac_unit</i> -->
                     </div>
                 </div>
                 <div id="cloud-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="curr-label" style="width:80%">Cloud Cover</h3> 
+                        <h3 class="block-label" style="width:80%">Cloud Cover</h3> 
                         <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">cloud</i> -->
                     </div>
                 </div>
                 <div id="precip-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="curr-label" style="width:80%">Precipitation</h3> 
+                        <h3 class="block-label" style="width:80%">Precipitation</h3> 
                         <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">rainy</span> -->
                     </div>
                 </div>
                 <div id="wind-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="curr-label" style="width:80%">Wind Speed</h3> 
+                        <h3 class="block-label" style="width:80%">Wind Speed</h3> 
                         <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">air</span> -->
                     </div>
                 </div>
@@ -150,11 +213,30 @@
             </div>
         </section>
 
+        
+        
 
-        <section></section>
+        <section>
+            <h2 class="block-label">Additional Data</h2>
+            <div class="inner-container">
+                <div id="ra-label" style="padding:10px" class="current">
+                    <h3 class="block-label">Distance To Sun</h3>  
+                    <p id="">-</p>    
+                </div>
+                <div id="ra-label" style="padding:10px" class="current">
+                    <h3 class="block-label"></h3>  
+                    <p id=""></p>    
+                </div>
+            </div>
+        </section>
+
+
+
+
+
         
         <section id="sqm-data" style="text-align:left">
-            <h2 class="curr-label">Sky Quality</h2>
+            <h2 class="block-label">Sky Quality</h2>
             <div class="inner-container" style="background-color:white; justify-content:right">
                 <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
             </div>
@@ -165,8 +247,9 @@
         </section>
 
         <section id="finderscope-view" style="text-align:left">
-            <h2 class="curr-label">Live View</h2>
-            <img id="finderscope" src="http://allsky.physics.umanitoba.ca/finderscope.png" alt="Reconnecting... may take up to 10 seconds" >
+            <h2 class="block-label">Live View</h2>
+            <!-- src="http://allsky.physics.umanitoba.ca/finderscope.png" -->
+            <img id="finderscope" src="/visuals/nosignal.png" alt="Reconnecting... may take up to 10 seconds">
             <div style="text-align: center">
                 <div class="break"></div>
                 <h2>*** Coming Soon ***</h2>
@@ -177,7 +260,7 @@
 
             <div class="inner-block">
 
-                <h2 class="curr-label">Hourly Forecast</h2>
+                <h2 class="block-label">Hourly Forecast</h2>
 
                 <div class="inner-container current-full">
 
@@ -241,7 +324,7 @@
 
         <!-- <section id="sqm-data" style="text-align:left">
 
-            <h2 class="curr-label">Sky Quality</h2>
+            <h2 class="block-label">Sky Quality</h2>
 
             <div class="inner-container" style="background-color:white; justify-content:right">
                 <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
@@ -257,7 +340,7 @@
 
         <section id="finderscope-view" style="text-align:left">
             
-            <h2 class="curr-label">Live View</h2>
+            <h2 class="block-label">Live View</h2>
             <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
               
             <div style="text-align: center">
@@ -268,7 +351,7 @@
         </section> -->
 
         <section id="weather-forecast">
-            <h2 class="curr-label">Clear Dark Sky Forecast</h2> 
+            <h2 class="block-label">Clear Dark Sky Forecast</h2> 
             <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
             <div style="text-align:center">
                 <a href="https://www.cleardarksky.com/c/GlenleaObMBkey.html?1">Clear Dark Sky for Glenlea Observatory</a>   
@@ -281,7 +364,7 @@
 
 
         <section id="links">
-            <h2 class="curr-label">Quick Links</h2> 
+            <h2 class="block-label">Quick Links</h2> 
 
             <div class="inner-container" style="justify-content:center">
                 <a class="button" style="width:45%" href="">Exposure Time Calculator</a>
@@ -297,7 +380,7 @@
         </section>
 
         <section id="radar">
-            <h2 class="curr-label">Weather Radar</h2>
+            <h2 class="block-label">Weather Radar</h2>
             <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
         </section>
 
