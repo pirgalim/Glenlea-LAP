@@ -68,9 +68,10 @@ section {
     margin: 8px 8px;
     padding: 25px;
     background-color: var(--section-colour);
-    border: 2px solid gray;
+    /* border: 2px solid gray; */
     border-radius: 10px;    
-    box-shadow: 0px 0px 4px black;
+    box-shadow: 0px 0px 4px gray;
+    /* box-shadow: -1px -1px 5px gray; */
     text-align: left;
 }
 

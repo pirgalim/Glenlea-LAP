@@ -16,13 +16,13 @@ var WIND_THRESH = 30;           // km/h
  * Note: coordinates for Glenlea Astronomical Observatory (49.6451093, -97.1223097)
  * @returns weather data
  */
-async function call() {
+async function callWeather() {
     try {
         const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6451093&longitude=-97.1223097&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
     } 
-    catch (error) {
+    catch(error) {
         div = document.getElementById("error");
 
         // create and format error message
@@ -41,46 +41,53 @@ async function call() {
 }
 
 
+
+async function callAlert() {
+
+    try {
+
+        const proxy = 'https://api.allorigins.win/get?url=';
+        // const rss = 'https://weather.gc.ca/rss/battleboard/mbrm43_e.xml';
+        const rss = 'https://weather.gc.ca/rss/battleboard/mbrm165_e.xml';
+
+        const response = await fetch(proxy + rss);
+        const data = await response.json();
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data.contents, "application/xml");
+        const titles = xmlDoc.getElementsByTagName("title");
+        const alertBar = document.getElementById("alerts");
+
+        for (const title of titles) {
+            alertBar.appendChild(title);
+        }
+    }
+    catch(error) {
+       console.error("Error:", error);
+    }
+}
+
+
+
+
+
+
+
+
 /**
  * calls current and hourly functions on successful api call
  */
 async function display() {
-    const data = await call();
+    const data = await callWeather();
     currentCondtions(data);
-    // currentPosition();  // use file sent via sftp?
     hourlyConditions(data);
+
+    // const alert = await callAlert();
+    callAlert();
 }
 
 
   
-// function currentPosition() {
-
-//     const ra = document.getElementById('ra-label');
-//     const dec = document.getElementById('dec-label');
-//     const alt = document.getElementById('alt-label');
-//     const az = document.getElementById('az-label');
-//     const timePos = document.getElementById('timePos-label');
-
-//     text = document.createElement('p');
-//     text.textContent = "2h 31m 48.7s";
-//     ra.appendChild(text);
-
-//     text = document.createElement('p');
-//     text.textContent = "+89° 15′ 51″";
-//     dec.appendChild(text);
-
-//     text = document.createElement('p');
-//     text.textContent = "0° 51′ 30";
-//     alt.appendChild(text);
-
-//     text = document.createElement('p');
-//     text.textContent = "49° 30′ 54";
-//     az.appendChild(text);
-
-//     text = document.createElement('p');
-//     text.textContent = "... this is a demo";
-//     timePos.appendChild(text);
-// }
 
 
 /**
