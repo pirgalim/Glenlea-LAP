@@ -68,9 +68,21 @@ function updateImageIndoor() {
 }
 function updateImageOutdoor() {
 
-    outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
+    const newSrc = "http://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
 
-    //FIXME: fix frame dropping
+    // temp image
+    const tempImage = new Image()
+
+    tempImage.onload = function () {
+        // update image if successfully loaded
+        outdoorImage.src = newSrc;
+    };
+    tempImage.onerror = function () {
+        console.log(`Failed to load ${newSrc}. Retaining previous image.`);
+    };
+
+    // try updating the temp image src, will result in above function(s) being called
+    tempImage.src = newSrc;
 }
 
 
