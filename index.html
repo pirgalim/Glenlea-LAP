@@ -1,7 +1,7 @@
 <head>
     <title>Glenlea LAP</title>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="visuals/style.css"/>
+    <link rel="stylesheet" type="text/css" href="visuals/style.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
@@ -17,29 +17,52 @@
         <img class="logo" src="https://umanitoba.ca/themes/custom/umanitoba/images/logo.svg" alt="logo">
         <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
 
-        <h2 id="alerts"></h2>
+        <div id="alerts"></div>
 
-        
-        
+        <div class="header-controls">
+            <button id="theme-toggle" style="display: flex; align-items: center; gap: 5px;">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                Change Theme
+            </button>
+        </div>
+
     </div>
 
 
 
-    
+
     <!-- main section -->
     <div name="current-data" class="container">
 
 
         <!-- camera section -->
         <section id="indoor-cam" class="camera-tile">
-            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png" alt="Reconnecting... may take up to 10 seconds">
+            <img id="indoor" src="http://allsky.physics.umanitoba.ca/indoor.png"
+                alt="Reconnecting... may take up to 10 seconds">
             <h3 class="cam-label">Indoor Camera View</h3>
             <button id="pause-indoor">Pause</button>
             <button id="live-indoor">Live</button>
             <button id="instant-indoor">Instant</button><br><br>
         </section>
         <section id="outdoor-cam" class="camera-tile">
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
+            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png"
+                alt="Reconnecting... may take up to 10 seconds">
             <h3 class="cam-label">Outdoor Camera View</h3>
             <button id="pause-outdoor">Pause</button>
             <button id="live-outdoor">Live</button>
@@ -75,7 +98,7 @@
                     <h3 class="block-label">Last Updated</h3>
                     <p id="time-status-text" style="font-style: italic;"></p>
                 </div>
-            </div>                
+            </div>
         </section>
 
         <!-- position section -->
@@ -83,8 +106,8 @@
             <h2 class="block-label">Current Position</h2>
             <div class="inner-container">
                 <div id="ra-label" style="padding:10px" class="current">
-                    <h3 class="block-label">Right Ascension</h3>  
-                    <p id="ra-text"></p>    
+                    <h3 class="block-label">Right Ascension</h3>
+                    <p id="ra-text"></p>
                 </div>
                 <div id="dec-label" style="padding:10px" class="current">
                     <h3 class="block-label">Declination</h3>
@@ -106,59 +129,60 @@
                     <h3 class="block-label">Closest Object</h3>
                     <p id="?-text">-</p>
                 </div>
-            </div>                
+            </div>
         </section>
-       
+
 
         <!-- weather fetch error -->
         <div id="error" class="block-full"></div>
 
-        <section id="current-conditions" >
+        <section id="current-conditions">
 
             <h2 class="block-label">Current Conditions</h2>
             <div class="inner-container">
                 <div id="temp-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="block-label" style="width:80%">Temperature</h3> 
+                        <h3 class="block-label" style="width:80%">Temperature</h3>
                         <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">ac_unit</i> -->
                     </div>
                 </div>
                 <div id="cloud-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="block-label" style="width:80%">Cloud Cover</h3> 
+                        <h3 class="block-label" style="width:80%">Cloud Cover</h3>
                         <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">cloud</i> -->
                     </div>
                 </div>
                 <div id="precip-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="block-label" style="width:80%">Precipitation</h3> 
+                        <h3 class="block-label" style="width:80%">Precipitation</h3>
                         <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">rainy</span> -->
                     </div>
                 </div>
                 <div id="wind-label" style="padding:10px" class="current">
                     <div style="display: flex">
-                        <h3 class="block-label" style="width:80%">Wind Speed</h3> 
+                        <h3 class="block-label" style="width:80%">Wind Speed</h3>
                         <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">air</span> -->
                     </div>
                 </div>
                 <i id="timeCond-label" class="current">Last updated on </i>
-                <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+                <a class="current" style="display: block;" href="https://open-meteo.com/">Weather data by
+                    Open-Meteo.com</a>
             </div>
         </section>
 
-        
-        
+
+
 
         <section>
             <h2 class="block-label">Additional Data</h2>
             <div class="inner-container">
                 <div id="ra-label" style="padding:10px" class="current">
-                    <h3 class="block-label">Distance To Sun</h3>  
-                    <p id="">-</p>    
+                    <h3 class="block-label">Distance To Sun</h3>
+                    <p id="">-</p>
                 </div>
                 <div id="ra-label" style="padding:10px" class="current">
-                    <h3 class="block-label"></h3>  
-                    <p id=""></p>    
+                    <h3 class="block-label"></h3>
+                    <p id=""></p>
                 </div>
             </div>
         </section>
@@ -167,15 +191,15 @@
 
 
 
-        
+
         <section id="sqm-data" style="text-align:left">
             <h2 class="block-label">Sky Quality</h2>
-            <div class="inner-container" style="background-color:white; justify-content:right">
-                <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
+            <div class="inner-container" style="justify-content:right">
+                <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;">
             </div>
             <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot" style="border-radius:0">
             <div style="text-align:center">
-                <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>   
+                <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>
             </div>
         </section>
 
@@ -198,36 +222,58 @@
                 <div class="inner-container current-full">
 
                     <div id="hourly-labels">
-                        <div id="hourly-hour-label" class="hourly-label"><h3>Hour</h3></div>
-                        <div class="hourly-label"><h3>Temperature</h3></div>
-                        <div class="hourly-label"><h3>Precipitation</h3></div>
-                        <div class="hourly-label"><h3>Cloud Cover</h3></div>
-                        <div class="hourly-label"><h3>Wind (km/h)</h3></div>
-                        <div id="scrollbar-gap" class="hourly-label" style="height: 10px"></div>                            
+                        <div id="hourly-hour-label" class="hourly-label">
+                            <h3>Hour</h3>
+                        </div>
+                        <div class="hourly-label">
+                            <h3>Temperature</h3>
+                        </div>
+                        <div class="hourly-label">
+                            <h3>Precipitation</h3>
+                        </div>
+                        <div class="hourly-label">
+                            <h3>Cloud Cover</h3>
+                        </div>
+                        <div class="hourly-label">
+                            <h3>Wind (km/h)</h3>
+                        </div>
+                        <div id="scrollbar-gap" class="hourly-label" style="height: 10px"></div>
                     </div>
 
                     <div class="inner-container-hourly">
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                        <div class="block-hourly"></div><div class="block-hourly"></div>
-                    </div>     
-                    
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                        <div class="block-hourly"></div>
+                    </div>
+
                     <div class="break"></div>
-                    
+
                     <div class="block-legend">
                         <h3 style="width:100%; margin-bottom:5px;">Temperature</h3>
                         <div class="legend-text" style="background-color:lightblue">Cool</div>
                         <div class="legend-text" style="background-color:orange">Hot</div>
-                        
+
                     </div>
                     <div class="block-legend">
                         <h3 style="width:100%; margin-bottom:5px;">Precipitation</h3>
@@ -249,7 +295,7 @@
 
             <div style="width:100%; text-align:center">
                 <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
-            </div>  
+            </div>
         </section>
 
         <!-- line break between sections -->
@@ -284,12 +330,13 @@
         </section> -->
 
         <section id="weather-forecast">
-            <h2 class="block-label">Clear Dark Sky Forecast</h2> 
+            <h2 class="block-label">Clear Dark Sky Forecast</h2>
             <img src="https://www.cleardarksky.com/c/GlenleaObMBcsk.gif?c=1728046" alt="ICSC data">
             <div style="text-align:center">
-                <a href="https://www.cleardarksky.com/c/GlenleaObMBkey.html?1">Clear Dark Sky for Glenlea Observatory</a>   
+                <a href="https://www.cleardarksky.com/c/GlenleaObMBkey.html?1">Clear Dark Sky for Glenlea
+                    Observatory</a>
             </div>
-            
+
         </section>
 
         <!-- line break between sections; allows for section to take up full width -->
@@ -297,38 +344,74 @@
 
 
         <section id="links">
-            <h2 class="block-label">Quick Links</h2> 
+            <h2 class="block-label">Quick Links</h2>
 
             <div class="inner-container" style="justify-content:center">
                 <a class="button" style="width:45%" href="">Exposure Time Calculator</a>
-                <a class="button" style="width:45%" href="http://www.physics.umanitoba.ca/astro/?page_id=8">Lockhart Planetarium</a>
+                <a class="button" style="width:45%" href="http://www.physics.umanitoba.ca/astro/?page_id=8">Lockhart
+                    Planetarium</a>
                 <!-- <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a> -->
-            </div>            
+            </div>
 
         </section>
 
         <section id="radar">
             <h2 class="block-label">Weather Radar</h2>
-            <img class="img-radar" src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
+            <img class="img-radar"
+                src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
         </section>
 
-        
+
     </div>
 
 
 
-    <button id="theme-toggle">Change Theme</button>
     <script>
         const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+        const htmlElement = document.documentElement;
+        const iconSun = document.querySelector('.icon-sun');
+        const iconMoon = document.querySelector('.icon-moon');
+
+        function updateIcons(theme) {
+            if (theme === 'dark') {
+                iconSun.style.display = 'block';
+                iconMoon.style.display = 'none';
+            } else {
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'block';
+            }
+        }
+
+        // Check for saved user preference, if any, on load of the website
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+            updateIcons(savedTheme);
+        } else {
+            // Optional: Check system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.setAttribute('data-theme', 'dark');
+                updateIcons('dark');
+            } else {
+                updateIcons('light');
+            }
+        }
 
         themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                htmlElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateIcons('light');
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateIcons('dark');
+            }
         });
     </script>
 

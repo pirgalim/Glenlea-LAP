@@ -1,40 +1,64 @@
 :root {
-    /* global variables (modify these ONLY) */
-    
+    /* Light Theme Variables */
+    --bg-body: whitesmoke;
+    --bg-container: whitesmoke;
+    --bg-section: whitesmoke;
+    --bg-block: rgba(211, 211, 211, 0.5);
+    --bg-block-hover: rgba(200, 200, 200, 0.8);
+    --bg-hourly: white;
+
+    --text-primary: black;
+    --text-secondary: #333;
+
+    --border-color: lightgray;
+    --shadow-color: gray;
+
+    --accent-color: lightblue;
+    --button-bg: lightblue;
+    --button-text: black;
+    --button-active-bg: #38bdf8;
+    --button-active-text: black;
+
+    /* Layout */
     --max-width: 2000px;
     --min-section-width: 500px;
-    --primary-colour: rgba(220, 220, 220, 0.6);
-    --secondary-colour: rgba(211, 211, 211, 0.5);
-    --section-colour: whitesmoke;
-    --text-colour: black;
-
-    /* --primary-colour: rgb(14, 14, 14);
-    --secondary-colour: rgba(45, 45, 45, 0.5);
-    --section-colour: rgb(35, 35, 35, 0.6);
-    --text-colour: lightgray; */
-
-    
 }
-.dark-theme {
-    --primary-colour: rgb(14, 14, 14);
-    --secondary-colour: rgba(45, 45, 45, 0.5);
-    --section-colour: rgb(35, 35, 35, 0.6);
-    --text-colour: lightgray;
+
+[data-theme="dark"] {
+    /* Dark Theme Variables */
+    --bg-body: #1e1e1e;
+    --bg-container: #1e1e1e;
+    --bg-section: #2d2d2d;
+    --bg-block: #383838;
+    --bg-block-hover: #4a4a4a;
+    --bg-hourly: #2d2d2d;
+
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+
+    --border-color: #444;
+    --shadow-color: #000;
+
+    --accent-color: #bb86fc;
+    --button-bg: #3700b3;
+    --button-text: white;
+    --button-active-bg: #38bdf8;
+    --button-active-text: black;
 }
 
 body {
-
     /* cosmetics */
-    font-family: helvetica;
+    font-family: helvetica, sans-serif;
     text-align: center;
-    background-color: var(--primary-colour);   
-
-    color: var(--text-colour);
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 20px 0;
 }
 
 /* allows section elements to flex dynamically */
 .container {
-
     /* flex properties */
     display: flex;
     flex-wrap: wrap;
@@ -46,14 +70,20 @@ body {
     max-width: var(--max-width);
 
     /* used to center the container */
-    margin: 0 auto;  
-    width: 98%; 
+    margin: 0 auto;
+    width: 98%;
 
     /* cosmetics */
     padding: 8px;
-    background-color: var(--background-colour); 
+    background-color: var(--bg-container);
     border-radius: 10px;
-    /* border: 1px solid darkgray; */
+    transition: background-color 0.3s;
+    position: relative;
+    /* Establishes positioning context for header controls */
+}
+
+.header-controls {
+    right: 16px;
 }
 
 /* main content area */
@@ -64,15 +94,14 @@ section {
     /* prevents sections from getting too small - if threshold is met flex wrap will be applied */
     min-width: var(--min-section-width);
 
-    box-sizing: border-box; 
+    box-sizing: border-box;
     margin: 8px 8px;
     padding: 25px;
-    background-color: var(--section-colour);
-    /* border: 2px solid gray; */
-    border-radius: 10px;    
-    box-shadow: 0px 0px 4px gray;
-    /* box-shadow: -1px -1px 5px gray; */
+    background-color: var(--bg-section);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px var(--shadow-color);
     text-align: left;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .title {
@@ -83,149 +112,152 @@ section {
 }
 
 #sqm-data {
-    text-align:center;
+    text-align: center;
 }
 
 /* allows flex capability inside blocks */
-.inner-container { 
+.inner-container {
     display: flex;
     flex-wrap: wrap;
-
-    width: 100%; 
-    justify-content:center;
+    width: 100%;
+    justify-content: center;
 }
 
 .block {
-    box-sizing: border-box; 
-    /* will take up at least 25% of parent container element */ 
-    min-width: 25%; 
+    box-sizing: border-box;
+    min-width: 25%;
 }
 
 .block-legend {
-    box-sizing: border-box; 
-    border: 1px solid gray;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
     text-align: center;
     justify-content: center;
     padding: 10px;
-
-    width: 25%; 
-    display: flex; 
+    width: 25%;
+    display: flex;
     flex-wrap: wrap;
 }
+
 .legend-text {
-    width: 100px; 
+    width: 100px;
     padding: 5px;
-    
+    color: black;
+    /* Keep legend text black for readability on colored backgrounds */
 }
 
-
-/* .block-med {
-    box-sizing: border-box;  */
-
-    /* will take up at least 50% of parent container element */ 
-    /* min-width: 50%;  */
-    /* text-align: left;
-} */
 .block-full {
-    box-sizing: border-box; 
-
-    /* will take up at least 50% of parent container element */ 
-    min-width: 100%; 
+    box-sizing: border-box;
+    min-width: 100%;
 }
+
 .inner-block {
-    box-sizing: border-box; 
-    /* margin: 20px; */
+    box-sizing: border-box;
     text-align: left;
 }
-/* TODO: remove? */
 
 .break {
-    box-sizing: border-box; 
+    box-sizing: border-box;
     width: 100%;
     height: 20px;
 }
 
-
 .camera-tile {
-    padding: 10px; 
+    padding: 10px;
     text-align: center;
 }
 
-
-.current, .current-full, .current-small {
-    /* border: 5px solid var(--primary-colour); */
-    /* border: 2px inset var(--secondary-colour); */
-    border: 1px solid lightgray;
+.current,
+.current-full,
+.current-small {
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 10px;
     box-sizing: border-box;
-    background-color: var(--secondary-colour);
-
-    
-    /* width: 48%; */
-
+    background-color: var(--bg-block);
+    transition: background-color 0.3s;
 }
+
 .current {
     width: calc(50% - 10px);
     margin: 5px;
 }
+
 .current-full {
     width: 100%;
-    /* justify-content:center; */
 }
+
 .current-small {
     width: calc(25% - 10px);
     margin: 5px;
 }
 
-
 h2.block-label {
     margin: 5px 5px 15px 5px;
     padding-left: 10px;
 }
+
 h3.block-label {
     margin: 0;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
 }
 
 .inner-container-hourly {
     display: flex;
     width: calc(100% - 175px);
     overflow-x: scroll;
-    background-color: white;
+    background-color: var(--bg-hourly);
+    transition: background-color 0.3s;
 }
+
 .block-hourly {
-    box-sizing: border-box; 
+    box-sizing: border-box;
     min-width: 80px;
     text-align: center;
 }
+
 #hourly-labels {
     width: 175px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 .hourly-label {
     padding-left: 10px;
-    border-top: 1px solid gray;
+    border-top: 1px solid var(--border-color);
     box-sizing: border-box;
-
-    /* value based on the blocks created inside hourly-small; found using browser inspection tool */
-    line-height: 38px;      
+    line-height: 38px;
+    color: var(--text-primary);
 }
 
 .inner-container-hourly::-webkit-scrollbar {
-    background-color: lightgray;
+    background-color: var(--bg-block);
     height: 10px;
 }
+
+.weather-cell {
+    padding: 10px;
+    background-color: white;
+    /* Ensure consistent light base for colors */
+    background-image: linear-gradient(var(--cell-bg-color, transparent), var(--cell-bg-color, transparent));
+    border-top: 1px solid var(--border-color);
+    color: black;
+    /* Always black text on colored backgrounds */
+}
+
+.weather-cell-header {
+    background-color: lightgray;
+    color: black;
+}
+
 .inner-container-hourly::-webkit-scrollbar-thumb {
-    background-color: gray;
+    background-color: var(--border-color);
     border-radius: 10px;
 }
 
-
 #hourly-hour-label:hover {
-    background-color: blue;
+    background-color: var(--accent-color);
 }
 
 .cam-label {
@@ -233,10 +265,15 @@ h3.block-label {
     margin-bottom: 10px;
 }
 
-
-p, a {
+p,
+a {
     display: inline;
     font-size: large;
+    color: var(--text-primary);
+}
+
+a {
+    text-decoration: underline;
 }
 
 h3 {
@@ -248,31 +285,41 @@ h3 {
 button {
     padding: 5px 15px;
     font-size: small;
-    border: 1px solid gray;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    /* color: var(--text-colour); */
-    /* color: blue; */
+    background-color: var(--bg-block);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
+
 button:hover {
-    opacity: 80%;
+    background-color: var(--bg-block-hover);
 }
-button:active {
-    transform: translateY(2px);
+
+button:active,
+button.active {
+    background-color: var(--button-active-bg);
+    color: var(--button-active-text);
 }
 
 a.button {
     margin: 10px;
     padding: 6px 6px;
-    border: 1px solid gray;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    color: black;
-    background-color: lightblue;
+    color: var(--button-text);
+    background-color: var(--button-bg);
     text-align: center;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px var(--shadow-color);
+    text-decoration: none;
+    display: inline-block;
 }
+
 a.button:hover {
-    opacity: 80%;
+    opacity: 0.8;
 }
+
 a.button:active {
     transform: translateY(2px);
 }
@@ -281,32 +328,76 @@ img {
     width: 100%;
     border-radius: 5px;
 }
+
 .img-radar {
     background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
     background-size: contain;
     width: 100%;
 }
+
 .logo {
     border-radius: 10px;
     height: 50px;
-} 
+}
 
+/* Theme Toggle Button in Header */
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    /* Aligns with section margin (8px) + container padding (8px) */
+}
 
+#theme-toggle:active {
+    background-color: var(--bg-block);
+    color: var(--text-primary);
+    transform: none;
+    /* Prevent movement if any */
+}
 
-@media only screen and (max-device-width: 500px){
+/* Alert Banners */
+#alerts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
 
+.alert-banner {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.alert-warning {
+    background-color: #ef4444;
+    /* Red */
+    color: black;
+}
+
+.alert-watch {
+    background-color: #eab308;
+    /* Yellow */
+    color: black;
+}
+
+@media only screen and (max-device-width: 500px) {
     section {
-
-    
         flex: 1 1 calc(50% - 40px);
         box-sizing: border-box;
-        min-width: 300px; 
+        min-width: 300px;
         margin: 10px 10px;
         padding: 15px;
-        background-color: var(--section-colour);
-        border: 2px solid lightgray;
+        background-color: var(--bg-section);
+        border: 2px solid var(--border-color);
         border-radius: 10px;
-        box-shadow: 0px 0px 20px gray;    
+        box-shadow: 0px 0px 20px var(--shadow-color);
     }
 
     #hourly-labels {
@@ -317,8 +408,6 @@ img {
         display: flex;
         width: 100%;
         overflow-x: scroll;
-        background-color: white;
+        background-color: var(--bg-hourly);
     }
-
-    
 }

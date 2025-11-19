@@ -21,8 +21,8 @@ async function callWeather() {
         const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6451093&longitude=-97.1223097&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
-    } 
-    catch(error) {
+    }
+    catch (error) {
         div = document.getElementById("error");
 
         // create and format error message
@@ -30,7 +30,7 @@ async function callWeather() {
         text.textContent = "Forecast is currently unavailable";
         text.style.margin = "0";
         div.appendChild(text);
-        
+
         // hide weather forecast elements
         document.getElementById("current-conditions").style.display = "none";
         document.getElementById("hourly-conditions").style.display = "none";
@@ -43,27 +43,65 @@ async function callWeather() {
 
 
 async function callAlert() {
+    const alertBar = document.getElementById("alerts");
+    alertBar.innerHTML = ''; // Clear previous alerts
+    alertBar.style.display = 'none'; // Hide by default
 
-    try {
+    const proxy = 'https://api.allorigins.win/get?url=';
+    const weatherRss = 'https://weather.gc.ca/rss/battleboard/mb9_e.xml'; // Winnipeg Weather Alerts
+    const aqhiRss = 'https://weather.gc.ca/rss/battleboard/aq434_aq_e.xml'; // Winnipeg Air Quality
 
-        const proxy = 'https://api.allorigins.win/get?url=';
-        // const rss = 'https://weather.gc.ca/rss/battleboard/mbrm43_e.xml';
-        const rss = 'https://weather.gc.ca/rss/battleboard/mbrm165_e.xml';
+    let activeAlerts = [];
 
-        const response = await fetch(proxy + rss);
-        const data = await response.json();
+    const fetchFeed = async (url) => {
+        try {
+            const response = await fetch(proxy + url);
+            const data = await response.json();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data.contents, "application/xml");
+            const entries = xmlDoc.getElementsByTagName("entry"); // Atom feeds use 'entry'
 
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, "application/xml");
-        const titles = xmlDoc.getElementsByTagName("title");
-        const alertBar = document.getElementById("alerts");
-
-        for (const title of titles) {
-            alertBar.appendChild(title);
+            for (const entry of entries) {
+                const title = entry.getElementsByTagName("title")[0].textContent;
+                // Filter out "No watches or warnings" and "No alerts" messages
+                if (title && !title.includes("No watches or warnings in effect") && !title.includes("No alerts in effect")) {
+                    activeAlerts.push(title);
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching alert feed:", error);
         }
-    }
-    catch(error) {
-       console.error("Error:", error);
+    };
+
+    await Promise.all([fetchFeed(weatherRss), fetchFeed(aqhiRss)]);
+
+    if (activeAlerts.length > 0) {
+        alertBar.style.display = 'flex'; // Ensure flex display is active
+
+        activeAlerts.forEach(alertText => {
+            const div = document.createElement('div');
+
+            // Ensure location is present
+            let displayText = alertText;
+            if (!displayText.toLowerCase().includes("winnipeg")) {
+                displayText = "Winnipeg: " + displayText;
+            }
+
+            // Remove "in effect"
+            displayText = displayText.replace(/ in effect/gi, "");
+
+            div.textContent = displayText;
+
+            div.classList.add('alert-banner');
+
+            if (alertText.toLowerCase().includes("warning")) {
+                div.classList.add('alert-warning');
+            } else {
+                div.classList.add('alert-watch');
+            }
+
+            alertBar.appendChild(div);
+        });
     }
 }
 
@@ -87,7 +125,7 @@ async function display() {
 }
 
 
-  
+
 
 
 /**
@@ -131,7 +169,7 @@ function currentCondtions(data) {
     // precip.style.background = 'rgba(' + PRECIP_COLOUR + ',' + current["precipitation"]/PRECIP_THRESH + ')';
 
     // wind speed
-    const direction = Number( data["current"]["wind_direction_10m"] );
+    const direction = Number(data["current"]["wind_direction_10m"]);
     text = document.createElement('p');
     text.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
     wind.appendChild(text);
@@ -154,8 +192,8 @@ function currentCondtions(data) {
 function hourlyConditions(data) {
 
     // parameters from data
-    const hourly = data["hourly"];  
-    const hourlyUnits = data["hourly_units"]; 
+    const hourly = data["hourly"];
+    const hourlyUnits = data["hourly_units"];
     const currTime = data["current"]["time"];
 
     // parameters from hourly
@@ -181,32 +219,32 @@ function hourlyConditions(data) {
 
     // find current time within the hourly array
     var startPosition = 0;
-    for(let i = 0; i < times.length; i++) {
-        if( times[i].split("T")[1].split(":")[0] == currHour && times[i].split("T")[0].split("-")[2] == currDay) { startPosition = i; }
+    for (let i = 0; i < times.length; i++) {
+        if (times[i].split("T")[1].split(":")[0] == currHour && times[i].split("T")[0].split("-")[2] == currDay) { startPosition = i; }
         times[i] = times[i].split("T")[1];
     }
 
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-hourly");
     // console.log(elements.length);
-    
+
     // append data to each element from 'elements'
-    for(let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 
         // midnight indicator
-        if(times[startPosition + i] == "00:00") {  
+        if (times[startPosition + i] == "00:00") {
             elements[i].style.borderRight = "2px solid red";
         }
-        
+
         addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', false, "", "");
-    
+
         // // temperature colour flips after 0
-        if(temp[startPosition + i] >= 0) { 
+        if (temp[startPosition + i] >= 0) {
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, false, tempUnits);
         }
-        else { 
+        else {
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, false, tempUnits);
-        }    
+        }
         addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, false, precipUnits);
         addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, true, cloudUnits);
         addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, false, windDirection(windDir[i]));
@@ -226,27 +264,29 @@ function hourlyConditions(data) {
  */
 function addElement(elements, condition, current, pos, colour, threshold, flip, units) {
 
-    var value = Math.round( condition[current + pos] ) || condition[current + pos];
+    var value = Math.round(condition[current + pos]) || condition[current + pos];
 
     div = document.createElement('div');
     div.textContent = value + units;
     elements[pos].appendChild(div);
-    div.style.padding = '10px';
+    div.classList.add('weather-cell');
 
-    if(Number.isInteger(threshold)) {
-
-        if(flip) {
-            var rgba = 'rgba(' + colour + ',' + (1 - value/threshold) + ')';
+    if (Number.isInteger(threshold)) {
+        let alpha;
+        if (flip) {
+            alpha = (1 - value / threshold);
         }
         else {
-            var rgba = 'rgba(' + colour + ',' + (value/threshold + 0.1) + ')';
+            alpha = (value / threshold + 0.1);
         }
+        // Clamp alpha between 0 and 1
+        alpha = Math.max(0, Math.min(1, alpha));
+
+        div.style.setProperty('--cell-bg-color', `rgba(${colour}, ${alpha})`);
     }
     else {
-        rgba = 'lightgray';
+        div.classList.add('weather-cell-header');
     }
-    div.style.background = rgba;
-    div.style.borderTop = "1px solid gray";
 }
 
 
@@ -272,16 +312,16 @@ function windDirection(direction) {
 
     // const direction = Number( data["current"]["wind_direction_10m"] );
 
-    if(direction >= 0 && direction < 22.5) { return " N"; }
-    if(direction >= 22.5 && direction < 67.5) { return " NE"; }
-    if(direction >= 67.5 && direction < 112.5) { return " E"; }
-    if(direction >= 112.5 && direction < 157.5) { return " SE"; }
-    if(direction >= 157.5 && direction < 202.5) { return " S"; }
-    if(direction >= 202.5 && direction < 247.5) { return " SW"; }
-    if(direction >= 247.5 && direction < 292.5) { return " W"; }
-    if(direction >= 292.5 && direction < 337.5) { return " NW"; }
-    if(direction >= 337.5 && direction <= 360) { return " N"; }
-       
+    if (direction >= 0 && direction < 22.5) { return " N"; }
+    if (direction >= 22.5 && direction < 67.5) { return " NE"; }
+    if (direction >= 67.5 && direction < 112.5) { return " E"; }
+    if (direction >= 112.5 && direction < 157.5) { return " SE"; }
+    if (direction >= 157.5 && direction < 202.5) { return " S"; }
+    if (direction >= 202.5 && direction < 247.5) { return " SW"; }
+    if (direction >= 247.5 && direction < 292.5) { return " W"; }
+    if (direction >= 292.5 && direction < 337.5) { return " NW"; }
+    if (direction >= 337.5 && direction <= 360) { return " N"; }
+
     return "?";
 }
 
