@@ -23,20 +23,25 @@ async function callWeather() {
         return data;
     }
     catch (error) {
-        div = document.getElementById("error");
-
-        // create and format error message
-        text = document.createElement('h3');
-        text.textContent = "Forecast is currently unavailable";
-        text.style.margin = "0";
-        div.appendChild(text);
-
-        // hide weather forecast elements
-        document.getElementById("current-conditions").style.display = "none";
-        document.getElementById("hourly-conditions").style.display = "none";
-
-        // log exact error to console for debugging purposes
         console.error('Error:', error);
+
+        const errorMsg = '<div style="width:100%; text-align:center; padding: 20px; font-weight: bold; color: gray;">Forecast Unavailable</div>';
+
+        const currentContainer = document.querySelector("#current-conditions .inner-container");
+        if (currentContainer) {
+            currentContainer.style.display = ""; // Ensure visible
+            currentContainer.innerHTML = errorMsg;
+        }
+
+        const hourlyContainer = document.querySelector("#hourly-conditions .inner-container");
+        if (hourlyContainer) {
+            hourlyContainer.style.display = ""; // Ensure visible
+            hourlyContainer.innerHTML = errorMsg;
+        }
+
+        // Ensure parent sections are visible
+        document.getElementById("current-conditions").style.display = "";
+        document.getElementById("hourly-conditions").style.display = "";
     }
 }
 
@@ -50,7 +55,7 @@ async function callAlert() {
     alertBar.innerHTML = ''; // Clear previous alerts
     alertBar.style.display = 'none'; // Hide by default
 
-    const proxy = 'https://api.allorigins.win/get?url=';
+    const proxy = 'https://corsproxy.io/?';
     const weatherRss = 'https://weather.gc.ca/rss/battleboard/mb9_e.xml'; // Winnipeg Weather Alerts
     const aqhiRss = 'https://weather.gc.ca/rss/battleboard/aq434_aq_e.xml'; // Winnipeg Air Quality
 
@@ -58,10 +63,10 @@ async function callAlert() {
 
     const fetchFeed = async (url) => {
         try {
-            const response = await fetch(proxy + url);
-            const data = await response.json();
+            const response = await fetch(proxy + encodeURIComponent(url));
+            const data = await response.text();
             const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(data.contents, "application/xml");
+            const xmlDoc = parser.parseFromString(data, "application/xml");
             const entries = xmlDoc.getElementsByTagName("entry"); // Atom feeds use 'entry'
 
             for (const entry of entries) {
@@ -164,12 +169,12 @@ function renderAlert() {
  * calls current and hourly functions on successful api call
  */
 async function display() {
+    // Start alert fetch immediately (parallel execution)
+    callAlert();
+
     const data = await callWeather();
     currentCondtions(data);
     hourlyConditions(data);
-
-    // const alert = await callAlert();
-    callAlert();
 }
 
 

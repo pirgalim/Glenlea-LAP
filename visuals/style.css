@@ -194,7 +194,7 @@ section {
 
 h2.block-label {
     margin: 5px 5px 15px 5px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 
 h3.block-label {
