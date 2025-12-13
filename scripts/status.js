@@ -3,8 +3,8 @@ async function call() {
         const response = await fetch('http://ac19bugf.physics.umanitoba.ca');
         const data = await response.json();
         return data;
-    } 
-    catch (error) {     
+    }
+    catch (error) {
         console.error('Error:', error);
     }
 }
@@ -14,7 +14,7 @@ async function call() {
 
 async function display() {
     const data = await call();
-    if(data) {
+    if (data) {
         update(data);
     }
 }
@@ -36,7 +36,7 @@ function update(data) {
     const focuser_text = document.getElementById('focuser-text');
     const rotator_text = document.getElementById('rotator-text');
 
-    
+
 
 
     const time = document.getElementById('time-status-text');
@@ -53,7 +53,7 @@ function update(data) {
    */
     function setStatus(status, element, messageT, messageF) {
 
-        if(status == "true") {
+        if (status == "true") {
             element.textContent = messageT;
             element.style.color = "green";
         }
@@ -92,10 +92,10 @@ function update(data) {
     //     track_text.textContent = "Inactive";
     //     track_text.style.color = "gray";
     // }
-    
+
 
     // slew status
-    if(slewing == "true FIXME:") {
+    if (slewing == "true FIXME:") {
         // slew_text.textContent = "Active";
         // slew_text.style.color = "green";
         slew_prog.style.display = "block";
@@ -108,7 +108,7 @@ function update(data) {
 
 
     // focuser status
-    if(focuser == "true") {
+    if (focuser == "true") {
         focuser_text.textContent = "Active";
         focuser_text.style.color = "green";
 
@@ -122,7 +122,7 @@ function update(data) {
 
 
     // rotator status
-    if(rotator == "true") {
+    if (rotator == "true") {
         rotator_text.textContent = "Active";
         rotator_text.style.color = "green";
     }
@@ -130,13 +130,26 @@ function update(data) {
         rotator_text.textContent = "Disconnected";
         rotator_text.style.color = "gray";
     }
- 
+
 
     // time status
 
-    time.textContent = timeUTC.split(".")[0] + " UTC";
- 
-    
+    // time status
+    const date = new Date(timeUTC + (timeUTC.endsWith("Z") ? "" : "Z"));
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Winnipeg',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZoneName: 'short'
+    });
+    time.textContent = formatter.format(date).replace(/,/g, '');
+
+
 
 
 
@@ -147,20 +160,20 @@ function update(data) {
     const alt = document.getElementById('alt-text');
     const az = document.getElementById('az-text');
     const ax_dist = document.getElementById('ax-dist-text');
-    
 
 
 
 
 
-    const hr_ra = data["mount.ra_j2000_hours"] * (1/15)  // convert to hours from degrees
-    const min_ra = (hr_ra-Math.floor(hr_ra))*60
-    const sec_ra = (min_ra-Math.floor(min_ra))*60
 
-   
+    const hr_ra = data["mount.ra_j2000_hours"] * (1 / 15)  // convert to hours from degrees
+    const min_ra = (hr_ra - Math.floor(hr_ra)) * 60
+    const sec_ra = (min_ra - Math.floor(min_ra)) * 60
 
-    
-    ra.textContent = Math.round(hr_ra) + "h " + Math.round(min_ra) + "' " + Math.round(sec_ra*10)/10 + "''" 
+
+
+
+    ra.textContent = Math.round(hr_ra) + "h " + Math.round(min_ra) + "' " + Math.round(sec_ra * 10) / 10 + "''"
 
     // ra.textContent = Math.round(hr * 1000)/1000 + " hours"
 
@@ -168,27 +181,27 @@ function update(data) {
 
     // console.log(hr_dec)
 
-    const min_dec = (hr_dec-Math.floor(hr_dec))*60
-    const sec_dec = (min_dec-Math.floor(min_dec))*60
+    const min_dec = (hr_dec - Math.floor(hr_dec)) * 60
+    const sec_dec = (min_dec - Math.floor(min_dec)) * 60
 
 
 
     // dec.textContent = Math.round(data["mount.dec_j2000_degs"] * 1000)/1000 + " degrees"
-    dec.textContent = Math.round(hr_dec) + "° " + Math.round(min_dec) + "' " + Math.round(sec_dec*10)/10 + "''" 
-    
+    dec.textContent = Math.round(hr_dec) + "° " + Math.round(min_dec) + "' " + Math.round(sec_dec * 10) / 10 + "''"
 
-    alt.textContent =  Math.round(data["mount.altitude_degs"] * 1000)/1000 + "°"
-    az.textContent = Math.round(data["mount.azimuth_degs"] * 1000)/1000 + "°"
+
+    alt.textContent = Math.round(data["mount.altitude_degs"] * 1000) / 1000 + "°"
+    az.textContent = Math.round(data["mount.azimuth_degs"] * 1000) / 1000 + "°"
 
 
 
     // ax_dist.textContent = "N/A";
 
     // ax_dist.textContent = "RA: " + data["mount.axis0.dist_to_target_arcsec"] + "''" + " - " + "DEC: " + data["mount.axis1.dist_to_target_arcsec"] + "''";
-    
-    const ra_dist = data["mount.axis0.dist_to_target_arcsec"] 
+
+    const ra_dist = data["mount.axis0.dist_to_target_arcsec"]
     const dec_dist = data["mount.axis1.dist_to_target_arcsec"]
-    const total_dist =  Math.sqrt( ra_dist**2 + dec_dist**2)
+    const total_dist = Math.sqrt(ra_dist ** 2 + dec_dist ** 2)
     ax_dist.textContent = total_dist + "''";
 }
 
