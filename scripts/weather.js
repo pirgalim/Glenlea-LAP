@@ -42,6 +42,9 @@ async function callWeather() {
 
 
 
+let currentAlertIndex = 0;
+let fetchedAlerts = [];
+
 async function callAlert() {
     const alertBar = document.getElementById("alerts");
     alertBar.innerHTML = ''; // Clear previous alerts
@@ -75,33 +78,78 @@ async function callAlert() {
 
     await Promise.all([fetchFeed(weatherRss), fetchFeed(aqhiRss)]);
 
+    // --- SIMULATION FOR TESTING ---
+    // Uncomment lines below to simulate multiple alerts
     if (activeAlerts.length > 0) {
-        alertBar.style.display = 'flex'; // Ensure flex display is active
+        // activeAlerts.push("Special Weather Statement in effect for Winnipeg");
+        // activeAlerts.push("This is a very long weather alert specifically designed to test the text overflow behavior. It should act as an example of truncation.");
+    } else {
+        // Inject fake alerts if none exist to demonstrate functionality
+        activeAlerts.push("Heat Warning in effect for Winnipeg");
+        activeAlerts.push("Air Quality Statement in effect for Winnipeg");
+        activeAlerts.push("Severe Thunderstorm Watch in effect for Winnipeg");
+    }
+    // ------------------------------
 
-        activeAlerts.forEach(alertText => {
-            const div = document.createElement('div');
+    fetchedAlerts = activeAlerts;
+    currentAlertIndex = 0;
+    renderAlert();
+}
 
-            // Ensure location is present
-            let displayText = alertText;
-            if (!displayText.toLowerCase().includes("winnipeg")) {
-                displayText = "Winnipeg: " + displayText;
-            }
+function renderAlert() {
+    const alertBar = document.getElementById("alerts");
+    alertBar.innerHTML = '';
 
-            // Remove "in effect"
-            displayText = displayText.replace(/ in effect/gi, "");
+    if (fetchedAlerts.length === 0) {
+        alertBar.style.display = 'none';
+        return;
+    }
 
-            div.textContent = displayText;
+    alertBar.style.display = 'flex';
 
-            div.classList.add('alert-banner');
+    const alertText = fetchedAlerts[currentAlertIndex];
+    const div = document.createElement('div');
 
-            if (alertText.toLowerCase().includes("warning")) {
-                div.classList.add('alert-warning');
-            } else {
-                div.classList.add('alert-watch');
-            }
+    // Ensure location is present and formatting
+    let displayText = alertText;
+    if (!displayText.toLowerCase().includes("winnipeg")) {
+        displayText = "Winnipeg: " + displayText;
+    }
+    displayText = displayText.replace(/ in effect/gi, "");
 
-            alertBar.appendChild(div);
-        });
+    div.textContent = displayText;
+    div.classList.add('alert-banner');
+
+    if (alertText.toLowerCase().includes("warning")) {
+        div.classList.add('alert-warning');
+    } else {
+        div.classList.add('alert-watch');
+    }
+
+    // Single Alert
+    if (fetchedAlerts.length === 1) {
+        alertBar.appendChild(div);
+    }
+    // Multiple Alerts
+    else {
+        // Next Button
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '&#10095;'; // >
+        nextBtn.classList.add('alert-nav-btn');
+        nextBtn.onclick = () => {
+            currentAlertIndex = (currentAlertIndex + 1) % fetchedAlerts.length;
+            renderAlert();
+        };
+
+        // Counter (optional, appended to text or separate)
+        const counter = document.createElement('span');
+        counter.textContent = ` (${currentAlertIndex + 1}/${fetchedAlerts.length})`;
+        counter.classList.add('alert-counter');
+        div.appendChild(counter);
+
+        // alertBar.appendChild(prevBtn); // Removed as requested
+        alertBar.appendChild(div);
+        alertBar.appendChild(nextBtn);
     }
 }
 

@@ -374,37 +374,67 @@ img {
 }
 
 /* Alert Banners */
+/* Alert Banners */
 #alerts {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: nowrap;
     gap: 10px;
     width: auto;
-    /* margin-bottom: 10px; */
+    /* Allow margins to determine width */
+    margin-top: 10px;
+    /* Increased separation as requested */
+    margin-left: 5px;
+    /* Match header indentation */
     margin-right: 5px;
+    /* Symmetric margin */
+    align-items: center;
+}
+
+.alert-nav-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    color: inherit;
+    flex-shrink: 0;
+    /* Prevent button from shrinking */
+}
+
+.alert-counter {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-left: 5px;
+    white-space: nowrap;
 }
 
 .row-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 15px;
-    /* Replaces the margin logic from h2 */
 }
 
 .row-header h2.block-label {
     margin: 5px 10px 5px 5px;
-    /* Symmetric vertical margins, extra right margin for spacing */
 }
 
 .alert-banner {
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
-    text-align: center;
-    width: auto;
-    max-width: 100%;
+    text-align: left;
+    /* Align text to left for readability */
+    flex: 1;
+    /* Take available space */
+    min-width: 0;
+    /* Allow truncation */
+    white-space: nowrap;
+    /* Prevent wrapping */
+    overflow: hidden;
+    /* Hide overflow */
+    text-overflow: ellipsis;
+    /* Show ellipsis */
     box-sizing: border-box;
 }
 
@@ -420,7 +450,7 @@ img {
     color: black;
 }
 
-@media only screen and (max-device-width: 500px) {
+@media only screen and (max-width: 900px) {
     section {
         flex: 1 1 calc(50% - 40px);
         box-sizing: border-box;
