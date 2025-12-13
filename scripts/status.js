@@ -16,7 +16,23 @@ async function display() {
     const data = await call();
     if (data) {
         update(data);
+    } else {
+        showOffline();
     }
+}
+
+function showOffline() {
+    const containers = [
+        document.querySelector('#status-info .inner-container'),
+        document.querySelector('#current-position .inner-container'),
+        document.querySelector('#additional-data .inner-container')
+    ];
+
+    containers.forEach(container => {
+        if (container) {
+            container.innerHTML = '<div style="width:100%; text-align:center; padding: 20px; font-weight: bold; color: gray;">System Offline - Unable to fetch data</div>';
+        }
+    });
 }
 
 
