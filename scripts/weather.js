@@ -90,9 +90,7 @@ async function callAlert() {
         // activeAlerts.push("This is a very long weather alert specifically designed to test the text overflow behavior. It should act as an example of truncation.");
     } else {
         // Inject fake alerts if none exist to demonstrate functionality
-        activeAlerts.push("Heat Warning in effect for Winnipeg");
-        activeAlerts.push("Air Quality Statement in effect for Winnipeg");
-        activeAlerts.push("Severe Thunderstorm Watch in effect for Winnipeg");
+        // activeAlerts.push("Alignment Test: Warning in effect");
     }
     // ------------------------------
 
@@ -103,14 +101,26 @@ async function callAlert() {
 
 function renderAlert() {
     const alertBar = document.getElementById("alerts");
+    const alertSpacer = document.getElementById("alert-spacer");
     alertBar.innerHTML = '';
 
     if (fetchedAlerts.length === 0) {
         alertBar.style.display = 'none';
+        if (alertSpacer) alertSpacer.style.display = 'none';
         return;
     }
 
     alertBar.style.display = 'flex';
+    if (alertSpacer) {
+        alertSpacer.style.display = 'flex';
+        // Mimic alert structure for identical height
+        alertSpacer.className = 'alert-banner';
+        alertSpacer.innerHTML = '&nbsp;'; // Non-breaking space to retain height
+        alertSpacer.style.visibility = 'hidden'; // Make it invisible but take up space
+        alertSpacer.style.background = 'transparent';
+        alertSpacer.style.border = 'none'; /* Ensure no border adds extra height if classes change */
+        alertSpacer.style.margin = '10px 5px 0 5px'; /* Explicitly match #alerts margins */
+    }
 
     const alertText = fetchedAlerts[currentAlertIndex];
     const div = document.createElement('div');
