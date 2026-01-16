@@ -182,9 +182,22 @@ async function display() {
     // Start alert fetch immediately (parallel execution)
     callAlert();
 
-    const data = await callWeather();
-    currentCondtions(data);
-    hourlyConditions(data);
+    const fetchWeatherData = async () => {
+        const data = await callWeather();
+        if (data) {
+            currentCondtions(data);
+            hourlyConditions(data);
+        }
+    };
+
+    await fetchWeatherData();
+
+    // Set up periodic updates
+    // Alerts: every 5 minutes
+    setInterval(callAlert, 5 * 60 * 1000);
+
+    // Weather: every 15 minutes
+    setInterval(fetchWeatherData, 15 * 60 * 1000);
 }
 
 
@@ -213,38 +226,48 @@ function currentCondtions(data) {
     // HTML text element
     let text;
 
+    // Helper to update or create text element
+    const updateText = (parent, content) => {
+        let p = parent.querySelector('p');
+        if (!p) {
+            p = document.createElement('p');
+            parent.appendChild(p);
+        }
+        p.textContent = content;
+    };
+
     // temperature
-    text = document.createElement('p');
-    text.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
-    temp.appendChild(text);
-    // temp.style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/TEMP_THRESH_HOT + ')';
+    updateText(temp, current["temperature_2m"] + currentUnits["temperature_2m"]);
 
     // cloud cover
-    text = document.createElement('p');
-    text.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
-    cloud.appendChild(text);
-    // cloud.style.background = 'rgba(' + CLOUD_COLOUR + ',' + current["cloud_cover"]/CLOUD_THRESH + ')';
+    updateText(cloud, current["cloud_cover"] + currentUnits["cloud_cover"]);
 
     // precipitation
-    text = document.createElement('p');
-    text.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
-    precip.appendChild(text);
-    // precip.style.background = 'rgba(' + PRECIP_COLOUR + ',' + current["precipitation"]/PRECIP_THRESH + ')';
+    updateText(precip, current["precipitation"] + " " + currentUnits["precipitation"]);
 
     // wind speed
     const direction = Number(data["current"]["wind_direction_10m"]);
-    text = document.createElement('p');
-    text.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
-    wind.appendChild(text);
-    // wind.style.background = 'rgba(' + WIND_COLOUR + ',' + current["wind_speed_10m"]/WIND_THRESH + ')';
+    updateText(wind, current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction));
 
 
     // timestamp from last request
-    text = document.createElement('p');
+    // Last Updated logic needs special handling as it writes to specific ID or appends
+    // In HTML: <i id="timeCond-label" class="current">Last updated on </i>
+    // The original code appended a <p>.
+    // Let's ensure we target that specific appended <p> or the text node.
+    // The original code was: timeCond.appendChild(text);
+
+    // Cleanest way:
+    // Check if timeCond has children other than text nodes? 
+    // It has text content "Last updated on ". 
+    // We'll append a span or p if not present.
+    let timeText = timeCond.querySelector('span'); // Use span for inline
+    if (!timeText) {
+        timeText = document.createElement('span');
+        timeCond.appendChild(timeText);
+    }
     var time = current["time"].split("T");
-    text.textContent = time[0] + " at " + time[1] + " "; // data["timezone_abbreviation"]
-    timeCond.appendChild(text);
-    // elements[4].appendChild(text);
+    timeText.textContent = time[0] + " at " + time[1] + " ";
 }
 
 
@@ -290,6 +313,12 @@ function hourlyConditions(data) {
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-hourly");
     // console.log(elements.length);
+
+    // Clear previous content to prevent stacking on refresh
+    for (let el of elements) {
+        el.innerHTML = '';
+        el.style.borderRight = "none"; // Reset border style
+    }
 
     // append data to each element from 'elements'
     for (let i = 0; i < elements.length; i++) {
