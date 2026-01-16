@@ -1,53 +1,56 @@
+/* =========================================
+   Variables & Themes
+   ========================================= */
 :root {
-    /* Light Theme Variables */
+    /* Light Theme Colors */
     --bg-body: whitesmoke;
     --bg-container: whitesmoke;
     --bg-section: whitesmoke;
     --bg-block: rgba(211, 211, 211, 0.5);
     --bg-block-hover: rgba(200, 200, 200, 0.8);
     --bg-hourly: white;
-
     --text-primary: black;
     --text-secondary: #333;
-
     --border-color: lightgray;
     --shadow-color: gray;
-
     --accent-color: lightblue;
+
+    /* Button Colors */
     --button-bg: lightblue;
     --button-text: black;
     --button-active-bg: #38bdf8;
     --button-active-text: black;
 
-    /* Layout */
+    /* Layout Dimensions */
     --max-width: 2000px;
     --min-section-width: 500px;
 }
 
 [data-theme="dark"] {
-    /* Dark Theme Variables */
+    /* Dark Theme Colors */
     --bg-body: #1e1e1e;
     --bg-container: #1e1e1e;
     --bg-section: #2d2d2d;
     --bg-block: #383838;
     --bg-block-hover: #4a4a4a;
     --bg-hourly: #2d2d2d;
-
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
-
     --border-color: #444;
     --shadow-color: #000;
-
     --accent-color: #bb86fc;
+
+    /* Dark Mode Buttons */
     --button-bg: #3700b3;
     --button-text: white;
     --button-active-bg: #38bdf8;
     --button-active-text: black;
 }
 
+/* =========================================
+   Global Reset & Base Styles
+   ========================================= */
 body {
-    /* cosmetics */
     font-family: helvetica, sans-serif;
     text-align: center;
     background-color: var(--bg-body);
@@ -57,229 +60,14 @@ body {
     padding: 20px 0;
 }
 
-/* allows section elements to flex dynamically */
-.container {
-    /* flex properties */
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-
-    /* align items inside the container */
-    justify-content: center;
-
-    /* limits page width on larger displays */
-    max-width: var(--max-width);
-
-    /* used to center the container */
-    margin: 0 auto;
-    width: 98%;
-
-    /* cosmetics */
-    padding: 8px;
-    background-color: var(--bg-container);
-    border-radius: 10px;
-    transition: background-color 0.3s;
-    position: relative;
-    /* Establishes positioning context for header controls */
-}
-
-.header-controls {
-    right: 16px;
-}
-
-/* main content area */
-section {
-    /* determines starting width of section element */
-    flex: 1 1 calc(50% - 40px);
-
-    /* prevents sections from getting too small - if threshold is met flex wrap will be applied */
-    min-width: var(--min-section-width);
-
-    box-sizing: border-box;
-    margin: 8px 8px;
-    padding: 25px;
-    background-color: var(--bg-section);
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px var(--shadow-color);
-    text-align: left;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-.title {
-    text-align: center;
-    padding-bottom: 10px;
-    font-size: large;
-    margin-top: 0;
-}
-
-#sqm-data {
-    text-align: center;
-}
-
-/* allows flex capability inside blocks */
-.inner-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-}
-
-.block {
-    box-sizing: border-box;
-    min-width: 25%;
-}
-
-.block-legend {
-    box-sizing: border-box;
-    border: 1px solid var(--border-color);
-    text-align: center;
-    justify-content: center;
-    padding: 10px;
-    width: 25%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.legend-text {
-    width: 100px;
-    padding: 5px;
-    color: black;
-    /* Keep legend text black for readability on colored backgrounds */
-}
-
-.block-full {
-    box-sizing: border-box;
-    min-width: 100%;
-}
-
-.inner-block {
-    box-sizing: border-box;
-    text-align: left;
-}
-
-.break {
-    box-sizing: border-box;
-    width: 100%;
-    height: 20px;
-}
-
-.camera-tile {
-    padding: 10px;
-    text-align: center;
-}
-
-.current,
-.current-full,
-.current-small {
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: var(--bg-block);
-    transition: background-color 0.3s;
-}
-
-.current {
-    width: calc(50% - 10px);
-    margin: 5px;
-}
-
-.current-full {
-    width: 100%;
-}
-
-.current-small {
-    width: calc(25% - 10px);
-    margin: 5px;
-}
-
-h2.block-label {
-    margin: 5px 5px 15px 5px;
-    /* padding-left: 10px; */
-}
-
-h3.block-label {
+h3 {
     margin: 0;
     margin-bottom: 5px;
-}
-
-.inner-container-hourly {
-    display: flex;
-    width: calc(100% - 175px);
-    overflow-x: scroll;
-    background-color: var(--bg-hourly);
-    transition: background-color 0.3s;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.block-hourly {
-    box-sizing: border-box;
-    min-width: 80px;
-    text-align: center;
-}
-
-#hourly-labels {
-    width: 175px;
+    /* Spacing for block headers */
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: var(--bg-hourly);
-    /* Ensure background matches for rounding */
-}
-
-.hourly-label {
-    padding-left: 10px;
-    border-top: 1px solid var(--border-color);
-    box-sizing: border-box;
-    height: 45px;
-    /* Fixed height for alignment */
-    display: flex;
-    align-items: center;
-    color: var(--text-primary);
-}
-
-.inner-container-hourly::-webkit-scrollbar {
-    background-color: var(--bg-block);
-    height: 10px;
-}
-
-.weather-cell {
-    height: 45px;
-    /* Fixed height for alignment */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    /* Horizontal padding only */
-    box-sizing: border-box;
-    background-color: white;
-    /* Ensure consistent light base for colors */
-    background-image: linear-gradient(var(--cell-bg-color, transparent), var(--cell-bg-color, transparent));
-    border-top: 1px solid var(--border-color);
-    color: black;
-    /* Always black text on colored backgrounds */
-}
-
-.weather-cell-header {
-    background-color: lightgray;
-    color: black;
-}
-
-.inner-container-hourly::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: 10px;
-}
-
-#hourly-hour-label:hover {
-    background-color: var(--accent-color);
-}
-
-.cam-label {
-    margin-top: 15px;
-    margin-bottom: 10px;
+    white-space: nowrap;
+    /* Prevent wrapping for long titles */
 }
 
 p,
@@ -293,13 +81,97 @@ a {
     text-decoration: underline;
 }
 
-h3 {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+img {
+    width: 100%;
+    border-radius: 5px;
 }
 
+/* =========================================
+   Layout Containers
+   ========================================= */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 98%;
+    padding: 8px;
+    background-color: var(--bg-container);
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    position: relative;
+    /* Context for absolute header controls */
+    box-sizing: border-box;
+    /* Ensure padding doesn't overflow width */
+}
+
+section {
+    flex: 1 1 calc(50% - 40px);
+    /* Flex grow/shrink with base width */
+    min-width: var(--min-section-width);
+    /* Prevent getting too narrow before wrapping */
+    box-sizing: border-box;
+    margin: 8px 8px;
+    padding: 25px;
+    background-color: var(--bg-section);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px var(--shadow-color);
+    text-align: left;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.break {
+    box-sizing: border-box;
+    width: 100%;
+    height: 20px;
+}
+
+/* =========================================
+   Header & Controls
+   ========================================= */
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+}
+
+.logo {
+    border-radius: 10px;
+    height: 50px;
+}
+
+.icon-sun,
+.icon-moon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+#theme-toggle:active {
+    background-color: var(--bg-block);
+    color: var(--text-primary);
+    transform: none;
+}
+
+.title {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: large;
+    margin-top: 0;
+}
+
+/* =========================================
+   Components (Buttons, Alerts)
+   ========================================= */
+/* Buttons */
 button {
     padding: 5px 15px;
     font-size: small;
@@ -344,38 +216,6 @@ a.button:active {
     transform: none;
 }
 
-img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.img-radar {
-    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
-    background-size: contain;
-    width: 100%;
-}
-
-.logo {
-    border-radius: 10px;
-    height: 50px;
-}
-
-/* Theme Toggle Button in Header */
-.header-controls {
-    position: absolute;
-    top: 20px;
-    right: 16px;
-    /* Aligns with section margin (8px) + container padding (8px) */
-}
-
-#theme-toggle:active {
-    background-color: var(--bg-block);
-    color: var(--text-primary);
-    transform: none;
-    /* Prevent movement if any */
-}
-
-/* Alert Banners */
 /* Alert Banners */
 #alerts {
     display: flex;
@@ -383,13 +223,9 @@ img {
     flex-wrap: nowrap;
     gap: 10px;
     width: auto;
-    /* Allow margins to determine width */
     margin-top: 10px;
-    /* Increased separation as requested */
     margin-left: 5px;
-    /* Match header indentation */
     margin-right: 5px;
-    /* Symmetric margin */
     align-items: center;
 }
 
@@ -402,7 +238,6 @@ img {
     padding: 0 5px;
     color: inherit;
     flex-shrink: 0;
-    /* Prevent button from shrinking */
 }
 
 .alert-counter {
@@ -412,31 +247,16 @@ img {
     white-space: nowrap;
 }
 
-.row-header {
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-}
-
-.row-header h2.block-label {
-    margin: 5px 10px 5px 5px;
-}
-
 .alert-banner {
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
     text-align: left;
-    /* Align text to left for readability */
     flex: 1;
-    /* Take available space */
     min-width: 0;
-    /* Allow truncation */
     white-space: nowrap;
-    /* Prevent wrapping */
     overflow: hidden;
-    /* Hide overflow */
     text-overflow: ellipsis;
-    /* Show ellipsis */
     box-sizing: border-box;
 }
 
@@ -452,20 +272,185 @@ img {
     color: black;
 }
 
-.icon-sun,
-.icon-moon {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+/* =========================================
+   Modules & Specific Sections
+   ========================================= */
+/* Camera Tiles */
+.camera-tile {
+    padding: 10px;
+    text-align: center;
 }
 
+.cam-label {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Status Blocks */
+.current,
+.current-full,
+.current-small {
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--bg-block);
+    transition: background-color 0.3s;
+}
+
+.current {
+    width: calc(50% - 10px);
+    margin: 5px;
+}
+
+.current-full {
+    width: 100%;
+}
+
+.current-small {
+    width: calc(25% - 10px);
+    margin: 5px;
+}
+
+.row-header {
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+h2.block-label {
+    margin: 5px 5px 15px 5px;
+}
+
+.row-header h2.block-label {
+    margin: 5px 10px 5px 5px;
+}
+
+h3.block-label {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.inner-block {
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.block-full {
+    box-sizing: border-box;
+    min-width: 100%;
+}
+
+/* Hourly Forecast */
+.inner-container-hourly {
+    display: flex;
+    width: calc(100% - 175px);
+    overflow-x: scroll;
+    background-color: var(--bg-hourly);
+    transition: background-color 0.3s;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.inner-container-hourly::-webkit-scrollbar {
+    background-color: var(--bg-block);
+    height: 10px;
+}
+
+.inner-container-hourly::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}
+
+.block-hourly {
+    box-sizing: border-box;
+    min-width: 80px;
+    text-align: center;
+}
+
+#hourly-labels {
+    width: 175px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--bg-hourly);
+}
+
+.hourly-label {
+    padding-left: 10px;
+    border-top: 1px solid var(--border-color);
+    box-sizing: border-box;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+#hourly-hour-label:hover {
+    background-color: var(--accent-color);
+}
+
+.weather-cell {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    background-color: white;
+    background-image: linear-gradient(var(--cell-bg-color, transparent), var(--cell-bg-color, transparent));
+    border-top: 1px solid var(--border-color);
+    color: black;
+}
+
+.weather-cell-header {
+    background-color: lightgray;
+    color: black;
+}
+
+/* Legends */
+.block-legend {
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    width: 25%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.legend-text {
+    width: 100px;
+    padding: 5px;
+    color: black;
+}
+
+/* SQM & Radar */
+#sqm-data {
+    text-align: center;
+}
+
+.img-radar {
+    background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
+    background-size: contain;
+    width: 100%;
+}
+
+/* =========================================
+   Mobile / Responsive Design
+   ========================================= */
 @media only screen and (max-width: 900px) {
+
+    /* Full width container for mobile */
     .container {
         width: 100%;
         padding: 0;
         border-radius: 0;
     }
 
+    /* Edge-to-edge sections with separators */
     section,
     .camera-tile {
         flex: 1 1 100%;
@@ -473,6 +458,7 @@ img {
         min-width: 0;
         margin: 0;
         padding: 30px 15px;
+        /* Consistent large padding */
         background-color: transparent;
         border: none;
         border-bottom: 1px solid var(--border-color);
@@ -484,6 +470,17 @@ img {
         border-bottom: none;
     }
 
+    /* Header adjustments */
+    .header-controls {
+        position: static;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    /* Hourly Forecast Mobile */
     #hourly-labels {
         display: none;
     }
@@ -492,7 +489,16 @@ img {
         font-size: small;
     }
 
-    /* Mobile adjustments for legend */
+    .inner-container-hourly {
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        background-color: var(--bg-hourly);
+        border-radius: 10px;
+        /* Round both ends on mobile */
+    }
+
+    /* Legend Adjustments */
     .block-legend {
         width: 100%;
         margin-bottom: 10px;
@@ -508,19 +514,7 @@ img {
         font-size: small;
     }
 
-    .inner-container-hourly {
-        display: flex;
-        width: 100%;
-        overflow-x: scroll;
-        background-color: var(--bg-hourly);
-    }
-
-    .header-controls {
-        position: static;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-        margin-top: 10px;
+    h1 {
+        font-size: x-large;
     }
 }
