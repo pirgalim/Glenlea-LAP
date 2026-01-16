@@ -310,6 +310,10 @@ function hourlyConditions(data) {
         times[i] = times[i].split("T")[1];
     }
 
+    times[startPosition] = "Now";
+
+    console.log(times);
+
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-hourly");
     // console.log(elements.length);
