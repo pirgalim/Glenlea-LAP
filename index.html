@@ -3,10 +3,6 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="visuals/style.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=air,rainy" /> -->
 </head>
 
 
@@ -17,41 +13,17 @@
         <img id="site-logo" class="logo" src="visuals/logo.svg" alt="University of Manitoba Logo">
         <h1 style="width: 100%;">Glenlea Live Allsky Portal</h1>
 
-
-
         <div class="header-controls">
             <button id="theme-toggle" style="display: flex; align-items: center; gap: 5px;">
-                <!-- <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    style="display: none;">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg> -->
                 <img src="visuals/sun.svg" alt="Sun" class="icon-sun">
                 <img src="visuals/moon.svg" alt="Moon" class="icon-moon">
                 Change Theme
             </button>
         </div>
-
     </div>
-
-
-
 
     <!-- main section -->
     <div name="current-data" class="container">
-
 
         <!-- camera section -->
         <section id="indoor-cam" class="camera-tile">
@@ -69,7 +41,6 @@
             <button id="pause-outdoor">Pause</button>
             <button id="live-outdoor">Live</button>
         </section>
-
 
         <!-- status section -->
         <section id="status-info" class="inner-block">
@@ -134,7 +105,6 @@
             </div>
         </section>
 
-
         <!-- weather fetch error -->
         <div id="error" class="block-full"></div>
 
@@ -148,25 +118,21 @@
                 <div id="temp-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="block-label" style="width:80%">Temperature</h3>
-                        <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">ac_unit</i> -->
                     </div>
                 </div>
                 <div id="cloud-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="block-label" style="width:80%">Cloud Cover</h3>
-                        <!-- <i class="material-icons" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">cloud</i> -->
                     </div>
                 </div>
                 <div id="precip-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="block-label" style="width:80%">Precipitation</h3>
-                        <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">rainy</span> -->
                     </div>
                 </div>
                 <div id="wind-label" style="padding:10px" class="current">
                     <div style="display: flex">
                         <h3 class="block-label" style="width:80%">Wind Speed</h3>
-                        <!-- <span class="material-symbols-outlined" style="font-size: 50px ;margin-bottom:-25px; color:skyblue">air</span> -->
                     </div>
                 </div>
                 <i id="timeCond-label" class="current">Last updated on </i>
@@ -214,12 +180,11 @@
         </section>
 
         <section id="finderscope-view" style="text-align:left">
-            <h2 class="block-label">Live View</h2>
+            <h2 class="block-label">Live View (Coming Soon)</h2>
             <!-- src="http://allsky.physics.umanitoba.ca/finderscope.png" -->
             <img id="finderscope" src="/visuals/nosignal.png" alt="Reconnecting... may take up to 10 seconds">
             <div style="text-align: center">
                 <div class="break"></div>
-                <h2>*** Coming Soon ***</h2>
             </div>
         </section>
 
@@ -321,36 +286,8 @@
             </div>
         </section>
 
-        <!-- line break between sections -->
+        <!-- line break between sections; allows for section to take up full width -->
         <div class="break" style="height:0"></div>
-
-        <!-- <section id="sqm-data" style="text-align:left">
-
-            <h2 class="block-label">Sky Quality</h2>
-
-            <div class="inner-container" style="background-color:white; justify-content:right">
-                <img src="http://astro.physics.umanitoba.ca/sqm/dm.png" alt="GAO data" style="width:40%;"> 
-            </div>
-
-            <img src="http://astro.physics.umanitoba.ca/sqm/combined.png" alt="SQM plot" style="border-radius:0">
-
-            <div style="text-align:center">
-                <a href="http://astro.physics.umanitoba.ca/sqm/server.out">Download data log: GAO</a>   
-            </div>
-            
-        </section>
-
-        <section id="finderscope-view" style="text-align:left">
-            
-            <h2 class="block-label">Live View</h2>
-            <img id="outdoor" src="http://allsky.physics.umanitoba.ca/outdoor.png" alt="Reconnecting... may take up to 10 seconds" >
-              
-            <div style="text-align: center">
-                <div class="break"></div>
-                <h2>*** Coming Soon ***</h2>
-            </div>
-            
-        </section> -->
 
         <section id="weather-forecast">
             <h2 class="block-label">Clear Dark Sky Forecast</h2>
@@ -364,7 +301,6 @@
 
         <!-- line break between sections; allows for section to take up full width -->
         <div class="break" style="height:0"></div>
-
 
         <section id="links">
             <h2 class="block-label">Quick Links</h2>
@@ -380,7 +316,6 @@
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a>
                 <a class="button" style="width:45%; background-color: lightgray;" href=""></a> -->
             </div>
-
         </section>
 
         <section id="radar">
@@ -388,59 +323,7 @@
             <img class="img-radar"
                 src="https://maps-api.pelmorex.com/fuse_image?layer=radar&amp;zoom=7&amp;lat=49.85377727&amp;lon=-97.17474286&amp;width=638&amp;height=200">
         </section>
-
-
     </div>
-
-
-
-    <!-- <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        const iconSun = document.querySelector('.icon-sun');
-        const iconMoon = document.querySelector('.icon-moon');
-        const siteLogo = document.getElementById('site-logo');
-
-        function updateIcons(theme) {
-            if (theme === 'dark') {
-                iconSun.style.display = 'block';
-                iconMoon.style.display = 'none';
-                siteLogo.src = 'visuals/logo-dark.svg';
-            } else {
-                iconSun.style.display = 'none';
-                iconMoon.style.display = 'block';
-                siteLogo.src = 'visuals/logo.svg';
-            }
-        }
-
-        // Check for saved user preference, if any, on load of the website
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            htmlElement.setAttribute('data-theme', savedTheme);
-            updateIcons(savedTheme);
-        } else {
-            // Optional: Check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                htmlElement.setAttribute('data-theme', 'dark');
-                updateIcons('dark');
-            } else {
-                updateIcons('light');
-            }
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (htmlElement.getAttribute('data-theme') === 'dark') {
-                htmlElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                updateIcons('light');
-            } else {
-                htmlElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                updateIcons('dark');
-            }
-        });
-    </script> -->
-
 
 
     <!-- load scripts -->
