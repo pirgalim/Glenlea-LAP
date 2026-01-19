@@ -20,10 +20,12 @@ outdoorImage.onerror = imageNotFoundOutdoor;
 /**
  * On page load
  */
-$(document).ready(() => { buttonLive.click() });
-$(document).ready(() => { buttonLiveOutdoor.click() });
-$(document).ready(() => { outdoorImage.src = "http://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime(); });
-$(document).ready(() => { indoorImage.src = "http://allsky.physics.umanitoba.ca/indoor.png?" + new Date().getTime(); });
+document.addEventListener('DOMContentLoaded', () => {
+    buttonLive.click();
+    buttonLiveOutdoor.click();
+    outdoorImage.src = "https://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
+    indoorImage.src = "https://allsky.physics.umanitoba.ca/indoor.png?" + new Date().getTime();
+});
 
 /**
  * Handle image source error
@@ -44,7 +46,7 @@ function imageNotFoundOutdoor() {
  */
 function updateImageIndoor() {
 
-    const newSrc = "http://allsky.physics.umanitoba.ca/indoor.png?" + new Date().getTime();
+    const newSrc = "https://allsky.physics.umanitoba.ca/indoor.png?" + new Date().getTime();
 
     // temp image
     const tempImage = new Image()
@@ -68,7 +70,7 @@ function updateImageIndoor() {
 }
 function updateImageOutdoor() {
 
-    const newSrc = "http://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
+    const newSrc = "https://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
 
     // temp image
     const tempImage = new Image()

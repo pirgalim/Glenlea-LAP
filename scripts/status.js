@@ -1,6 +1,6 @@
 async function call() {
     try {
-        const response = await fetch('http://ac19bugf.physics.umanitoba.ca');
+        const response = await fetch('https://ac19bugf.physics.umanitoba.ca');
         const data = await response.json();
         return data;
     }
