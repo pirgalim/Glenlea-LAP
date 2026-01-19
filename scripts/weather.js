@@ -21,49 +21,150 @@ async function callWeather() {
         const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.6451093&longitude=-97.1223097&current=temperature_2m,precipitation,cloud_cover,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,cloud_cover,wind_speed_10m,wind_direction_10m&timezone=America%2FChicago&past_days=1&forecast_days=3');
         const data = await response.json();
         return data;
-    } 
-    catch(error) {
-        div = document.getElementById("error");
-
-        // create and format error message
-        text = document.createElement('h3');
-        text.textContent = "Forecast is currently unavailable";
-        text.style.margin = "0";
-        div.appendChild(text);
-        
-        // hide weather forecast elements
-        document.getElementById("current-conditions").style.display = "none";
-        document.getElementById("hourly-conditions").style.display = "none";
-
-        // log exact error to console for debugging purposes
+    }
+    catch (error) {
         console.error('Error:', error);
+
+        const errorMsg = '<div style="width:100%; text-align:center; padding: 20px; font-weight: bold; color: gray;">Forecast Unavailable</div>';
+
+        const currentContainer = document.querySelector("#current-conditions .inner-container");
+        if (currentContainer) {
+            currentContainer.style.display = ""; // Ensure visible
+            currentContainer.innerHTML = errorMsg;
+        }
+
+        const hourlyContainer = document.querySelector("#hourly-conditions .inner-container");
+        if (hourlyContainer) {
+            hourlyContainer.style.display = ""; // Ensure visible
+            hourlyContainer.innerHTML = errorMsg;
+        }
+
+        // Ensure parent sections are visible
+        document.getElementById("current-conditions").style.display = "";
+        document.getElementById("hourly-conditions").style.display = "";
     }
 }
 
 
 
+let currentAlertIndex = 0;
+let fetchedAlerts = [];
+
 async function callAlert() {
+    const alertBar = document.getElementById("alerts");
+    alertBar.innerHTML = ''; // Clear previous alerts
+    alertBar.style.display = 'none'; // Hide by default
 
-    try {
+    const proxy = 'https://corsproxy.io/?';
+    const weatherRss = 'https://weather.gc.ca/rss/battleboard/mb9_e.xml'; // Winnipeg Weather Alerts
+    const aqhiRss = 'https://weather.gc.ca/rss/battleboard/aq434_aq_e.xml'; // Winnipeg Air Quality
 
-        const proxy = 'https://api.allorigins.win/get?url=';
-        // const rss = 'https://weather.gc.ca/rss/battleboard/mbrm43_e.xml';
-        const rss = 'https://weather.gc.ca/rss/battleboard/mbrm165_e.xml';
+    let activeAlerts = [];
 
-        const response = await fetch(proxy + rss);
-        const data = await response.json();
+    const fetchFeed = async (url) => {
+        try {
+            const response = await fetch(proxy + encodeURIComponent(url));
+            const data = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data, "application/xml");
+            const entries = xmlDoc.getElementsByTagName("entry"); // Atom feeds use 'entry'
 
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, "application/xml");
-        const titles = xmlDoc.getElementsByTagName("title");
-        const alertBar = document.getElementById("alerts");
-
-        for (const title of titles) {
-            alertBar.appendChild(title);
+            for (const entry of entries) {
+                const title = entry.getElementsByTagName("title")[0].textContent;
+                // Filter out "No watches or warnings" and "No alerts" messages
+                if (title && !title.includes("No watches or warnings in effect") && !title.includes("No alerts in effect")) {
+                    activeAlerts.push(title);
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching alert feed:", error);
         }
+    };
+
+    await Promise.all([fetchFeed(weatherRss), fetchFeed(aqhiRss)]);
+
+    // --- SIMULATION FOR TESTING ---
+    // Uncomment lines below to simulate multiple alerts
+    if (activeAlerts.length > 0) {
+        // activeAlerts.push("Special Weather Statement in effect for Winnipeg");
+        // activeAlerts.push("This is a very long weather alert specifically designed to test the text overflow behavior. It should act as an example of truncation.");
+    } else {
+        // Inject fake alerts if none exist to demonstrate functionality
+        // activeAlerts.push("Alignment Test: Warning in effect");
     }
-    catch(error) {
-       console.error("Error:", error);
+    // ------------------------------
+
+    fetchedAlerts = activeAlerts;
+    currentAlertIndex = 0;
+    renderAlert();
+}
+
+function renderAlert() {
+    const alertBar = document.getElementById("alerts");
+    const alertSpacer = document.getElementById("alert-spacer");
+    alertBar.innerHTML = '';
+
+    if (fetchedAlerts.length === 0) {
+        alertBar.style.display = 'none';
+        if (alertSpacer) alertSpacer.style.display = 'none';
+        return;
+    }
+
+    alertBar.style.display = 'flex';
+    if (alertSpacer) {
+        alertSpacer.style.display = 'flex';
+        // Mimic alert structure for identical height
+        alertSpacer.className = 'alert-banner';
+        alertSpacer.innerHTML = '&nbsp;'; // Non-breaking space to retain height
+        alertSpacer.style.visibility = 'hidden'; // Make it invisible but take up space
+        alertSpacer.style.background = 'transparent';
+        alertSpacer.style.border = 'none'; /* Ensure no border adds extra height if classes change */
+        alertSpacer.style.margin = '10px 5px 0 5px'; /* Explicitly match #alerts margins */
+    }
+
+    const alertText = fetchedAlerts[currentAlertIndex];
+    const div = document.createElement('div');
+
+    // Ensure location is present and formatting
+    let displayText = alertText;
+    if (!displayText.toLowerCase().includes("winnipeg")) {
+        displayText = "Winnipeg: " + displayText;
+    }
+    displayText = displayText.replace(/ in effect/gi, "");
+
+    div.textContent = displayText;
+    div.classList.add('alert-banner');
+
+    if (alertText.toLowerCase().includes("warning")) {
+        div.classList.add('alert-warning');
+    } else {
+        div.classList.add('alert-watch');
+    }
+
+    // Single Alert
+    if (fetchedAlerts.length === 1) {
+        alertBar.appendChild(div);
+    }
+    // Multiple Alerts
+    else {
+        // Next Button
+        const nextBtn = document.createElement('button');
+        nextBtn.innerHTML = '&#10095;'; // >
+        nextBtn.classList.add('alert-nav-btn');
+        nextBtn.onclick = () => {
+            currentAlertIndex = (currentAlertIndex + 1) % fetchedAlerts.length;
+            renderAlert();
+        };
+
+        // Counter (optional, appended to text or separate)
+        const counter = document.createElement('span');
+        counter.textContent = ` (${currentAlertIndex + 1}/${fetchedAlerts.length})`;
+        counter.classList.add('alert-counter');
+        div.appendChild(counter);
+
+        // alertBar.appendChild(prevBtn); // Removed as requested
+        alertBar.appendChild(div);
+        alertBar.appendChild(nextBtn);
     }
 }
 
@@ -78,16 +179,29 @@ async function callAlert() {
  * calls current and hourly functions on successful api call
  */
 async function display() {
-    const data = await callWeather();
-    currentCondtions(data);
-    hourlyConditions(data);
-
-    // const alert = await callAlert();
+    // Start alert fetch immediately (parallel execution)
     callAlert();
+
+    const fetchWeatherData = async () => {
+        const data = await callWeather();
+        if (data) {
+            currentCondtions(data);
+            hourlyConditions(data);
+        }
+    };
+
+    await fetchWeatherData();
+
+    // Set up periodic updates
+    // Alerts: every 5 minutes
+    setInterval(callAlert, 5 * 60 * 1000);
+
+    // Weather: every 15 minutes
+    setInterval(fetchWeatherData, 15 * 60 * 1000);
 }
 
 
-  
+
 
 
 /**
@@ -112,38 +226,48 @@ function currentCondtions(data) {
     // HTML text element
     let text;
 
+    // Helper to update or create text element
+    const updateText = (parent, content) => {
+        let p = parent.querySelector('p');
+        if (!p) {
+            p = document.createElement('p');
+            parent.appendChild(p);
+        }
+        p.textContent = content;
+    };
+
     // temperature
-    text = document.createElement('p');
-    text.textContent = current["temperature_2m"] + currentUnits["temperature_2m"];
-    temp.appendChild(text);
-    // temp.style.background = 'rgba(' + TEMP_COLOUR_HOT + ',' + current["temperature_2m"]/TEMP_THRESH_HOT + ')';
+    updateText(temp, current["temperature_2m"] + currentUnits["temperature_2m"]);
 
     // cloud cover
-    text = document.createElement('p');
-    text.textContent = current["cloud_cover"] + currentUnits["cloud_cover"];
-    cloud.appendChild(text);
-    // cloud.style.background = 'rgba(' + CLOUD_COLOUR + ',' + current["cloud_cover"]/CLOUD_THRESH + ')';
+    updateText(cloud, current["cloud_cover"] + currentUnits["cloud_cover"]);
 
     // precipitation
-    text = document.createElement('p');
-    text.textContent = current["precipitation"] + " " + currentUnits["precipitation"];
-    precip.appendChild(text);
-    // precip.style.background = 'rgba(' + PRECIP_COLOUR + ',' + current["precipitation"]/PRECIP_THRESH + ')';
+    updateText(precip, current["precipitation"] + " " + currentUnits["precipitation"]);
 
     // wind speed
-    const direction = Number( data["current"]["wind_direction_10m"] );
-    text = document.createElement('p');
-    text.textContent = current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction);
-    wind.appendChild(text);
-    // wind.style.background = 'rgba(' + WIND_COLOUR + ',' + current["wind_speed_10m"]/WIND_THRESH + ')';
+    const direction = Number(data["current"]["wind_direction_10m"]);
+    updateText(wind, current["wind_speed_10m"] + " " + currentUnits["wind_speed_10m"] + " " + windDirection(direction));
 
 
     // timestamp from last request
-    text = document.createElement('p');
+    // Last Updated logic needs special handling as it writes to specific ID or appends
+    // In HTML: <i id="timeCond-label" class="current">Last updated on </i>
+    // The original code appended a <p>.
+    // Let's ensure we target that specific appended <p> or the text node.
+    // The original code was: timeCond.appendChild(text);
+
+    // Cleanest way:
+    // Check if timeCond has children other than text nodes? 
+    // It has text content "Last updated on ". 
+    // We'll append a span or p if not present.
+    let timeText = timeCond.querySelector('span'); // Use span for inline
+    if (!timeText) {
+        timeText = document.createElement('span');
+        timeCond.appendChild(timeText);
+    }
     var time = current["time"].split("T");
-    text.textContent = time[0] + " at " + time[1] + " "; // data["timezone_abbreviation"]
-    timeCond.appendChild(text);
-    // elements[4].appendChild(text);
+    timeText.textContent = time[0] + " at " + time[1] + " ";
 }
 
 
@@ -154,8 +278,8 @@ function currentCondtions(data) {
 function hourlyConditions(data) {
 
     // parameters from data
-    const hourly = data["hourly"];  
-    const hourlyUnits = data["hourly_units"]; 
+    const hourly = data["hourly"];
+    const hourlyUnits = data["hourly_units"];
     const currTime = data["current"]["time"];
 
     // parameters from hourly
@@ -181,32 +305,40 @@ function hourlyConditions(data) {
 
     // find current time within the hourly array
     var startPosition = 0;
-    for(let i = 0; i < times.length; i++) {
-        if( times[i].split("T")[1].split(":")[0] == currHour && times[i].split("T")[0].split("-")[2] == currDay) { startPosition = i; }
+    for (let i = 0; i < times.length; i++) {
+        if (times[i].split("T")[1].split(":")[0] == currHour && times[i].split("T")[0].split("-")[2] == currDay) { startPosition = i; }
         times[i] = times[i].split("T")[1];
     }
+
+    times[startPosition] = "Now";
 
     // obtain list of headings that are part of the 'block-small' class
     const elements = document.getElementsByClassName("block-hourly");
     // console.log(elements.length);
-    
+
+    // Clear previous content to prevent stacking on refresh
+    for (let el of elements) {
+        el.innerHTML = '';
+        el.style.borderRight = "none"; // Reset border style
+    }
+
     // append data to each element from 'elements'
-    for(let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 
         // midnight indicator
-        if(times[startPosition + i] == "00:00") {  
+        if (times[startPosition + i] == "00:00") {
             elements[i].style.borderRight = "2px solid red";
         }
-        
+
         addElement(elements, times, startPosition, i, 'rgba(255, 150, 0, ', false, "", "");
-    
+
         // // temperature colour flips after 0
-        if(temp[startPosition + i] >= 0) { 
+        if (temp[startPosition + i] >= 0) {
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_HOT, TEMP_THRESH_HOT, false, tempUnits);
         }
-        else { 
+        else {
             addElement(elements, temp, startPosition, i, TEMP_COLOUR_COLD, TEMP_THRESH_COLD, false, tempUnits);
-        }    
+        }
         addElement(elements, precip, startPosition, i, PRECIP_COLOUR, PRECIP_THRESH, false, precipUnits);
         addElement(elements, clouds, startPosition, i, CLOUD_COLOUR, CLOUD_THRESH, true, cloudUnits);
         addElement(elements, wind, startPosition, i, WIND_COLOUR, WIND_THRESH, false, windDirection(windDir[i]));
@@ -226,27 +358,29 @@ function hourlyConditions(data) {
  */
 function addElement(elements, condition, current, pos, colour, threshold, flip, units) {
 
-    var value = Math.round( condition[current + pos] ) || condition[current + pos];
+    var value = Math.round(condition[current + pos]) || condition[current + pos];
 
     div = document.createElement('div');
     div.textContent = value + units;
     elements[pos].appendChild(div);
-    div.style.padding = '10px';
+    div.classList.add('weather-cell');
 
-    if(Number.isInteger(threshold)) {
-
-        if(flip) {
-            var rgba = 'rgba(' + colour + ',' + (1 - value/threshold) + ')';
+    if (Number.isInteger(threshold)) {
+        let alpha;
+        if (flip) {
+            alpha = (1 - value / threshold);
         }
         else {
-            var rgba = 'rgba(' + colour + ',' + (value/threshold + 0.1) + ')';
+            alpha = (value / threshold + 0.1);
         }
+        // Clamp alpha between 0 and 1
+        alpha = Math.max(0, Math.min(1, alpha));
+
+        div.style.setProperty('--cell-bg-color', `rgba(${colour}, ${alpha})`);
     }
     else {
-        rgba = 'lightgray';
+        div.classList.add('weather-cell-header');
     }
-    div.style.background = rgba;
-    div.style.borderTop = "1px solid gray";
 }
 
 
@@ -272,16 +406,16 @@ function windDirection(direction) {
 
     // const direction = Number( data["current"]["wind_direction_10m"] );
 
-    if(direction >= 0 && direction < 22.5) { return " N"; }
-    if(direction >= 22.5 && direction < 67.5) { return " NE"; }
-    if(direction >= 67.5 && direction < 112.5) { return " E"; }
-    if(direction >= 112.5 && direction < 157.5) { return " SE"; }
-    if(direction >= 157.5 && direction < 202.5) { return " S"; }
-    if(direction >= 202.5 && direction < 247.5) { return " SW"; }
-    if(direction >= 247.5 && direction < 292.5) { return " W"; }
-    if(direction >= 292.5 && direction < 337.5) { return " NW"; }
-    if(direction >= 337.5 && direction <= 360) { return " N"; }
-       
+    if (direction >= 0 && direction < 22.5) { return " N"; }
+    if (direction >= 22.5 && direction < 67.5) { return " NE"; }
+    if (direction >= 67.5 && direction < 112.5) { return " E"; }
+    if (direction >= 112.5 && direction < 157.5) { return " SE"; }
+    if (direction >= 157.5 && direction < 202.5) { return " S"; }
+    if (direction >= 202.5 && direction < 247.5) { return " SW"; }
+    if (direction >= 247.5 && direction < 292.5) { return " W"; }
+    if (direction >= 292.5 && direction < 337.5) { return " NW"; }
+    if (direction >= 337.5 && direction <= 360) { return " N"; }
+
     return "?";
 }
 

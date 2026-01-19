@@ -1,78 +1,179 @@
+/* =========================================
+   Variables & Themes
+   ========================================= */
 :root {
-    /* global variables (modify these ONLY) */
-    
+    /* Light Theme Colors */
+    --bg-body: whitesmoke;
+    --bg-container: whitesmoke;
+    --bg-section: whitesmoke;
+    --bg-block: rgba(211, 211, 211, 0.5);
+    --bg-block-hover: rgba(200, 200, 200, 0.8);
+    --bg-hourly: white;
+    --text-primary: black;
+    --text-secondary: #333;
+    --border-color: lightgray;
+    --shadow-color: gray;
+    --accent-color: lightblue;
+
+    /* Button Colors */
+    --button-bg: lightblue;
+    --button-text: black;
+    --button-active-bg: #38bdf8;
+    --button-active-text: black;
+
+    /* Layout Dimensions */
     --max-width: 2000px;
     --min-section-width: 500px;
-    --primary-colour: rgba(220, 220, 220, 0.6);
-    --secondary-colour: rgba(211, 211, 211, 0.5);
-    --section-colour: whitesmoke;
-    --text-colour: black;
-
-    /* --primary-colour: rgb(14, 14, 14);
-    --secondary-colour: rgba(45, 45, 45, 0.5);
-    --section-colour: rgb(35, 35, 35, 0.6);
-    --text-colour: lightgray; */
-
-    
-}
-.dark-theme {
-    --primary-colour: rgb(14, 14, 14);
-    --secondary-colour: rgba(45, 45, 45, 0.5);
-    --section-colour: rgb(35, 35, 35, 0.6);
-    --text-colour: lightgray;
 }
 
+[data-theme="dark"] {
+    /* Dark Theme Colors */
+    --bg-body: #1e1e1e;
+    --bg-container: #1e1e1e;
+    --bg-section: #2d2d2d;
+    --bg-block: #383838;
+    --bg-block-hover: #4a4a4a;
+    --bg-hourly: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #444;
+    --shadow-color: #000;
+    --accent-color: #bb86fc;
+
+    /* Dark Mode Buttons */
+    --button-bg: #3700b3;
+    --button-text: white;
+    --button-active-bg: #38bdf8;
+    --button-active-text: black;
+}
+
+/* =========================================
+   Global Reset & Base Styles
+   ========================================= */
 body {
-
-    /* cosmetics */
-    font-family: helvetica;
+    font-family: helvetica, sans-serif;
     text-align: center;
-    background-color: var(--primary-colour);   
-
-    color: var(--text-colour);
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 20px 0;
 }
 
-/* allows section elements to flex dynamically */
-.container {
+h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    /* Spacing for block headers */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* Prevent wrapping for long titles */
+}
 
-    /* flex properties */
+p,
+a {
+    display: inline;
+    font-size: large;
+    color: var(--text-primary);
+}
+
+a {
+    text-decoration: underline;
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* =========================================
+   Layout Containers
+   ========================================= */
+.container {
     display: flex;
     flex-wrap: wrap;
-
-    /* align items inside the container */
     justify-content: center;
-
-    /* limits page width on larger displays */
     max-width: var(--max-width);
-
-    /* used to center the container */
-    margin: 0 auto;  
-    width: 98%; 
-
-    /* cosmetics */
+    margin: 0 auto;
+    width: 98%;
     padding: 8px;
-    background-color: var(--background-colour); 
+    background-color: var(--bg-container);
     border-radius: 10px;
-    /* border: 1px solid darkgray; */
+    transition: background-color 0.3s;
+    position: relative;
+    /* Context for absolute header controls */
+    box-sizing: border-box;
+    /* Ensure padding doesn't overflow width */
 }
 
-/* main content area */
 section {
-    /* determines starting width of section element */
     flex: 1 1 calc(50% - 40px);
-
-    /* prevents sections from getting too small - if threshold is met flex wrap will be applied */
+    /* Flex grow/shrink with base width */
     min-width: var(--min-section-width);
-
-    box-sizing: border-box; 
+    /* Prevent getting too narrow before wrapping */
+    box-sizing: border-box;
     margin: 8px 8px;
     padding: 25px;
-    background-color: var(--section-colour);
-    /* border: 2px solid gray; */
-    border-radius: 10px;    
-    box-shadow: 0px 0px 4px gray;
-    /* box-shadow: -1px -1px 5px gray; */
+    background-color: var(--bg-section);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px var(--shadow-color);
     text-align: left;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.break {
+    box-sizing: border-box;
+    width: 100%;
+    height: 20px;
+}
+
+/* =========================================
+   Header & Controls
+   ========================================= */
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+}
+
+.logo {
+    border-radius: 10px;
+    height: 50px;
+}
+
+.theme-text {
+    display: none;
+}
+
+.icon-sun,
+.icon-moon {
+    width: 16px;
+    height: 16px;
+}
+
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+}
+
+#theme-toggle:hover {
+    background-color: transparent;
+}
+
+#theme-toggle:active {
+    background-color: transparent;
+    transform: none;
 }
 
 .title {
@@ -82,150 +183,117 @@ section {
     margin-top: 0;
 }
 
-#sqm-data {
-    text-align:center;
-}
-
-/* allows flex capability inside blocks */
-.inner-container { 
-    display: flex;
-    flex-wrap: wrap;
-
-    width: 100%; 
-    justify-content:center;
-}
-
-.block {
-    box-sizing: border-box; 
-    /* will take up at least 25% of parent container element */ 
-    min-width: 25%; 
-}
-
-.block-legend {
-    box-sizing: border-box; 
-    border: 1px solid gray;
-    text-align: center;
-    justify-content: center;
-    padding: 10px;
-
-    width: 25%; 
-    display: flex; 
-    flex-wrap: wrap;
-}
-.legend-text {
-    width: 100px; 
-    padding: 5px;
-    
-}
-
-
-/* .block-med {
-    box-sizing: border-box;  */
-
-    /* will take up at least 50% of parent container element */ 
-    /* min-width: 50%;  */
-    /* text-align: left;
-} */
-.block-full {
-    box-sizing: border-box; 
-
-    /* will take up at least 50% of parent container element */ 
-    min-width: 100%; 
-}
-.inner-block {
-    box-sizing: border-box; 
-    /* margin: 20px; */
-    text-align: left;
-}
-/* TODO: remove? */
-
-.break {
-    box-sizing: border-box; 
-    width: 100%;
-    height: 20px;
-}
-
-
-.camera-tile {
-    padding: 10px; 
-    text-align: center;
-}
-
-
-.current, .current-full, .current-small {
-    /* border: 5px solid var(--primary-colour); */
-    /* border: 2px inset var(--secondary-colour); */
-    border: 1px solid lightgray;
-    border-radius: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: var(--secondary-colour);
-
-    
-    /* width: 48%; */
-
-}
-.current {
-    width: calc(50% - 10px);
-    margin: 5px;
-}
-.current-full {
-    width: 100%;
-    /* justify-content:center; */
-}
-.current-small {
-    width: calc(25% - 10px);
-    margin: 5px;
-}
-
-
-h2.block-label {
-    margin: 5px 5px 15px 5px;
-    padding-left: 10px;
-}
-h3.block-label {
-    margin: 0;
-    margin-bottom: 5px;    
-}
-
-.inner-container-hourly {
-    display: flex;
-    width: calc(100% - 175px);
-    overflow-x: scroll;
-    background-color: white;
-}
-.block-hourly {
-    box-sizing: border-box; 
-    min-width: 80px;
-    text-align: center;
-}
-#hourly-labels {
-    width: 175px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.hourly-label {
-    padding-left: 10px;
-    border-top: 1px solid gray;
-    box-sizing: border-box;
-
-    /* value based on the blocks created inside hourly-small; found using browser inspection tool */
-    line-height: 38px;      
-}
-
-.inner-container-hourly::-webkit-scrollbar {
-    background-color: lightgray;
-    height: 10px;
-}
-.inner-container-hourly::-webkit-scrollbar-thumb {
-    background-color: gray;
+/* =========================================
+   Components (Buttons, Alerts)
+   ========================================= */
+/* Buttons */
+button {
+    padding: 5px 15px;
+    font-size: small;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
+    background-color: var(--bg-block);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
+button:hover {
+    background-color: var(--bg-block-hover);
+}
 
-#hourly-hour-label:hover {
-    background-color: blue;
+button:active,
+button.active {
+    background-color: var(--button-active-bg);
+    color: var(--button-active-text);
+}
+
+a.button {
+    margin: 10px;
+    padding: 6px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--button-active-text);
+    background-color: var(--button-active-bg);
+    text-align: center;
+    box-shadow: 0 0 5px var(--shadow-color);
+    text-decoration: none;
+    display: inline-block;
+}
+
+a.button:hover {
+    opacity: 0.8;
+}
+
+a.button:active {
+    background-color: var(--button-active-bg);
+    color: var(--button-active-text);
+    transform: none;
+}
+
+/* Alert Banners */
+#alerts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    align-items: center;
+}
+
+.alert-nav-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    color: inherit;
+    flex-shrink: 0;
+}
+
+.alert-counter {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.alert-banner {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+}
+
+.alert-warning {
+    background-color: #ef4444;
+    /* Red */
+    color: black;
+}
+
+.alert-watch {
+    background-color: #eab308;
+    /* Yellow */
+    color: black;
+}
+
+/* =========================================
+   Modules & Specific Sections
+   ========================================= */
+/* Camera Tiles */
+.camera-tile {
+    padding: 10px;
+    text-align: center;
 }
 
 .cam-label {
@@ -233,92 +301,233 @@ h3.block-label {
     margin-bottom: 10px;
 }
 
-
-p, a {
-    display: inline;
-    font-size: large;
+/* Status Blocks */
+.current,
+.current-full,
+.current-small {
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--bg-block);
+    transition: background-color 0.3s;
 }
 
-h3 {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.current {
+    width: calc(50% - 10px);
+    margin: 5px;
 }
 
-button {
-    padding: 5px 15px;
-    font-size: small;
-    border: 1px solid gray;
-    border-radius: 10px;
-    /* color: var(--text-colour); */
-    /* color: blue; */
-}
-button:hover {
-    opacity: 80%;
-}
-button:active {
-    transform: translateY(2px);
-}
-
-a.button {
-    margin: 10px;
-    padding: 6px 6px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    color: black;
-    background-color: lightblue;
-    text-align: center;
-    box-shadow: 0 0 5px black;
-}
-a.button:hover {
-    opacity: 80%;
-}
-a.button:active {
-    transform: translateY(2px);
-}
-
-img {
+.current-full {
     width: 100%;
-    border-radius: 5px;
 }
+
+.current-small {
+    width: calc(25% - 10px);
+    margin: 5px;
+}
+
+.row-header {
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+h2.block-label {
+    margin: 5px 5px 15px 5px;
+}
+
+.row-header h2.block-label {
+    margin: 5px 10px 5px 5px;
+}
+
+h3.block-label {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.inner-block {
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.block-full {
+    box-sizing: border-box;
+    min-width: 100%;
+}
+
+/* Hourly Forecast */
+.inner-container-hourly {
+    display: flex;
+    width: calc(100% - 175px);
+    overflow-x: scroll;
+    background-color: var(--bg-hourly);
+    transition: background-color 0.3s;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.inner-container-hourly::-webkit-scrollbar {
+    background-color: var(--bg-block);
+    height: 10px;
+}
+
+.inner-container-hourly::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}
+
+.block-hourly {
+    box-sizing: border-box;
+    min-width: 80px;
+    text-align: center;
+}
+
+#hourly-labels {
+    width: 175px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--bg-hourly);
+}
+
+.hourly-label {
+    padding-left: 10px;
+    border-top: 1px solid var(--border-color);
+    box-sizing: border-box;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+#hourly-hour-label:hover {
+    background-color: var(--accent-color);
+}
+
+.weather-cell {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    background-color: white;
+    background-image: linear-gradient(var(--cell-bg-color, transparent), var(--cell-bg-color, transparent));
+    border-top: 1px solid var(--border-color);
+    color: black;
+}
+
+.weather-cell-header {
+    background-color: lightgray;
+    color: black;
+}
+
+/* Legends */
+.block-legend {
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    width: 25%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.legend-text {
+    width: 100px;
+    padding: 5px;
+    color: black;
+}
+
+/* SQM & Radar */
+#sqm-data {
+    text-align: center;
+}
+
 .img-radar {
     background-image: url("https://maps-basemap.pelmorex.com/styles/twn-light-v2/static/-97.17474286,49.85377727,7/638x200@2x.webp");
     background-size: contain;
     width: 100%;
 }
-.logo {
-    border-radius: 10px;
-    height: 50px;
-} 
 
+/* =========================================
+   Mobile / Responsive Design
+   ========================================= */
+@media only screen and (max-width: 900px) {
 
-
-@media only screen and (max-device-width: 500px){
-
-    section {
-
-    
-        flex: 1 1 calc(50% - 40px);
-        box-sizing: border-box;
-        min-width: 300px; 
-        margin: 10px 10px;
-        padding: 15px;
-        background-color: var(--section-colour);
-        border: 2px solid lightgray;
-        border-radius: 10px;
-        box-shadow: 0px 0px 20px gray;    
+    /* Full width container for mobile */
+    .container {
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
     }
 
+    /* Edge-to-edge sections with separators */
+    section,
+    .camera-tile {
+        flex: 1 1 100%;
+        box-sizing: border-box;
+        min-width: 0;
+        margin: 0;
+        padding: 30px 15px;
+        /* Consistent large padding */
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    section:last-child {
+        border-bottom: none;
+    }
+
+    /* Header adjustments */
+    .header-controls {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Hourly Forecast Mobile */
     #hourly-labels {
         display: none;
+    }
+
+    .hourly-label h3 {
+        font-size: small;
     }
 
     .inner-container-hourly {
         display: flex;
         width: 100%;
         overflow-x: scroll;
-        background-color: white;
+        background-color: var(--bg-hourly);
+        border-radius: 10px;
+        /* Round both ends on mobile */
     }
 
-    
+    /* Legend Adjustments */
+    .block-legend {
+        width: 100%;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .legend-text {
+        width: auto;
+        flex: 1;
+        margin: 0 5px;
+        font-size: small;
+    }
+
+    h1 {
+        font-size: x-large;
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
 }
