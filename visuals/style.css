@@ -148,16 +148,31 @@ section {
     height: 50px;
 }
 
+.theme-text {
+    display: none;
+}
+
 .icon-sun,
 .icon-moon {
     width: 16px;
     height: 16px;
-    margin-right: 5px;
+}
+
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+}
+
+#theme-toggle:hover {
+    background-color: transparent;
 }
 
 #theme-toggle:active {
-    background-color: var(--bg-block);
-    color: var(--text-primary);
+    background-color: transparent;
     transform: none;
 }
 
@@ -471,30 +486,9 @@ h3.block-label {
     }
 
     /* Header adjustments */
-    .theme-text {
-        display: none;
-    }
-
-    /* Keep header controls absolute (inherited from desktop) but ensure spacing */
     .header-controls {
         top: 10px;
-        /* Slight adjustment for mobile */
         right: 10px;
-    }
-
-    /* Remove button styling for icon-only appearance */
-    #theme-toggle {
-        background-color: transparent;
-        border: none;
-        padding: 5px;
-    }
-
-    #theme-toggle:hover {
-        background-color: transparent;
-    }
-
-    #theme-toggle:active {
-        background-color: transparent;
     }
 
     /* Hourly Forecast Mobile */
@@ -533,6 +527,7 @@ h3.block-label {
 
     h1 {
         font-size: x-large;
+        margin-top: 20px;
         margin-bottom: 0px;
     }
 }
