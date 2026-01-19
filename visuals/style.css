@@ -471,13 +471,30 @@ h3.block-label {
     }
 
     /* Header adjustments */
+    .theme-text {
+        display: none;
+    }
+
+    /* Keep header controls absolute (inherited from desktop) but ensure spacing */
     .header-controls {
-        position: static;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-        margin-top: 10px;
+        top: 10px;
+        /* Slight adjustment for mobile */
+        right: 10px;
+    }
+
+    /* Remove button styling for icon-only appearance */
+    #theme-toggle {
+        background-color: transparent;
+        border: none;
+        padding: 5px;
+    }
+
+    #theme-toggle:hover {
+        background-color: transparent;
+    }
+
+    #theme-toggle:active {
+        background-color: transparent;
     }
 
     /* Hourly Forecast Mobile */
@@ -516,5 +533,6 @@ h3.block-label {
 
     h1 {
         font-size: x-large;
+        margin-bottom: 0px;
     }
 }
