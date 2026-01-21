@@ -55,7 +55,7 @@ async function callAlert() {
     alertBar.innerHTML = ''; // Clear previous alerts
     alertBar.style.display = 'none'; // Hide by default
 
-    const proxy = 'https://corsproxy.io/?';
+    const proxy = 'https://api.codetabs.com/v1/proxy/?quest=';
     const weatherRss = 'https://weather.gc.ca/rss/battleboard/mb9_e.xml'; // Winnipeg Weather Alerts
     const aqhiRss = 'https://weather.gc.ca/rss/battleboard/aq434_aq_e.xml'; // Winnipeg Air Quality
 
