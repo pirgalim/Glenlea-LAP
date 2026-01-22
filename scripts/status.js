@@ -1,5 +1,7 @@
 async function call() {
     try {
+
+        // todo: try changing this to a proxy
         const response = await fetch('https://ac19bugf.physics.umanitoba.ca');
         const data = await response.json();
         return data;
