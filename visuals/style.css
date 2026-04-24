@@ -3,17 +3,17 @@
    ========================================= */
 :root {
     /* Light Theme Colors */
-    --bg-body: whitesmoke;
-    --bg-container: whitesmoke;
-    --bg-section: whitesmoke;
-    --bg-block: rgba(211, 211, 211, 0.5);
-    --bg-block-hover: rgba(200, 200, 200, 0.8);
+    --bg-body: #eef3f8;
+    --bg-container: #eef3f8;
+    --bg-section: rgba(255, 255, 255, 0.88);
+    --bg-block: rgba(226, 233, 241, 0.85);
+    --bg-block-hover: rgba(214, 224, 235, 0.95);
     --bg-hourly: white;
-    --text-primary: black;
-    --text-secondary: #333;
-    --border-color: lightgray;
-    --shadow-color: gray;
-    --accent-color: lightblue;
+    --text-primary: #142132;
+    --text-secondary: #46576a;
+    --border-color: #d6e0ea;
+    --shadow-color: rgba(20, 33, 50, 0.12);
+    --accent-color: #8ec5ea;
 
     /* Button Colors */
     --button-bg: lightblue;
@@ -51,7 +51,7 @@
    Global Reset & Base Styles
    ========================================= */
 body {
-    font-family: helvetica, sans-serif;
+    font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
     text-align: center;
     background-color: var(--bg-body);
     color: var(--text-primary);
@@ -119,6 +119,17 @@ section {
     box-shadow: 0px 0px 4px var(--shadow-color);
     text-align: left;
     transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#current-conditions {
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+#current-conditions .current {
+    background-color: #f6f9fc;
+    border-color: #dbe5ef;
+    border-radius: 12px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .inner-container {
