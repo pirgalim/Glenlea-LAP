@@ -1,5 +1,7 @@
 const outdoorImage = document.getElementById('outdoor');
 const indoorImage = document.getElementById('indoor');
+const finderscopeImage = document.getElementById('finderscope');
+const noSignalImage = 'visuals/nosignal.png';
 
 const buttonStop = document.getElementById("pause-indoor");
 const buttonInstant = document.getElementById("instant-indoor");
@@ -12,9 +14,22 @@ const buttonLiveOutdoor = document.getElementById("live-outdoor");
 let rateIndoorID;
 let rateOutdoorID;
 
+function setFallbackImage(imageElement) {
+    if (!imageElement) {
+        return;
+    }
+
+    imageElement.onerror = null;
+    imageElement.src = noSignalImage;
+}
+
 // function to call on error
-indoorImage.onerror = imageNotFoundIndoor;
-outdoorImage.onerror = imageNotFoundOutdoor;
+indoorImage.onerror = () => setFallbackImage(indoorImage);
+outdoorImage.onerror = () => setFallbackImage(outdoorImage);
+
+if (finderscopeImage) {
+    finderscopeImage.onerror = () => setFallbackImage(finderscopeImage);
+}
 
 
 /**
@@ -26,18 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     outdoorImage.src = "https://allsky.physics.umanitoba.ca/outdoor.png?" + new Date().getTime();
     indoorImage.src = "https://allsky.physics.umanitoba.ca/indoor.png?" + new Date().getTime();
 });
-
-/**
- * Handle image source error
- */
-function imageNotFoundIndoor() {
-    indoorImage.src = "visuals/nosignal.png";
-
-}
-function imageNotFoundOutdoor() {
-    outdoorImage.src = "visuals/nosignal.png";
-}
-
 
 // var count = 0;
 // var drop = 0;

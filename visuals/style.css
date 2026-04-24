@@ -9,6 +9,10 @@
     --bg-block: rgba(226, 233, 241, 0.85);
     --bg-block-hover: rgba(214, 224, 235, 0.95);
     --bg-hourly: white;
+    --bg-current-conditions: rgba(255, 255, 255, 0.92);
+    --bg-current-conditions-block: #f6f9fc;
+    --border-current-conditions-block: #dbe5ef;
+    --highlight-current-conditions-block: rgba(255, 255, 255, 0.9);
     --text-primary: #142132;
     --text-secondary: #46576a;
     --border-color: #d6e0ea;
@@ -34,6 +38,10 @@
     --bg-block: #383838;
     --bg-block-hover: #4a4a4a;
     --bg-hourly: #2d2d2d;
+    --bg-current-conditions: #313131;
+    --bg-current-conditions-block: #3a3a3a;
+    --border-current-conditions-block: #4a4a4a;
+    --highlight-current-conditions-block: rgba(255, 255, 255, 0.06);
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
     --border-color: #444;
@@ -122,14 +130,14 @@ section {
 }
 
 #current-conditions {
-    background-color: rgba(255, 255, 255, 0.92);
+    background-color: var(--bg-current-conditions);
 }
 
 #current-conditions .current {
-    background-color: #f6f9fc;
-    border-color: #dbe5ef;
+    background-color: var(--bg-current-conditions-block);
+    border-color: var(--border-current-conditions-block);
     border-radius: 12px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 1px 0 var(--highlight-current-conditions-block);
 }
 
 .inner-container {
@@ -303,13 +311,35 @@ a.button:active {
    ========================================= */
 /* Camera Tiles */
 .camera-tile {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     text-align: center;
 }
 
+.camera-tile img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background-color: #000;
+}
+
+.camera-footer {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
 .cam-label {
-    margin-top: 15px;
+    margin-top: 0;
     margin-bottom: 10px;
+}
+
+.camera-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    min-height: 37px;
 }
 
 /* Status Blocks */
