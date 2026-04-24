@@ -20,10 +20,12 @@
     --accent-color: #8ec5ea;
 
     /* Button Colors */
-    --button-bg: lightblue;
-    --button-text: black;
-    --button-active-bg: #38bdf8;
-    --button-active-text: black;
+    --button-bg: #dbe8f4;
+    --button-text: #17324a;
+    --button-border: #bdd0e0;
+    --button-hover-bg: #cbdfee;
+    --button-active-bg: #4ea3e3;
+    --button-active-text: #0c1b29;
 
     /* Layout Dimensions */
     --max-width: 2000px;
@@ -49,10 +51,12 @@
     --accent-color: #bb86fc;
 
     /* Dark Mode Buttons */
-    --button-bg: #3700b3;
-    --button-text: white;
-    --button-active-bg: #38bdf8;
-    --button-active-text: black;
+    --button-bg: #2f3f52;
+    --button-text: #e6eef5;
+    --button-border: #46586c;
+    --button-hover-bg: #3a4d63;
+    --button-active-bg: #69b7f0;
+    --button-active-text: #08131d;
 }
 
 /* =========================================
@@ -207,18 +211,27 @@ section {
    ========================================= */
 /* Buttons */
 button {
-    padding: 5px 15px;
-    font-size: small;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 30px;
+    padding: 0 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    border: 1px solid var(--button-border);
+    border-radius: 12px;
     background-color: var(--bg-block);
-    color: var(--text-primary);
+    background-color: var(--button-bg);
+    color: var(--button-text);
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 button:hover {
-    background-color: var(--bg-block-hover);
+    background-color: var(--button-hover-bg);
+    border-color: var(--button-border);
 }
 
 button:active,
@@ -326,12 +339,12 @@ a.button:active {
 
 .camera-footer {
     margin-top: auto;
-    padding-top: 14px;
+    padding-top: 12px;
 }
 
 .cam-label {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .camera-controls {
@@ -339,7 +352,7 @@ a.button:active {
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    min-height: 37px;
+    min-height: 30px;
 }
 
 /* Status Blocks */
